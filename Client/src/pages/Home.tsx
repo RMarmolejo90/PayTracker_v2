@@ -1,8 +1,10 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
 
 export default function Home() {
   return (
-    <div>
+    <div className='bg-gears bg-cover h-screen'>
+        <Navbar />
         Home
     </div>
   )

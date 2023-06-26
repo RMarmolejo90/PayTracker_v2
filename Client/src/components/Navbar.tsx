@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Home from '../pages/Home';
 import PayTracker from '../pages/PayTracker';
 
@@ -9,13 +9,25 @@ export default function Navbar() {
         <h1>Rich Marmolejo</h1>
         <ul>
             <li>
-                <Link to="/">Home</Link>
+                <NavLink 
+                    to='/' 
+                    className={({ isActive }) => isActive ? 'text-red-500' : 'text-blue-500'}>
+                    Home
+                </NavLink>
             </li>
             <li>
-                <Link to="/PayTracker">PayTracker</Link>
+                <NavLink 
+                    to="/PayTracker"
+                    className={({ isActive }) => isActive ? 'text-red-500' : 'text-blue-500'}>
+                    PayTracker
+                </NavLink>
             </li>
             <li>
-                <Link to="/Dev">Development</Link>
+                <NavLink 
+                    to="/Dev"
+                    className={({ isActive }) => isActive ? 'text-red-500' : 'text-blue-500'}>           
+                    Development
+                </NavLink>
             </li>
         </ul>
     </div>

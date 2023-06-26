@@ -1,7 +1,11 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
 
 export default function PayTracker() {
   return (
-    <div>PayTracker</div>
+    <div>
+        <Navbar />
+        PayTracker
+    </div>
   )
 }

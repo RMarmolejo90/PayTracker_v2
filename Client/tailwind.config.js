@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage:{
+        'gears': "url('./src/assets/Gears.webp')",
+      }
+    },
   },
   plugins: [],
 }
