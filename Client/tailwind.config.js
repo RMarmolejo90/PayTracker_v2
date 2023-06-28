@@ -9,7 +9,10 @@ export default {
       backgroundImage:{
         'gears': "url('./src/assets/Gears.webp')",
         'secondary-gradient': "radial-gradient( circle farthest-corner at 17.1% 22.8%,  rgba(226,24,24,1) 0%, rgba(160,6,6,1) 90% );",
-        'primary-gradient': "linear-gradient( 179deg,  rgba(0,0,0,1) 9.2%, rgba(127,16,16,1) 103.9% );"
+        'primary-gradient': "linear-gradient(45deg, hsla(214, 100%, 60%, 1) 0%, hsla(252, 57%, 43%, 1) 100%);",
+      },
+      fontFamily: {
+        'sans':['Lato', 'sans-serif'],
       }
     },
   },
