@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FormEvent, ChangeEvent, useState } from 'react'
 
 export default function Register() {
     const [newUser, setNewUser] = useState({
@@ -8,11 +8,11 @@ export default function Register() {
         password:""
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setNewUser({ ...newUser, [e.target.name]: e.target.value });
       };
     
-      const submit = async (e) => {
+      const submit = async (e:FormEvent) => {
         e.preventDefault();
     
         try {
