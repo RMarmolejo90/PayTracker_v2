@@ -1,7 +1,4 @@
-import React from 'react'
 import { NavLink, Link } from "react-router-dom";
-import Home from '../pages/Home';
-import PayTracker from '../pages/PayTracker';
 
 export default function Navbar() {
   return (

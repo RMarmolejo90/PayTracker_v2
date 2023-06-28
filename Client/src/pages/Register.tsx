@@ -1,4 +1,5 @@
 import { FormEvent, ChangeEvent, useState } from 'react'
+import axios from 'axios';
 
 export default function Register() {
     const [newUser, setNewUser] = useState({
