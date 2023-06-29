@@ -26,11 +26,6 @@ export default function Register() {
         .matches(/[0-9]/, getCharacterValidationError("digit"))
         .matches(/[a-z]/, getCharacterValidationError("lowercase"))
         .matches(/[A-Z]/, getCharacterValidationError("uppercase")),
-        confirmPassword: Yup.string()
-        .required("Please re-type your password")
-        // use oneOf to match one of the values inside the array.
-        // use "ref" to get the value of passwrod.
-        .oneOf([ref("password")], "Passwords does not match"),
       });
       
 
@@ -46,7 +41,7 @@ export default function Register() {
     onSubmit: async values => {
         try {
             // Send a POST request to the API endpoint
-            const response = await axios.post("http://localhost:3000/register", formik.values);
+            const response = await axios.post("http://localhost:3000/register", values);
             console.log(response.data);
         } catch (error) {
         console.error(error);
