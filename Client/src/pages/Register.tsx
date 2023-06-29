@@ -1,8 +1,9 @@
 import { FormEvent, ChangeEvent, useState } from 'react'
 import axios from 'axios';
+import { useFormik } from 'formik';
 
 export default function Register() {
-    const [newUser, setNewUser] = useState({
+    const formik = useFormik({
         firstName:"",
         lastName:"",
         email:"",
