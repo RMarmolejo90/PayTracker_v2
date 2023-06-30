@@ -37,7 +37,7 @@ export default function Register() {
         email:"",
         password:"",
     },
-    validationSchema: {SignupSchema},
+    validationSchema: SignupSchema,
     onSubmit: async values => {
         try {
             // Send a POST request to the API endpoint
