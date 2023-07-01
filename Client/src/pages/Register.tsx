@@ -41,7 +41,7 @@ export default function Register() {
     onSubmit: async values => {
         try {
             // Send a POST request to the API endpoint
-            const response = await axios.post("http://localhost:3000/register", values);
+            const response = await axios.post("http://localhost:3000/Register", values);
             console.log(response.data);
         } catch (error) {
         console.error(error);
