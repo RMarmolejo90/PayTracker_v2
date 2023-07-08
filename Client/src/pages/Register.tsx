@@ -41,8 +41,7 @@ export default function Register() {
     onSubmit: async values => {
         try {
             // Send a POST request to the API endpoint
-            const response = await axios.post("http://localhost:3000/Register", values);
-            console.log(response.data);
+            await axios.post("http://localhost:3000/Register", values);
         } catch (error) {
         console.error(error);
         }
@@ -76,7 +75,7 @@ export default function Register() {
 
   return (
     <div>
-        <form action="POST" method="post" onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
             <input onChange={formik.handleChange} value={formik.values.firstName} placeholder='First Name' type="text" name="firstName" id="firstName" />
             <input onChange={formik.handleChange} value={formik.values.lastName} placeholder='Last Name' type="text" name="lastName" id="lastName" />
             <input onChange={formik.handleChange} value={formik.values.email} placeholder='Email' type="email" name="email" id="email" />
