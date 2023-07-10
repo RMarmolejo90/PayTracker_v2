@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
-    
+    const navigate = useNavigate();
     //password character error checking
     const getCharacterValidationError = (str: string) => {
         return `Your password must have at least 1 ${str} character`;
@@ -41,7 +42,15 @@ export default function Register() {
     onSubmit: async values => {
         try {
             // Send a POST request to the API endpoint
-            await axios.post("http://localhost:3000/register", values);
+            const response = await axios.post("http://localhost:3000/register", values);
+            const responseData = response.data;
+            if (responseData === "User already exists"){
+              navigate('/Login');
+            } else if (responseData === "Success") {
+              navigate('/PayTracker');
+            } else {
+              throw Error('There was an error with registration');
+            }
         } catch (error) {
         console.error(error);
         }

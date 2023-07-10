@@ -1,5 +1,3 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
 import Home from './pages/Home.tsx'
 import PayTracker from './pages/PayTracker.tsx'
 import Dev from './pages/Dev.tsx'
@@ -7,10 +5,11 @@ import ErrorPage from './pages/ErrorPage.tsx'
 import Login from './pages/Login.tsx'
 import Register from './pages/Register.tsx'
 import './index.css'
-import {
+import { createRoot } from 'react-dom/client';import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import * as React from 'react'
 
 const router = createBrowserRouter([
   {
@@ -43,7 +42,7 @@ const router = createBrowserRouter([
   
 ]);
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
        <RouterProvider router={router} />
   </React.StrictMode>,
