@@ -89,12 +89,12 @@ export default function Register() {
     <div className='bg-gears bg-cover h-screen'>
         <Navbar />
         <div className="flex items-center justify-center">
-        <form className="flex-col flex items-center justify-center p-4 m-4 border rounded-sm" onSubmit={formik.handleSubmit}>
-            <input className='p-2 m-2' onChange={formik.handleChange} value={formik.values.firstName} placeholder='First Name' type="text" name="firstName" id="firstName" />
-            <input className='p-2 m-2' onChange={formik.handleChange} value={formik.values.lastName} placeholder='Last Name' type="text" name="lastName" id="lastName" />
-            <input className='p-2 m-2' onChange={formik.handleChange} value={formik.values.email} placeholder='Email' type="email" name="email" id="email" />
-            <input className='p-2 m-2' onChange={formik.handleChange} value={formik.values.password} placeholder='Password' type="password" name="password" id="password" />
-            <button className='p-4 m-4 px-6 bg-green-400' type="submit">Submit</button>
+        <form className="bg-zinc-800 flex-col flex items-center justify-center p-4 m-4 border rounded-sm" onSubmit={formik.handleSubmit}>
+            <input className='p-1 m-2' onChange={formik.handleChange} value={formik.values.firstName} placeholder='First Name' type="text" name="firstName" id="firstName" />
+            <input className='p-1 m-2' onChange={formik.handleChange} value={formik.values.lastName} placeholder='Last Name' type="text" name="lastName" id="lastName" />
+            <input className='p-1 m-2' onChange={formik.handleChange} value={formik.values.email} placeholder='Email' type="email" name="email" id="email" />
+            <input className='p-1 m-2' onChange={formik.handleChange} value={formik.values.password} placeholder='Password' type="password" name="password" id="password" />
+            <button className='p-2 m-4 px-6 bg-green-400' type="submit">Submit</button>
         </form>
         </div>
     </div>
