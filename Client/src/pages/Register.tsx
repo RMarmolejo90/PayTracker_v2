@@ -2,8 +2,10 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 export default function Register() {
+
     const navigate = useNavigate();
     //password character error checking
     const getCharacterValidationError = (str: string) => {
@@ -45,9 +47,10 @@ export default function Register() {
             const response = await axios.post("http://localhost:3000/register", values);
             const responseData = response.data;
             if (responseData === "User already exists"){
-              navigate('/Login');
+              alert('This email is already registered');
+              navigate('../Login');
             } else if (responseData === "Success") {
-              navigate('/PayTracker');
+              navigate('../PayTracker');
             } else {
               throw Error('There was an error with registration');
             }
@@ -84,6 +87,7 @@ export default function Register() {
 
   return (
     <div>
+        <Navbar />
         <form onSubmit={formik.handleSubmit}>
             <input onChange={formik.handleChange} value={formik.values.firstName} placeholder='First Name' type="text" name="firstName" id="firstName" />
             <input onChange={formik.handleChange} value={formik.values.lastName} placeholder='Last Name' type="text" name="lastName" id="lastName" />
