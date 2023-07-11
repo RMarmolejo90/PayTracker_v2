@@ -1,9 +1,7 @@
-import Navbar from "../components/Navbar";
 
 export default function Login() {
   return (
     <div className='bg-gears bg-cover h-screen'>
-      <Navbar />
       <div className="flex items-center justify-center">
         <form className="flex flex-col m-10 items-center justify-center border rounded-md" name="loginForm" id="loginForm" action="post">
           <label className="p-2 m-2 border text-xl font-semibold min-w-full text-center" htmlFor="loginForm">Login</label>

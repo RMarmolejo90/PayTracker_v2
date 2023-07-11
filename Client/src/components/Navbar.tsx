@@ -1,37 +1,66 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <div className='flex flex-row justify-between p-2 min-w-full bg-slate-200'>
-        <div className='flex items-start flex-col'>
-            <h1 className='tracking-widest text-zinc-700 text-lg px-6 mr-auto'>RichMarmolejo.com</h1>
-            <ul className='flex flex-row justify-between text-xs m-4 tracking-wide'>
-                <li className='px-2'>
-                    <NavLink 
-                        to='/' 
-                        className={({ isActive }) => isActive ? 'text-zinc-800 py-2 border-b-2' : 'text-orange-700'}>
-                        Home
-                    </NavLink>
-                </li>
-                <li className='px-2'>
-                    <NavLink 
-                        to="/PayTracker"
-                        className={({ isActive }) => isActive ? 'text-zinc-400 py-2 border-b-2' : 'text-orange-700'}>
-                        PayTracker
-                    </NavLink>
-                </li>
-                <li className='px-2'>
-                    <NavLink 
-                        to="/Dev"
-                        className={({ isActive }) => isActive ? 'text-zinc-400 py-2 border-b-2' : 'text-orange-700'}>           
-                        Development
-                    </NavLink>
-                </li>
-            </ul>
-        </div>
-        <div className='flex flex-wrap p-2 text-xs tracking-wide text-amber-500'>
-            <Link className='mx-2' to="/Login">Log In</Link>
-            <Link className='mx-2' to="/Register">Register</Link>
+    <div className='flex flex-row justify-between p-2 min-w-full bg-gray-950 pointer-events-auto'>
+            <svg className="max-w-[8rem] mx-2" viewBox="0 0 412 129" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_0_1)">
+                <path d="M126.077 47V1.09375H143.046C145.359 1.09375 147.359 1.19792 149.046 1.40625C150.755 1.61458 152.369 2 153.89 2.5625C155.432 3.10417 156.671 3.84375 157.609 4.78125C158.567 5.71875 159.317 6.94792 159.859 8.46875C160.421 9.96875 160.702 11.75 160.702 13.8125C160.702 19.8958 157.942 23.8958 152.421 25.8125C153.546 27.0833 154.942 29.4375 156.609 32.875L163.421 47H154.171L148.827 35.0312C146.807 30.7396 145.557 28.1979 145.077 27.4062C144.723 27.3854 143.546 27.375 141.546 27.375L134.452 27.3125V47H126.077ZM143.796 21.25C147.046 21.25 149.38 20.6771 150.796 19.5312C152.213 18.3646 152.921 16.5 152.921 13.9375C152.921 11.6875 152.202 10.0312 150.765 8.96875C149.327 7.90625 147.13 7.375 144.171 7.375H134.452V21.2188C134.765 21.2188 136.317 21.2292 139.109 21.25C141.9 21.25 143.463 21.25 143.796 21.25ZM172.318 47V1.21875H180.786V47H172.318ZM213.12 47.6562C206.432 47.6562 201.13 45.5521 197.214 41.3438C193.297 37.1354 191.339 31.3229 191.339 23.9062C191.339 16.8646 193.38 11.2188 197.464 6.96875C201.568 2.69792 206.932 0.5625 213.557 0.5625C218.912 0.5625 223.443 1.80208 227.151 4.28125L224.495 10.6875C220.932 8.5 217.349 7.40625 213.745 7.40625C209.537 7.40625 206.203 8.92708 203.745 11.9688C201.307 14.9896 200.089 19.0521 200.089 24.1562C200.089 29.4479 201.266 33.5417 203.62 36.4375C205.995 39.3333 209.37 40.7812 213.745 40.7812C217.578 40.7812 221.38 39.8229 225.151 37.9062L226.276 44.5312C222.776 46.6146 218.391 47.6562 213.12 47.6562ZM236.079 47V1.21875H244.548V19.9375H265.235V1.21875H273.704V47H265.235V26.625H244.548V47H236.079ZM0.258743 110V64.2188H10.2587L24.1025 97.2812L38.04 64.2188H47.915V110H40.1025V87.375L40.3525 74.4062L39.1962 77.8438L27.4775 106.875H20.2275L8.75874 77.6875L7.60249 74.25L7.88374 87.5V110H0.258743ZM55.03 110L71.8737 64.1875H81.0925L97.6862 110H88.9987L84.4675 97.0625H68.4362L63.8737 110H55.03ZM70.5612 90.75H82.3112C78.5612 78.7292 76.6342 72.5208 76.53 72.125L70.5612 90.75ZM104.27 110V64.0938H121.239C123.551 64.0938 125.551 64.1979 127.239 64.4062C128.947 64.6146 130.562 65 132.082 65.5625C133.624 66.1042 134.864 66.8438 135.801 67.7812C136.76 68.7188 137.51 69.9479 138.051 71.4688C138.614 72.9688 138.895 74.75 138.895 76.8125C138.895 82.8958 136.135 86.8958 130.614 88.8125C131.739 90.0833 133.135 92.4375 134.801 95.875L141.614 110H132.364L127.02 98.0312C124.999 93.7396 123.749 91.1979 123.27 90.4062C122.916 90.3854 121.739 90.375 119.739 90.375L112.645 90.3125V110H104.27ZM121.989 84.25C125.239 84.25 127.572 83.6771 128.989 82.5312C130.405 81.3646 131.114 79.5 131.114 76.9375C131.114 74.6875 130.395 73.0312 128.957 71.9688C127.52 70.9062 125.322 70.375 122.364 70.375H112.645V84.2188C112.957 84.2188 114.51 84.2292 117.301 84.25C120.093 84.25 121.655 84.25 121.989 84.25ZM149.916 110V64.2188H159.916L173.76 97.2812L187.697 64.2188H197.572V110H189.76V87.375L190.01 74.4062L188.854 77.8438L177.135 106.875H169.885L158.416 77.6875L157.26 74.25L157.541 87.5V110H149.916ZM220.156 99.4062C222.427 102.302 225.781 103.75 230.219 103.75C234.656 103.75 238 102.312 240.25 99.4375C242.521 96.5417 243.656 92.4583 243.656 87.1875C243.656 81.8542 242.521 77.7188 240.25 74.7812C238 71.8438 234.667 70.375 230.25 70.375C225.812 70.375 222.448 71.8542 220.156 74.8125C217.885 77.75 216.75 81.875 216.75 87.1875C216.75 92.4375 217.885 96.5104 220.156 99.4062ZM230.188 110.656C223.292 110.656 217.844 108.573 213.844 104.406C209.865 100.219 207.875 94.4479 207.875 87.0938C207.875 79.6979 209.875 73.9271 213.875 69.7812C217.875 65.6354 223.323 63.5625 230.219 63.5625C237.115 63.5625 242.552 65.6458 246.531 69.8125C250.51 73.9583 252.5 79.7292 252.5 87.125C252.5 94.4375 250.5 100.188 246.5 104.375C242.5 108.562 237.062 110.656 230.188 110.656ZM262.771 110V64.2188H271.24V103.25H290.396L290.146 110H262.771ZM298.511 110V64.2188H326.261L325.917 70.9375H306.98V82.75H324.98V89.4688H306.98V103.25H326.605L326.324 110H298.511ZM329.532 120.031L329.189 113.375C330.189 113.542 331.282 113.625 332.47 113.625C334.782 113.625 336.345 113.031 337.157 111.844C337.97 110.656 338.376 108.698 338.376 105.969V64.0938H346.876V105.406C346.876 108.031 346.637 110.24 346.157 112.031C345.699 113.844 344.907 115.375 343.782 116.625C342.678 117.896 341.199 118.823 339.345 119.406C337.512 119.99 335.23 120.281 332.501 120.281C331.355 120.281 330.366 120.198 329.532 120.031ZM369.241 99.4062C371.512 102.302 374.866 103.75 379.304 103.75C383.741 103.75 387.085 102.312 389.335 99.4375C391.606 96.5417 392.741 92.4583 392.741 87.1875C392.741 81.8542 391.606 77.7188 389.335 74.7812C387.085 71.8438 383.752 70.375 379.335 70.375C374.898 70.375 371.533 71.8542 369.241 74.8125C366.97 77.75 365.835 81.875 365.835 87.1875C365.835 92.4375 366.97 96.5104 369.241 99.4062ZM379.273 110.656C372.377 110.656 366.929 108.573 362.929 104.406C358.95 100.219 356.96 94.4479 356.96 87.0938C356.96 79.6979 358.96 73.9271 362.96 69.7812C366.96 65.6354 372.408 63.5625 379.304 63.5625C386.2 63.5625 391.637 65.6458 395.616 69.8125C399.595 73.9583 401.585 79.7292 401.585 87.125C401.585 94.4375 399.585 100.188 395.585 104.375C391.585 108.562 386.148 110.656 379.273 110.656Z" fill="url(#paint0_linear_0_1)"/>
+                </g>
+                <defs>
+                <filter id="filter0_d_0_1" x="0.258728" y="0.5625" width="411.326" height="127.719" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                <feOffset dx="6" dy="4"/>
+                <feGaussianBlur stdDeviation="2"/>
+                <feComposite in2="hardAlpha" operator="out"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+                </filter>
+                <linearGradient id="paint0_linear_0_1" x1="200" y1="-10" x2="200" y2="116" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#3D8AFC"/>
+                <stop offset="0.505208" stopColor="#79F4F4"/>
+                <stop offset="1" stopColor="#3399F6"/>
+                </linearGradient>
+                </defs>
+            </svg>
+            <div>
+                <ul className='flex flex-row justify-between text-xs m-4 tracking-wide'>
+                    <li className='px-2 hover:cursor-pointer'>
+                        <NavLink 
+                            to='/' 
+                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 cursor-pointer' : 'text-sky-200 hover:text-sky-50'}>
+                            Home
+                        </NavLink>
+                    </li>
+                    <li className='px-2 hover:cursor-pointer'>
+                        <NavLink 
+                            to="/PayTracker"
+                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400' : 'text-sky-200 hover:text-sky-50'}>
+                            PayTracker
+                        </NavLink>
+                    </li>
+                    <li className='px-2'>
+                        <NavLink 
+                            to="/Dev"
+                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400' : 'text-sky-200 hover:text-sky-50'}>           
+                            Development
+                        </NavLink>
+                    </li>
+                </ul>
+            </div>
+        <div className='flex flex-wrap p-2 text-xs tracking-wide text-sky-200'>
+            <NavLink 
+                to="/Login"
+                className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
+                Login
+            </NavLink>
+            <NavLink 
+                to="/Register"
+                className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
+                Create Account
+            </NavLink>
         </div>
     </div>
   )

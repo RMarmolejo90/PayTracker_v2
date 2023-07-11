@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 
 export default function Register() {
 
@@ -87,7 +86,6 @@ export default function Register() {
 
   return (
     <div className='bg-gears bg-cover h-screen'>
-        <Navbar />
         <div className="flex items-center justify-center">
         <form className="bg-zinc-800 flex-col flex items-center justify-center p-4 m-4 border rounded-sm" onSubmit={formik.handleSubmit}>
             <input className='p-1 m-2' onChange={formik.handleChange} value={formik.values.firstName} placeholder='First Name' type="text" name="firstName" id="firstName" />
