@@ -7,7 +7,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   // Password character error checking
-  const getCharacterValidationError = (str) => {
+  const getCharacterValidationError = (str:string) => {
     return `Your password must have at least 1 ${str} character`;
   };
 
