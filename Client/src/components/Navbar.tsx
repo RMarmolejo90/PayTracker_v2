@@ -26,15 +26,15 @@ export default function Navbar() {
                 </defs>
             </svg>
             <div>
-                <ul className='flex flex-row justify-between text-xs m-4 tracking-wide'>
-                    <li className='px-2 hover:cursor-pointer'>
+                <ul className='flex flex-row justify-between text-xs m-4 tracking-wide uppercase'>
+                    <li className='px-2'>
                         <NavLink 
                             to='/' 
-                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 cursor-pointer' : 'text-sky-200 hover:text-sky-50'}>
+                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400' : 'text-sky-200 hover:text-sky-50'}>
                             Home
                         </NavLink>
                     </li>
-                    <li className='px-2 hover:cursor-pointer'>
+                    <li className='px-2'>
                         <NavLink 
                             to="/PayTracker"
                             className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400' : 'text-sky-200 hover:text-sky-50'}>
@@ -45,7 +45,14 @@ export default function Navbar() {
                         <NavLink 
                             to="/Dev"
                             className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400' : 'text-sky-200 hover:text-sky-50'}>           
-                            Development
+                            Dev
+                        </NavLink>
+                    </li>
+                    <li className='px-2'>
+                        <NavLink 
+                            to="/Hvac"
+                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400' : 'text-sky-200 hover:text-sky-50'}>           
+                            HVAC
                         </NavLink>
                     </li>
                 </ul>
@@ -53,12 +60,12 @@ export default function Navbar() {
         <div className='flex flex-wrap p-2 text-xs tracking-wide text-sky-200'>
             <NavLink 
                 to="/Login"
-                className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
+                className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
                 Login
             </NavLink>
             <NavLink 
                 to="/Register"
-                className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
+                className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
                 Create Account
             </NavLink>
         </div>
