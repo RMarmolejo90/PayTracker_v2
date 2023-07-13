@@ -8,8 +8,9 @@ export default {
     extend: {
       backgroundImage:{
         'gears': "url('./src/assets/Gears.webp')",
-        'secondary-gradient': "radial-gradient( circle farthest-corner at 17.1% 22.8%,  rgba(226,24,24,1) 0%, rgba(160,6,6,1) 90% );",
-        'primary-gradient': "linear-gradient(45deg, hsla(214, 100%, 60%, 1) 0%, hsla(252, 57%, 43%, 1) 100%);",
+        'secondary-gradient': "linear-gradient(to bottom, #bdc3c7, #2c3e50);",
+        'primary-gradient': " linear-gradient(to top, #1488cc, #2b32b2);",
+        
       },
       fontFamily: {
         'sans':['Lato', 'sans-serif'],

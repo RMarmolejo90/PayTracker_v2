@@ -58,41 +58,17 @@ export default function Register() {
         }
     },});
     
-   
-    // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    //     setNewUser({ ...newUser, [e.target.name]: e.target.value });
-    //   };
-    
-    //   const submit = async (e:FormEvent) => {
-    //     e.preventDefault();
-    
-    //     try {
-    //       // Send a POST request to the API endpoint
-    //       const response = await axios.post("http://localhost:3000/register", newUser);
-    //       console.log(response.data); // Optional: Log the response
-    
-    //       // Reset the form after successful registration
-    //       setNewUser({
-    //         firstName: '',
-    //         lastName: '',
-    //         email: '',
-    //         password: '',
-    //       });
-    //     } catch (error) {
-    //       console.error(error);
-    //       }
-    //   };
-    
 
   return (
-    <div className='bg-gears bg-cover h-screen'>
+    <div className=''>
         <div className="flex items-center justify-center">
-        <form className="bg-zinc-800 flex-col flex items-center justify-center p-4 m-4 border rounded-sm" onSubmit={formik.handleSubmit}>
-            <input className='p-1 m-2' onChange={formik.handleChange} value={formik.values.firstName} placeholder='First Name' type="text" name="firstName" id="firstName" />
-            <input className='p-1 m-2' onChange={formik.handleChange} value={formik.values.lastName} placeholder='Last Name' type="text" name="lastName" id="lastName" />
-            <input className='p-1 m-2' onChange={formik.handleChange} value={formik.values.email} placeholder='Email' type="email" name="email" id="email" />
-            <input className='p-1 m-2' onChange={formik.handleChange} value={formik.values.password} placeholder='Password' type="password" name="password" id="password" />
-            <button className='p-2 m-4 px-6 bg-green-400' type="submit">Submit</button>
+        <form name='registerForm' className="bg-secondary-gradient flex-col flex items-center justify-center m-10 rounded-md" onSubmit={formik.handleSubmit}>
+          <label className="p-4 mb-2 bg-gray-950 rounded-t-md text-2xl min-w-full text-center text-slate-300" htmlFor="registerForm">Create Your Account</label>
+            <input className='p-2 m-2 rounded-md' onChange={formik.handleChange} value={formik.values.firstName} placeholder='First Name' type="text" name="firstName" id="firstName" />
+            <input className='p-2 m-2 rounded-md' onChange={formik.handleChange} value={formik.values.lastName} placeholder='Last Name' type="text" name="lastName" id="lastName" />
+            <input className='p-2 m-2 rounded-md' onChange={formik.handleChange} value={formik.values.email} placeholder='Email' type="email" name="email" id="email" />
+            <input className='p-2 m-2 rounded-md' onChange={formik.handleChange} value={formik.values.password} placeholder='Password' type="password" name="password" id="password" />
+            <button className='p-1 px-6 m-4 bg-green-500 tracking-wider rounded-md' type="submit">Submit</button>
         </form>
         </div>
     </div>

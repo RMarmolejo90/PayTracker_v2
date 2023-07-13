@@ -50,15 +50,20 @@ export default function Login() {
   });
 
   return (
-    <div className='bg-gears bg-cover h-screen'>
+    <div className=''>
       <div className="flex items-center justify-center">
-        <form className="flex flex-col m-10 items-center justify-center border rounded-md" name="loginForm" id="loginForm" action="post" onSubmit={formik.handleSubmit}>
-          <label className="p-2 m-2 border text-xl font-semibold min-w-full text-center" htmlFor="loginForm">Login</label>
-          <label className="p-2 m-2" htmlFor="email">Email</label>
-          <input className="p-2 m-2" onChange={formik.handleChange} value={formik.values.email} title="email" placeholder="Enter Your Email" type="email" name="email" id="email" />
-          <label className="p-2 m-2" htmlFor="password">Password</label>
-          <input className="p-2 m-2" onChange={formik.handleChange} value={formik.values.password} title="password" placeholder="Enter Your Password" type="password" name="password" id="password" />
-          <button className="p-2 m-2 bg-green-400" type="submit">Submit</button>
+        <form className="bg-secondary-gradient flex flex-col items-center justify-between rounded-md pb-6 m-10 w-60 min-h-96" name="loginForm" id="loginForm" action="post" onSubmit={formik.handleSubmit}>
+            <label className="p-2 px-4 mb-2 bg-gray-950 rounded-t-md text-2xl text-slate-300 min-w-full text-center text-neutral-50" htmlFor="loginForm">Login</label>
+
+            <label className="p-2 px-4 m-2 text-lg" htmlFor="email">Email</label>
+
+            <input className="p-2 px-4 m-2 rounded-md" onChange={formik.handleChange} value={formik.values.email} title="email" placeholder="Enter Your Email" type="email" name="email" id="email" />
+
+            <label className="p-2 px-4 m-2 text-lg" htmlFor="password">Password</label>
+
+            <input className="p-2 px-4 m-2 rounded-md" onChange={formik.handleChange} value={formik.values.password} title="password" placeholder="Enter Your Password" type="password" name="password" id="password" />
+
+            <button className="p-1 px-6 m-4 rounded-md bg-green-500 tracking-wider" type="submit">Submit</button>
         </form>
       </div>
     </div>

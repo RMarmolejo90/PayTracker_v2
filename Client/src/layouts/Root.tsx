@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 
 export default function Root() {
   return (
-    <div className='bg-neutral-200 bg-cover h-screen'>
+    <div className='bg-primary-gradient  h-screen'>
         <Navbar />
         <Outlet />
     </div>
