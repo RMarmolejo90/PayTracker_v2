@@ -53,7 +53,7 @@ export default function Login() {
     <div className=''>
       <div className="flex items-center justify-center">
         <form className="bg-secondary-gradient flex flex-col items-center justify-between rounded-md pb-6 m-10 w-60 min-h-96" name="loginForm" id="loginForm" action="post" onSubmit={formik.handleSubmit}>
-            <label className="p-2 px-4 mb-2 bg-gray-950 rounded-t-md text-2xl text-slate-300 min-w-full text-center text-neutral-50" htmlFor="loginForm">Login</label>
+            <label className="p-2 px-4 mb-2 bg-gray-950 rounded-t-md text-2xl text-slate-300 min-w-full text-center" htmlFor="loginForm">Login</label>
 
             <label className="p-2 px-4 m-2 text-lg" htmlFor="email">Email</label>
 
