@@ -62,8 +62,8 @@ export default function Register() {
   return (
     <div className=''>
         <div className="flex items-center justify-center">
-        <form name='registerForm' className="bg-secondary-gradient flex-col flex items-center justify-center m-10 rounded-md" onSubmit={formik.handleSubmit}>
-          <label className="p-4 mb-2 bg-gray-950 rounded-t-md text-2xl min-w-full text-center text-slate-300" htmlFor="registerForm">Create Your Account</label>
+        <form name='registerForm' className="bg-secondary-gradient border border-slate-950 flex-col flex items-center justify-center m-10 rounded-md" onSubmit={formik.handleSubmit}>
+          <label className="p-4 mb-2 bg-gray-900 rounded-t-md text-2xl min-w-full text-center text-slate-300" htmlFor="registerForm">Create Your Account</label>
             <input className='p-2 m-2 rounded-md' onChange={formik.handleChange} value={formik.values.firstName} placeholder='First Name' type="text" name="firstName" id="firstName" />
             <input className='p-2 m-2 rounded-md' onChange={formik.handleChange} value={formik.values.lastName} placeholder='Last Name' type="text" name="lastName" id="lastName" />
             <input className='p-2 m-2 rounded-md' onChange={formik.handleChange} value={formik.values.email} placeholder='Email' type="email" name="email" id="email" />

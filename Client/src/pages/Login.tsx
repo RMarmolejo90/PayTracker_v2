@@ -52,8 +52,8 @@ export default function Login() {
   return (
     <div className=''>
       <div className="flex items-center justify-center">
-        <form className="bg-slate-800 border border-slate-950 flex flex-col items-center justify-between rounded-md pb-6 m-10 w-60 min-h-96" name="loginForm" id="loginForm" action="post" onSubmit={formik.handleSubmit}>
-            <label className="p-2 px-4 mb-2 bg-gray-900 rounded-t-md text-2xl text-slate-300 min-w-full text-center" htmlFor="loginForm">Login</label>
+        <form className="bg-secondary-gradient border border-slate-950 flex flex-col text-slate-300 items-center justify-between rounded-md pb-6 m-10 w-60 min-h-96" name="loginForm" id="loginForm" action="post" onSubmit={formik.handleSubmit}>
+            <label className="p-2 px-4 mb-2 bg-gray-900 rounded-t-md text-2xl min-w-full text-center" htmlFor="loginForm">Login</label>
 
             <label className="p-2 px-4 m-2 text-lg" htmlFor="email">Email</label>
 
