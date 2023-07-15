@@ -50,12 +50,12 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
           {
-            path: "/",
+            path: "/PayTracker/Basic",
             element: <PayTrackerBasic />,
             errorElement: <ErrorPage />,
           },
           {
-            path: "/Pro",
+            path: "/PayTracker/Pro",
             element: <PayTrackerPro />,
             errorElement: <ErrorPage />,
           },
