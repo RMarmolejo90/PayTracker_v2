@@ -1,5 +1,7 @@
 import Root from './layouts/Root.tsx'
 import Home from './pages/Home.tsx'
+import PayTrackerBasic from './pages/PayTrackerBasic.tsx'
+import PayTrackerPro from './pages/PayTrackerPro.tsx'
 import PayTracker from './pages/PayTracker.tsx'
 import Dev from './pages/Dev.tsx'
 import ErrorPage from './pages/ErrorPage.tsx'
@@ -12,6 +14,9 @@ import { createRoot } from 'react-dom/client';import {
   RouterProvider,
 } from "react-router-dom";
 import * as React from 'react'
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -42,7 +47,20 @@ const router = createBrowserRouter([
       {
         path: "/PayTracker",
         element: <PayTracker />,
-        errorElement: <ErrorPage />
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: "/",
+            element: <PayTrackerBasic />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "/Pro",
+            element: <PayTrackerPro />,
+            errorElement: <ErrorPage />,
+          },
+
+        ]
       },
       {
         path: "/Dev",
