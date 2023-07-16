@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const navigate = useNavigate();
 
   // Password character error checking
   const getCharacterValidationError = (str:string) => {
@@ -41,7 +39,6 @@ export default function Login() {
           const { accessToken, refreshToken } = response.data;
           localStorage.setItem("accessToken", accessToken);
           localStorage.setItem("refreshToken", refreshToken);
-          navigate('../PayTracker');
         }
       } catch (error) {
         console.error(error);
