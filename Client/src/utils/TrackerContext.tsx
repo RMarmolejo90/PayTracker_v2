@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, ReactNode } from 'react';
+import { useTrackerContext } from './useTrackerContext';
 
 export interface TrackerContextType {
   isActive: boolean;

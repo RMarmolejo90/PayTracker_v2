@@ -1,6 +1,6 @@
 import { useTrackerContext } from '../utils/TrackerContext';
 
-const ChildComponent = () => {
+const Context = () => {
   const { isActive, elapsedTime, displayNet, grossPay } = useTrackerContext();
 }
 
