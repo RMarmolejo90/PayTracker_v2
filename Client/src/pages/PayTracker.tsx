@@ -2,6 +2,14 @@ import { useContext } from 'react';
 import { useTrackerContext } from '../utils/useTrackerContext';
 
 export default function PayTracker() {
+  // defines time
+  
+  const hours = Math.floor(elapsedTime / 3600);
+  const minutes = Math.floor((elapsedTime % 3600) / 60);
+  const seconds = elapsedTime % 60;
+  
+  const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
+
 
 const { displayNet, grossPay, isActive, elapsedTime, startTimer, stopTimer } = useTrackerContext();
   return (
