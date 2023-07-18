@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, ReactNode } from 'react';
-import { useTrackerContext } from './useTrackerContext';
 
 export interface TrackerContextType {
   isActive: boolean;
@@ -25,6 +24,8 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   const [displayNet, setDisplayNet] = useState<number>(0);
   const [grossPay, setGrossPay] = useState<number>(0);
 
+    // updates the displayNet state with netpay from local storage
+    // this is used to upadate the displayed net pay on the page
   useEffect(() => {
     const storedNetPay = localStorage.getItem('netPay');
     if (storedNetPay !== null) {
@@ -33,6 +34,8 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
     }
   }, []);
 
+    // timer function  
+    // this counts elapsed time
   const startTimer = () => {
     setIsActive(true);
     const startTime = new Date().getTime();

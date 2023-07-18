@@ -2,12 +2,12 @@ import richImage from '../assets/rich.webp';
 export default function Home() {
   return (
     <div className="flex flex-row flex-wrap flex-shrink items-center justify-evenly p-6 text-slate-200">
-      <div className="flex flex-col flex-wrap items-between justify-start max-w-lg md:m-2">
-        <h1 className="text-2xl lg:text-3xl font-bold p-2 tracking-wide leading-relaxed">
+      <div className="flex flex-col flex-wrap items-between justify-start max-w-xl md:m-2">
+        <h1 className="text-3xl lg:text-4xl font-semibold p-3 tracking-wide">
           Expert HVAC Technician. <br />
           Full-Stack Software Developer.       
         </h1>
-        <div className="p-2 max-w-sm py-4">
+        <div className="p-2 max-w-md py-4 text-lg">
           <p className='p-1'>
           "The only way to do great work, <br/> is to love what you do."        
           </p>
@@ -16,7 +16,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <img className="max-w-sm lg:max-w-md md:m-2 rounded-full bg-[#D3C718]" src={richImage} alt="Rich Marmolejo himself" />
+      <img className="max-w-xs lg:max-w-sm md:m-2 rounded-full bg-[#D3C718]" src={richImage} alt="Rich Marmolejo himself" />
       <section className='lg:m-10 m-6 lg:p-8 p-4 bg-secondary-gradient text-slate-300 border border-slate-950 rounded-md'>
       <h3 className='p-4 font-semibold text-lg'>Welcome to RichMarmolejo.com</h3>
       <p className='p-4'>
