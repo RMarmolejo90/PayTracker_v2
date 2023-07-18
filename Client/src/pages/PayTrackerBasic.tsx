@@ -1,10 +1,90 @@
 import { useTrackerContext } from "../utils/useTrackerContext"
-import { useContext } from "react";
+import { useState, useEffect, } from "react"
 
 
 
 export default function PayTracker() {
-  const displayNet = useTrackerContext(displayNet)
+  const { isActive, displayNet, grossPay, elapsedTime } = useTrackerContext();
+  
+    // handles the form         
+    const [inputRate, setInputRate] = useState('');
+    const [submittedRate, setSubmittedRate] = useState (
+        isActive ? localStorage.getItem('activeSubmittedRate') : 0 
+    );
+
+    const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
+    const payPerSecond:number = (submittedRate / 3600);
+
+    const handleRate = (event) => {      
+        setInputRate(event.target.value)
+    }
+    
+   const handleSubmit = (event) => {
+     event.preventDefault();
+     console.log(`hourly rate is ${inputRate}`);
+     setSubmittedRate(inputRate);
+     setInputRate("");
+     localStorage.setItem('activeSubmittedRate', inputRate);
+     console.log('per second = ' + payPerSecond , 'gross = ' + grossPay);
+   }
+
+   // handles retrieving data from local storage on page reload
+   // right now it only retrieves the timers isActive state
+   
+    useEffect(() => {
+        setIsActive(localStorage.getItem('activeTimer'));
+        
+        if (isActive === true){
+            setSubmittedRate(localStorage.getItem('activeSubmittedRate'));
+        }
+
+        console.log("isActive : " + isActive);
+        
+    },[]);
+  
+  
+    // handles timer button
+    // Start or stop the timer
+
+    const handleStopClick = () => {
+        setIsActive(false);
+        setElapsedTime(0);
+        localStorage.removeItem('startTime');
+        localStorage.setItem('activeTimer', false);
+        localStorage.removeItem('startButton');
+        console.log("timer is not active");
+    }
+
+    const handleStartClick = () => {
+        setIsActive(true);
+            setStartTime(new Date().getTime());
+            localStorage.setItem('startTime', new Date().getTime());
+            localStorage.setItem('activeTimer', true);
+            localStorage.setItem('startButton', "Stop");
+            console.log("timer-active");
+            console.log("startTime : ", startTime);
+    }
+    // this calculates the hourly pay into seconds
+  
+
+    useEffect(() => {
+      let interval = null;
+      if (isActive){
+          interval = setInterval(() => {
+              setGrossPay(localStorage.getItem('timeElapsed') * payPerSecond);
+          }, 1000);
+          return () => clearInterval(interval);
+          }
+  }, [submittedRate, isActive]);
+  // end pay calculation
+
+  // defines time
+  
+  const hours = Math.floor(elapsedTime / 3600);
+  const minutes = Math.floor((elapsedTime % 3600) / 60);
+  const seconds = elapsedTime % 60;
+
+  const placeholderText = `Pay Rate: ${submittedRate.toFixed(2)}`;
 
   return (
     <div className='p-8'>
@@ -56,3 +136,20 @@ export default function PayTracker() {
         </div>
     )
 }
+
+function setIsActive(arg0: string | null) {
+  throw new Error("Function not implemented.");
+}
+
+function setElapsedTime(arg0: number) {
+  throw new Error("Function not implemented.");
+}
+
+function setStartTime(arg0: number) {
+  throw new Error("Function not implemented.");
+}
+
+function setGrossPay(arg0: number) {
+  throw new Error("Function not implemented.");
+}
+
