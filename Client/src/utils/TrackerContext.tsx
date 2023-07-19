@@ -7,10 +7,11 @@ export interface TrackerContextType {
     grossPay: number;
     startTimer: () => void;
     stopTimer: () => void;
+    startTime: number;
     setDisplayNet: React.Dispatch<React.SetStateAction<number>>; 
     setGrossPay: React.Dispatch<React.SetStateAction<number>>;
     setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
-    setElapsedTime: React.Dispatch<React.SetStateAction<number>;
+    setElapsedTime: React.Dispatch<React.SetStateAction<number>>;
   }
 
 export const TrackerContext = createContext<TrackerContextType | undefined>(undefined);
@@ -19,10 +20,11 @@ interface TrackerContextProviderProps {
     children: React.ReactNode;
   }
 const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ children }) => {
-  const [isActive, setIsActive] = useState<boolean>(() => {
-    const activeTimer = localStorage.getItem('activeTimer');
-    return activeTimer ? JSON.parse(activeTimer) : false;
-  });
+    const [isActive, setIsActive] = useState<boolean>(() => {
+        const activeTimer = localStorage.getItem('activeTimer');
+        return activeTimer ? Boolean(JSON.parse(activeTimer)) : false;
+      });
+      
 
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [displayNet, setDisplayNet] = useState<number>(0);
@@ -89,6 +91,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
     elapsedTime,
     displayNet,
     grossPay,
+    startTime,
     startTimer,
     stopTimer,
     setDisplayNet,

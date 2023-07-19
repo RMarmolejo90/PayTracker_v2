@@ -4,12 +4,13 @@ import { useState, useEffect, } from "react"
 
 
 export default function PayTracker() {
-  const { isActive, displayNet, grossPay, elapsedTime } = useTrackerContext();
+  const { isActive, displayNet, grossPay, elapsedTime, startTime } = useTrackerContext();
   
     // handles the form         
     const [inputRate, setInputRate] = useState('');
-    const [submittedRate, setSubmittedRate] = useState (
-        isActive ? localStorage.getItem('activeSubmittedRate') : 0 
+    const [submittedRate, setSubmittedRate] = useState<number> (
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        isActive ? +localStorage.getItem('activeSubmittedRate')! : 0 
     );
 
     const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
@@ -50,7 +51,7 @@ export default function PayTracker() {
         setIsActive(false);
         setElapsedTime(0);
         localStorage.removeItem('startTime');
-        localStorage.setItem('activeTimer', false);
+        Boolean(localStorage.setItem('activeTimer', false));
         localStorage.removeItem('startButton');
         console.log("timer is not active");
     }
@@ -58,7 +59,7 @@ export default function PayTracker() {
     const handleStartClick = () => {
         setIsActive(true);
             setStartTime(new Date().getTime());
-            localStorage.setItem('startTime', new Date().getTime());
+            localStorage.setItem('startTime', new Date().getTime().toString());
             localStorage.setItem('activeTimer', true);
             localStorage.setItem('startButton', "Stop");
             console.log("timer-active");
@@ -84,7 +85,7 @@ export default function PayTracker() {
   const minutes = Math.floor((elapsedTime % 3600) / 60);
   const seconds = elapsedTime % 60;
 
-  const placeholderText = `Pay Rate: ${submittedRate.toFixed(2)}`;
+  const placeholderText = `Pay Rate: ${parseFloat(submittedRate).toFixed(2)}`;
 
   return (
     <div className='p-8'>

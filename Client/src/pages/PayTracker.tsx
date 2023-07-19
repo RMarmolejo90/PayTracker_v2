@@ -7,6 +7,7 @@ export default function PayTracker() {
   const [submittedRate, setSubmittedRate] = useState (
     isActive && localStorage.getItem('activeSubmittedRate') !== null ? localStorage.getItem('activeSubmittedRate')! : '0'
   );
+  const [startTime, setStartTime] = useState<number>();
   
   // defines time
   const hours = Math.floor(elapsedTime / 3600);
@@ -15,7 +16,7 @@ export default function PayTracker() {
   const storedNetPay = localStorage.getItem('netPay');
   const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
   const payPerSecond: number = (parseFloat(submittedRate) / 3600);
-  const netPayNumberType = parseFloat(storedNetPay);
+  const netPayNumberType = parseFloat(storedNetPay!);
   
     // updates the displayNet state with netpay from local storage
     // this is used to upadate the displayed net pay on the page
@@ -32,7 +33,7 @@ export default function PayTracker() {
       setIsActive(false);
       setElapsedTime(0);
       localStorage.removeItem('startTime');
-      localStorage.setItem('activeTimer', false);
+      localStorage.setItem('activeTimer', false.toString());
       localStorage.removeItem('startButton');
       console.log("timer is not active");
   }
@@ -40,8 +41,8 @@ export default function PayTracker() {
   const handleStartClick = () => {
       setIsActive(true);
           setStartTime(new Date().getTime());
-          localStorage.setItem('startTime', new Date().getTime());
-          localStorage.setItem('activeTimer', true);
+          localStorage.setItem('startTime', new Date().getTime().toString());
+          localStorage.setItem('activeTimer', true.toString());
           localStorage.setItem('startButton', "Stop");
           console.log("timer-active");
           console.log("startTime : ", startTime);
@@ -53,7 +54,7 @@ export default function PayTracker() {
   let interval: string | number | NodeJS.Timeout | null | undefined = null;
   if (isActive){
       interval = setInterval(() => {
-          setGrossPay(localStorage.getItem('timeElapsed') * payPerSecond);
+          setGrossPay(+localStorage.getItem('timeElapsed')! * payPerSecond);
       }, 1000);
       return () => clearInterval(interval);
       }
