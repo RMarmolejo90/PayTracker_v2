@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTrackerContext } from '../utils/useTrackerContext';
+import * as React from 'react';
 
 export default function PayTracker() {
   const { displayNet, grossPay, isActive, elapsedTime, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
@@ -51,25 +52,30 @@ export default function PayTracker() {
   
 
  useEffect(() => {
-  let interval: string | number | NodeJS.Timeout | null | undefined = null;
-  if (isActive){
-      interval = setInterval(() => {
-          setGrossPay(+localStorage.getItem('timeElapsed')! * payPerSecond);
-      }, 1000);
-      return () => clearInterval(interval);
-      }
+  let interval: NodeJS.Timeout | null = null;
+  if (isActive) {
+    interval = setInterval(() => {
+      setGrossPay(+localStorage.getItem('timeElapsed')! * payPerSecond);
+    }, 1000);
+  }
+  return () => {
+    if (interval) {
+      clearInterval(interval);
+    }
+  };
 }, [submittedRate, isActive]);
+
 // end pay calculation
 
 const placeholderText = "Pay Rate : " + submittedRate;
 
 // handles the form         
 
-const handleRate = (event) => {      
+const handleRate = (event: React.ChangeEvent<HTMLInputElement>) => {      
     setInputRate(event.target.value)
 }
 
-const handleSubmit = (event) => {
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
  event.preventDefault();
  console.log(`hourly rate is ${inputRate}`);
  setSubmittedRate(inputRate);

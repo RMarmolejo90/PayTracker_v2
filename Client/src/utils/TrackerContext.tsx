@@ -7,7 +7,6 @@ export interface TrackerContextType {
     grossPay: number;
     startTimer: () => void;
     stopTimer: () => void;
-    startTime: number;
     setDisplayNet: React.Dispatch<React.SetStateAction<number>>; 
     setGrossPay: React.Dispatch<React.SetStateAction<number>>;
     setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
@@ -87,17 +86,16 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   }, [isActive]);
 
   const contextValue: TrackerContextType = {
-    isActive,
-    elapsedTime,
-    displayNet,
-    grossPay,
-    startTime,
-    startTimer,
-    stopTimer,
-    setDisplayNet,
-    setGrossPay,
-    setElapsedTime,
-    setIsActive
+      isActive,
+      elapsedTime,
+      displayNet,
+      grossPay,
+      startTimer,
+      stopTimer,
+      setDisplayNet,
+      setGrossPay,
+      setElapsedTime,
+      setIsActive,
   };
 
   return <TrackerContext.Provider value={contextValue}>{children}</TrackerContext.Provider>;

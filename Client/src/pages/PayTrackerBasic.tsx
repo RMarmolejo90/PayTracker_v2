@@ -1,93 +1,92 @@
-import { useTrackerContext } from "../utils/useTrackerContext"
-import { useState, useEffect, } from "react"
-
-
+import { useEffect, useState } from 'react';
+import { useTrackerContext } from '../utils/useTrackerContext';
+import * as React from 'react';
 
 export default function PayTracker() {
-  const { isActive, displayNet, grossPay, elapsedTime, startTime } = useTrackerContext();
+  const { displayNet, grossPay, isActive, elapsedTime, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
+  const [inputRate, setInputRate] = useState('');
+  const [submittedRate, setSubmittedRate] = useState (
+    isActive && localStorage.getItem('activeSubmittedRate') !== null ? localStorage.getItem('activeSubmittedRate')! : '0'
+  );
+  const [startTime, setStartTime] = useState<number>();
   
-    // handles the form         
-    const [inputRate, setInputRate] = useState('');
-    const [submittedRate, setSubmittedRate] = useState<number> (
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        isActive ? +localStorage.getItem('activeSubmittedRate')! : 0 
-    );
-
-    const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
-    const payPerSecond:number = (submittedRate / 3600);
-
-    const handleRate = (event) => {      
-        setInputRate(event.target.value)
-    }
-    
-   const handleSubmit = (event) => {
-     event.preventDefault();
-     console.log(`hourly rate is ${inputRate}`);
-     setSubmittedRate(inputRate);
-     setInputRate("");
-     localStorage.setItem('activeSubmittedRate', inputRate);
-     console.log('per second = ' + payPerSecond , 'gross = ' + grossPay);
-   }
-
-   // handles retrieving data from local storage on page reload
-   // right now it only retrieves the timers isActive state
-   
-    useEffect(() => {
-        setIsActive(localStorage.getItem('activeTimer'));
-        
-        if (isActive === true){
-            setSubmittedRate(localStorage.getItem('activeSubmittedRate'));
-        }
-
-        console.log("isActive : " + isActive);
-        
-    },[]);
-  
-  
-    // handles timer button
-    // Start or stop the timer
-
-    const handleStopClick = () => {
-        setIsActive(false);
-        setElapsedTime(0);
-        localStorage.removeItem('startTime');
-        Boolean(localStorage.setItem('activeTimer', false));
-        localStorage.removeItem('startButton');
-        console.log("timer is not active");
-    }
-
-    const handleStartClick = () => {
-        setIsActive(true);
-            setStartTime(new Date().getTime());
-            localStorage.setItem('startTime', new Date().getTime().toString());
-            localStorage.setItem('activeTimer', true);
-            localStorage.setItem('startButton', "Stop");
-            console.log("timer-active");
-            console.log("startTime : ", startTime);
-    }
-    // this calculates the hourly pay into seconds
-  
-
-    useEffect(() => {
-      let interval = null;
-      if (isActive){
-          interval = setInterval(() => {
-              setGrossPay(localStorage.getItem('timeElapsed') * payPerSecond);
-          }, 1000);
-          return () => clearInterval(interval);
-          }
-  }, [submittedRate, isActive]);
-  // end pay calculation
-
   // defines time
-  
   const hours = Math.floor(elapsedTime / 3600);
   const minutes = Math.floor((elapsedTime % 3600) / 60);
   const seconds = elapsedTime % 60;
+  const storedNetPay = localStorage.getItem('netPay');
+  const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
+  const payPerSecond: number = (parseFloat(submittedRate) / 3600);
+  const netPayNumberType = parseFloat(storedNetPay!);
+  
+    // updates the displayNet state with netpay from local storage
+    // this is used to upadate the displayed net pay on the page
 
-  const placeholderText = `Pay Rate: ${parseFloat(submittedRate).toFixed(2)}`;
+    useEffect (() => {
+      if (netPayNumberType != null)
+      setDisplayNet(netPayNumberType);
+  }, [netPayNumberType]);
+  
+   // handles timer button
+    // Start or stop the timer
 
+    const handleStopClick = () => {
+      setIsActive(false);
+      setElapsedTime(0);
+      localStorage.removeItem('startTime');
+      localStorage.setItem('activeTimer', false.toString());
+      localStorage.removeItem('startButton');
+      console.log("timer is not active");
+  }
+
+  const handleStartClick = () => {
+      setIsActive(true);
+          setStartTime(new Date().getTime());
+          localStorage.setItem('startTime', new Date().getTime().toString());
+          localStorage.setItem('activeTimer', true.toString());
+          localStorage.setItem('startButton', "Stop");
+          console.log("timer-active");
+          console.log("startTime : ", startTime);
+  }
+ // this calculates the hourly pay into seconds
+  
+
+ useEffect(() => {
+  let interval: NodeJS.Timeout | null = null;
+  if (isActive) {
+    interval = setInterval(() => {
+      setGrossPay(+localStorage.getItem('timeElapsed')! * payPerSecond);
+    }, 1000);
+  }
+  return () => {
+    if (interval) {
+      clearInterval(interval);
+    }
+  };
+}, [submittedRate, isActive]);
+
+// end pay calculation
+
+const placeholderText = "Pay Rate : " + submittedRate;
+
+// handles the form         
+
+const handleRate = (event: React.ChangeEvent<HTMLInputElement>) => {      
+    setInputRate(event.target.value)
+}
+
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+ event.preventDefault();
+ console.log(`hourly rate is ${inputRate}`);
+ setSubmittedRate(inputRate);
+ setInputRate("");
+ localStorage.setItem('activeSubmittedRate', inputRate);
+ console.log('per second = ' + payPerSecond , 'gross = ' + grossPay);
+}
+
+  
   return (
+    
     <div className='p-8'>
             <h1 className='text-3xl pb-10 text-center text-blue-400 border-b-2 border-orange-500 font-tilt'>Real-Time Pay Tracker</h1>
             <div className='flex flex-wrap flex-col md:flex-row flex-auto justify-around items-center p-6'>
@@ -100,7 +99,7 @@ export default function PayTracker() {
                 </h2> :
                 <div className='hidden'></div>
                 }
-                { activeSubmittedRate > 0 ? <Timer
+                { (activeSubmittedRate != null) ? <Timer
                     hours = { hours }
                     minutes = { minutes }
                     seconds = { seconds }
@@ -135,22 +134,5 @@ export default function PayTracker() {
                 <Clear />
             </div>  
         </div>
-    )
+  )
 }
-
-function setIsActive(arg0: string | null) {
-  throw new Error("Function not implemented.");
-}
-
-function setElapsedTime(arg0: number) {
-  throw new Error("Function not implemented.");
-}
-
-function setStartTime(arg0: number) {
-  throw new Error("Function not implemented.");
-}
-
-function setGrossPay(arg0: number) {
-  throw new Error("Function not implemented.");
-}
-
