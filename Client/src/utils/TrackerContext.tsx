@@ -1,13 +1,17 @@
-import { createContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export interface TrackerContextType {
-  isActive: boolean;
-  elapsedTime: number;
-  displayNet: number;
-  grossPay: number;
-  startTimer: () => void;
-  stopTimer: () => void;
-}
+    isActive: boolean;
+    elapsedTime: number;
+    displayNet: number;
+    grossPay: number;
+    startTimer: () => void;
+    stopTimer: () => void;
+    setDisplayNet: React.Dispatch<React.SetStateAction<number>>; 
+    setGrossPay: React.Dispatch<React.SetStateAction<number>>;
+    setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
+    setElapsedTime: React.Dispatch<React.SetStateAction<number>;
+  }
 
 export const TrackerContext = createContext<TrackerContextType | undefined>(undefined);
 
@@ -87,6 +91,10 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
     grossPay,
     startTimer,
     stopTimer,
+    setDisplayNet,
+    setGrossPay,
+    setElapsedTime,
+    setIsActive
   };
 
   return <TrackerContext.Provider value={contextValue}>{children}</TrackerContext.Provider>;

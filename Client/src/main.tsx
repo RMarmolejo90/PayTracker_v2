@@ -12,6 +12,7 @@ import './index.css'
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import * as React from 'react'
+import TrackerContextProvider from './utils/TrackerContext.tsx'
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-       <RouterProvider router={router} />
+    <TrackerContextProvider>
+      <RouterProvider router={router} />
+    </TrackerContextProvider>
   </React.StrictMode>,
 )
