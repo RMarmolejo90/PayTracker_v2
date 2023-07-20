@@ -17,12 +17,12 @@ interface AuthProviderProps {
 
     const login = () => {
         setAuthorized(true);
-        // Additional logic for handling login
+        
       };
     
       const logout = () => {
         setAuthorized(false);
-        // Additional logic for handling logout
+        
       };
     
     const AuthContextValue: AuthContextType = {
