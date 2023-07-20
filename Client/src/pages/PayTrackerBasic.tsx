@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useTrackerContext } from '../utils/useTrackerContext';
 import * as React from 'react';
+import BasicNet from '../components/BasicComponents/BasicNetPay';
+import BasicTimer from '../components/BasicComponents/BasicTimer';
+import BasicReset from '../components/BasicComponents/BasicReset';
 
 export default function PayTracker() {
   const { displayNet, grossPay, isActive, elapsedTime, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
@@ -99,7 +102,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                 </h2> :
                 <div className='hidden'></div>
                 }
-                { (activeSubmittedRate != null) ? <Timer
+                { (activeSubmittedRate != null) ? <BasicTimer
                     hours = { hours }
                     minutes = { minutes }
                     seconds = { seconds }
@@ -127,11 +130,9 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                         </form>
                     </div>
                     <div className='flex flex-col items-center justify-center'>
-                        <Net 
-                            grossPay = {grossPay}
-                        />
+                        <BasicNet />
                     </div>
-                <Clear />
+                <BasicReset />
             </div>  
         </div>
   )
