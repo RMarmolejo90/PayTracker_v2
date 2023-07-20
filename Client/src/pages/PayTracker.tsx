@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTrackerContext } from '../utils/useTrackerContext';
 import * as React from 'react';
-import BasicTimer from '../components/BasicComponents/BasicTimer';
+import BasicTimer from '../components/Timer';
 import BasicNet from '../components/BasicComponents/BasicNetPay';
 import BasicReset from '../components/BasicComponents/BasicReset';
 

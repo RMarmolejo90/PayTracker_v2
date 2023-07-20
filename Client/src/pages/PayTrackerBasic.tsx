@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTrackerContext } from '../utils/useTrackerContext';
 import * as React from 'react';
 import BasicNet from '../components/BasicComponents/BasicNetPay';
-import BasicTimer from '../components/BasicComponents/BasicTimer';
+import Timer from '../components/Timer';
 import BasicReset from '../components/BasicComponents/BasicReset';
 
 export default function PayTracker() {
@@ -102,7 +102,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                 </h2> :
                 <div className='hidden'></div>
                 }
-                { (activeSubmittedRate != null) ? <BasicTimer
+                { (activeSubmittedRate != null) ? <Timer
                     hours = { hours }
                     minutes = { minutes }
                     seconds = { seconds }

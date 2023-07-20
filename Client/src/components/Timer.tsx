@@ -8,7 +8,7 @@ interface TimerProps {
   isActive: boolean;
 }
 
-const BasicTimer: React.FC<TimerProps> = ({ hours, minutes, seconds, handleStartClick, handleStopClick, isActive }) => {
+const Timer: React.FC<TimerProps> = ({ hours, minutes, seconds, handleStartClick, handleStopClick, isActive }) => {
   return (
     <div className='m-6 flex flex-row items-center justify-between'>
       <p className='font-semibold text-2xl p-4 text-center'>
@@ -30,4 +30,4 @@ const BasicTimer: React.FC<TimerProps> = ({ hours, minutes, seconds, handleStart
   );
 };
 
-export default BasicTimer;
+export default Timer;
