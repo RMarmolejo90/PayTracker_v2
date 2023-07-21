@@ -3,8 +3,9 @@ import { useTrackerContext } from '../utils/useTrackerContext';
 import * as React from 'react';
 import Timer from '../components/Timer';
 import ProNet from '../components/ProComponents/ProNet';
+import axios from 'axios';
 
-export default function PayTracker() {
+const PayTrackerPro: React.FC = () => {
   const { displayNet, grossPay, isActive, elapsedTime, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
   const [inputRate, setInputRate] = useState('');
   const [submittedRate, setSubmittedRate] = useState (
@@ -27,19 +28,45 @@ export default function PayTracker() {
     useEffect (() => {
       if (netPayNumberType != null)
       setDisplayNet(netPayNumberType);
-  }, [netPayNumberType]);
+  }, [netPayNumberType, setDisplayNet]);
   
    // handles timer button
     // Start or stop the timer
 
-    const handleStopClick = () => {
+    // this is the db schema for reference
+    // timeIn: Number,
+    // endTime: Number,
+    // grossPay: Number,
+    // netPay: Number,
+    // hoursWorked: Number,
+    // date: Number
+
+    const shiftData = {
+      endTime:Date.now(),
+      grossPay: grossPay,
+      netPay: displayNet,
+      hoursWorked: elapsedTime,
+      date: Date.now().toLocaleString
+    }
+
+    const handleStopClick = async () => {
       setIsActive(false);
-      setElapsedTime(0);
-      localStorage.removeItem('startTime');
-      localStorage.setItem('activeTimer', false.toString());
-      localStorage.removeItem('startButton');
-      console.log("timer is not active");
-  }
+      try{
+        const response = await axios.put('http://localhost:3000/clock-in', shiftData );
+        const responseStatus = response.status;
+        if(responseStatus === 200){
+          alert(`Good Work Today! You worked ${shiftData.hoursWorked} today, and made ${grossPay}`);
+        }
+
+        } catch(error) {
+          console.error(error);
+        }
+        setElapsedTime(0);
+        localStorage.removeItem('startTime');
+        localStorage.setItem('activeTimer', false.toString());
+        localStorage.removeItem('startButton');
+        console.log("timer is not active");
+      }
 
   const handleStartClick = () => {
       setIsActive(true);
@@ -135,3 +162,5 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         </div>
   )
 }
+
+export default PayTrackerPro;

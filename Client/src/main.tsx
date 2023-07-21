@@ -54,6 +54,13 @@ const router = createBrowserRouter([
             path: "/PayTracker/Pro",
             element: <PayTrackerPro />,
             errorElement: <ErrorPage />,
+            children: [
+              {
+                path: "/PayTracker/Pro/EndShift",
+                element:<EndShift />,
+                errorElement: <ErrorPage />,
+              }
+            ]
           },
 
         ]
