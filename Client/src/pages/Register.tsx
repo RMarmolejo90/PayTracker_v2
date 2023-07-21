@@ -41,21 +41,25 @@ export default function Register() {
     },
     validationSchema: SignupSchema,
     onSubmit: async values => {
-        try {
+        try { console.log("sending post");
             // Send a POST request to the API endpoint
             const response = await axios.post("http://localhost:3000/register", values);
             const responseStatus = response.status;
-            if (responseStatus === 409){
-              console.log('user already exists');
-              alert('This email is already registered');
-              navigate('../Login');
-            } else if (responseStatus === 201) {
+            const responseData = response.data; // Add this line to get the response data
+
+           
+            console.log("Response Data:", responseData);
+            if (responseStatus === 201) {
               navigate('../PayTracker');
             } else {
               throw Error('There was an error with registration');
             }
-        } catch (error) {
-        console.error(error);
+        } catch (error:any) {
+          if (error.response.status === 409){
+            console.log('user already exists');
+            alert('This email is already registered');
+            navigate('../Login');
+          } 
         }
     },});
     
