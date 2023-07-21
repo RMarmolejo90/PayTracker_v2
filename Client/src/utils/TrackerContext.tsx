@@ -33,7 +33,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
     // this is used to upadate the displayed net pay on the page
   useEffect(() => {
     const storedNetPay = localStorage.getItem('netPay');
-    if (storedNetPay !== null) {
+    if (storedNetPay !== null && (Number.isNaN(storedNetPay) == false)) {
       const parsedNetPay = JSON.parse(storedNetPay);
       setDisplayNet(parsedNetPay);
     }

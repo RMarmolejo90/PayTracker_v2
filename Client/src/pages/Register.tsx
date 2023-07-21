@@ -44,11 +44,11 @@ export default function Register() {
         try {
             // Send a POST request to the API endpoint
             const response = await axios.post("http://localhost:3000/register", values);
-            const responseData = response.data;
-            if (responseData === "User already exists"){
+            const responseStatus = response.status;
+            if (responseStatus === 460){
               alert('This email is already registered');
               navigate('../Login');
-            } else if (responseData === "Success") {
+            } else if (responseStatus === 201) {
               navigate('../PayTracker');
             } else {
               throw Error('There was an error with registration');
