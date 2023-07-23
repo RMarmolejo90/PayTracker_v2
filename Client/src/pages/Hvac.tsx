@@ -9,6 +9,31 @@ export default function Hvac() {
           <a className="p-3 text-slate-950 m-3 tracking-wider text-sm font-semibold bg-yellow-500 hover:bg-yellow-400 rounded-md" href="mailto:richardmarmolejo@gmail.com">Contact Me</a>
         </div>        
       </div>
+
+
+      <div className="m-4 mt-10">
+        <ul className="flex flex-wrap items-center justify-center text-slate-100 text-xl">
+          <li className="m-4 drop-shadow-xl"><h4>Hot Water Boilers</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Forced Air</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Gas and Propane</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Oil Fired</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>80% and 90% Furnaces</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Heat Pumps</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Electric Furnaces</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Steam Boilers</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Condensing Boilers</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Water Heaters</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Indoor Air Quality</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Air Conditioning</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Communicating High Efficiency</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Inverter Systems</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>RTU Package Units</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>Makeup Air Units</h4></li>
+          <li className="m-4 drop-shadow-xl"><h4>High Velocity</h4></li>
+        </ul>
+      </div>
+
+
       <div className="flex flex-col lg:flex-row items-center justify-between mt-20 bg-slate-100">
 
         <div className="flex flex-wrap items-center justify-between p-2 py-4 m-8">
@@ -41,6 +66,32 @@ export default function Hvac() {
           </div>
         </div>
       </div>
+
+      <div className="flex text-center flex-col items-between justify-center bg-slate-100">
+        <h4 className="font-semibold text-lg">Skills and Abilities</h4>
+        <ul className="flex flex-wrap flex-row items-between justify-center text-transparent bg-clip-text bg-primary-gradient text-2xl">
+          <li><p className="m-6 font-semibold">Indoor Air Quality</p></li>
+          <li><p className="m-6 font-semibold">Thermodynamics</p></li>
+          <li><p className="m-6 font-semibold">Brazing</p></li>
+          <li><p className="m-6 font-semibold">Psychrometrics</p></li>
+          <li><p className="m-6 font-semibold">Air Distribution</p></li>
+          <li><p className="m-6 font-semibold">Electrical</p></li>
+          <li><p className="m-6 font-semibold">Refrigeration</p></li>
+          <li><p className="m-6 font-semibold">Humidification</p></li>
+          <li><p className="m-6 font-semibold">Combustion Analysis</p></li>
+          <li><p className="m-6 font-semibold">Ventilation</p></li>
+          <li><p className="m-6 font-semibold">Pipe Fitting</p></li>
+          <li><p className="m-6 font-semibold">Gas Piping</p></li>
+          <li><p className="m-6 font-semibold">Hydronics</p></li>
+          <li><p className="m-6 font-semibold">Induction Motors</p></li>
+          <li><p className="m-6 font-semibold">ECM Technology</p></li>
+          <li><p className="m-6 font-semibold">Installation</p></li>
+          <li><p className="m-6 font-semibold">Diagnostics & Troubleshooting</p></li>
+          <li><p className="m-6 font-semibold">Repairs & Maintenance</p></li>
+        </ul>
+      </div>
+
+
     </div>
   )
 }
