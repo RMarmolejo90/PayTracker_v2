@@ -22,7 +22,9 @@ const PayTrackerPro: React.FC = () => {
   const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
   const payPerSecond: number = (parseFloat(submittedRate) / 3600);
   const netPayNumberType = parseFloat(storedNetPay!);
-  
+
+
+   
     // updates the displayNet state with netpay from local storage
     // this is used to upadate the displayed net pay on the page
 
