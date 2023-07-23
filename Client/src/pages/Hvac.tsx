@@ -68,6 +68,7 @@ export default function Hvac() {
       </div>
 
       <div className="flex text-center flex-col items-between justify-center bg-slate-100">
+        <img className="max-w-xs lg:max-w-lg" src="../assets/MAU1.webp" alt="Technician smiling, with a large commercial HVAC system and ductwork in the background" />
         <h4 className="font-semibold text-lg">Skills and Abilities</h4>
         <ul className="flex flex-wrap flex-row items-between justify-center text-transparent bg-clip-text bg-primary-gradient text-2xl">
           <li><p className="m-6 font-semibold">Indoor Air Quality</p></li>
