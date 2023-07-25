@@ -36,6 +36,7 @@ export default function Login() {
           alert('Invalid email or password');
         } else {
           // Valid credentials, save the tokens and navigate to the PayTracker page
+          console.log(response);
           const { accessToken, refreshToken } = response.data;
           localStorage.setItem("accessToken", accessToken);
           localStorage.setItem("refreshToken", refreshToken);

@@ -45,7 +45,8 @@ export default function Register() {
             // Send a POST request to the API endpoint
             const response = await axios.post("http://localhost:3000/register", values);
             const responseStatus = response.status;
-            const responseData = response.data; // Add this line to get the response data
+            const responseData = response.data;
+             // Add this line to get the response data
 
            
             console.log("Response Data:", responseData);
