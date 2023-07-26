@@ -23,7 +23,7 @@ const PayTrackerPro: React.FC = () => {
   const payPerSecond: number = (parseFloat(submittedRate) / 3600);
   const netPayNumberType = parseFloat(storedNetPay!);
 
-  const user = async (req, res) => {await axios.get('/user');
+  const user = async (_req: any, res: any) => {await axios.get('/email');
     console.log(user);
 }
 
@@ -54,7 +54,7 @@ const PayTrackerPro: React.FC = () => {
       netPay: displayNet,
       hoursWorked: elapsedTime,
       date: Date.now().toLocaleString,
-      email: user.email
+      email: user
     }
 
     const handleStopClick = async () => {
