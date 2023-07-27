@@ -40,6 +40,7 @@ export default function Login() {
           const { accessToken, refreshToken } = response.data;
           localStorage.setItem("accessToken", accessToken);
           localStorage.setItem("refreshToken", refreshToken);
+          localStorage.setItem("userEmail", response.data.email);
         }
       } catch (error) {
         console.error(error);

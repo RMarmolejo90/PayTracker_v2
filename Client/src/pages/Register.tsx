@@ -51,7 +51,7 @@ export default function Register() {
            
             console.log("Response Data:", responseData);
             if (responseStatus === 201) {
-              localStorage.setItem('userId', responseData._id);
+              localStorage.setItem('userEmail', responseData.email);
               navigate('../PayTracker');
             } else {
               throw Error('There was an error with registration');
