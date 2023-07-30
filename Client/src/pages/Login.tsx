@@ -36,11 +36,18 @@ export default function Login() {
           alert('Invalid email or password');
         } else {
           // Valid credentials, save the tokens and navigate to the PayTracker page
-          console.log(response);
-          const { accessToken, refreshToken } = response.data;
-          localStorage.setItem("accessToken", accessToken);
-          localStorage.setItem("refreshToken", refreshToken);
-          localStorage.setItem("userEmail", response.data.email);
+          const token = response.data.token;
+          // Access the token payload
+          const tokenPayload = token.split('.')[1];
+
+          // Convert the payload to a JSON string and parse
+          const decodedPayload = JSON.parse(atob(tokenPayload));
+
+          // Access the userId property from the decoded payload
+          const userId = decodedPayload.userId;
+
+          localStorage.setItem("Token", token);
+          localStorage.setItem("UserId", userId);
         }
       } catch (error) {
         console.error(error);
