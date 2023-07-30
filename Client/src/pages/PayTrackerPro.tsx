@@ -13,6 +13,16 @@ const PayTrackerPro: React.FC = () => {
     isActive && localStorage.getItem('activeSubmittedRate') !== null ? localStorage.getItem('activeSubmittedRate')! : '0'
   );
   const [startTime, setStartTime] = useState<number>();
+  type Shift = {
+    timeIn: Number, // String is shorthand for {type: String} 
+    endTime: Number,
+    grossPay: Number,
+    netPay: Number,
+    hoursWorked: Number,
+    date: Number,
+    email: String
+  }
+  const [history, setHistory] = useState<Shift[]>([]);
   
   // defines time
   const hours = Math.floor(elapsedTime / 3600);
@@ -27,6 +37,19 @@ const PayTrackerPro: React.FC = () => {
     console.log(user);
 }
 
+  // Collect user history from db on mount
+
+  useEffect (() => {
+    async() => {
+      try {
+        const response = await axios.get('localhost:3000/shift', localStorage.getItem('UserId'));
+        const shiftLog = response.data;
+        setHistory(shiftLog);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },[]);
 
    
     // updates the displayNet state with netpay from local storage
@@ -166,8 +189,37 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                     <div className='flex flex-col items-center justify-center'>
                         <ProNet />
                     </div>
-            </div>  
-        </div>
+            </div>
+            <div>
+              <h3>Work History</h3>
+              <div>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Time In</th>
+                      <th>End Time</th>
+                      <th>Gross Pay</th>
+                      <th>Net Pay</th>
+                      <th>Hours Worked</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {history.map((shift) => (
+                      <tr key={shift._id}>
+                        <td>{new Date(shift.timeIn).toLocaleString()}</td>
+                        <td>{shift.endTime ? new Date(shift.endTime).toLocaleString() : '-'}</td>
+                        <td>${shift.grossPay.toFixed(2)}</td>
+                        <td>${shift.netPay.toFixed(2)}</td>
+                        <td>{shift.hoursWorked}</td>
+                        <td>{new Date(shift.date).toLocaleDateString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
   )
 }
 
