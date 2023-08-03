@@ -6,6 +6,7 @@ import PayTracker from './pages/PayTracker.tsx'
 import Dev from './pages/Dev.tsx'
 import ErrorPage from './pages/ErrorPage.tsx'
 import Login from './pages/Login.tsx'
+import Logout from './pages/Logout.tsx'
 import Register from './pages/Register.tsx'
 import Hvac from './pages/Hvac.tsx'
 import EndShift from './pages/EndShift.tsx'
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
       {
         path: "/Login",
         element: <Login />,
+        errorElement: <ErrorPage />
+      },
+      {
+        path: "/Logout",
+        element: <Logout />,
         errorElement: <ErrorPage />
       },
       {
