@@ -14,13 +14,13 @@ const PayTrackerPro: React.FC = () => {
   );
   const [startTime, setStartTime] = useState<number>();
   type Shift = {
-    timeIn: Number, // String is shorthand for {type: String} 
-    endTime: Number,
-    grossPay: Number,
-    netPay: Number,
-    hoursWorked: Number,
-    date: Number,
-    email: String
+    timeIn: number, // String is shorthand for {type: String} 
+    endTime: number,
+    grossPay: number,
+    netPay: number,
+    hoursWorked: number,
+    date: number,
+    email: string
   }
   const [history, setHistory] = useState<Shift[]>([]);
   
