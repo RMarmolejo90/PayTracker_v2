@@ -21,8 +21,7 @@ interface AuthProviderProps {
       };
     
       const logout = () => {
-        setAuthorized(false);
-        
+        setAuthorized(false);  
       };
     
     const AuthContextValue: AuthContextType = {
