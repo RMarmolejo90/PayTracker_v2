@@ -14,13 +14,14 @@ const PayTrackerPro: React.FC = () => {
   );
   const [startTime, setStartTime] = useState<number>();
   type Shift = {
-    timeIn: number, // String is shorthand for {type: String} 
+    timeIn: number, 
     endTime: number,
     grossPay: number,
     netPay: number,
     hoursWorked: number,
     date: number,
-    email: string
+    email: string,
+    _id: string
   }
   const [history, setHistory] = useState<Shift[]>([]);
   
@@ -33,25 +34,36 @@ const PayTrackerPro: React.FC = () => {
   const payPerSecond: number = (parseFloat(submittedRate) / 3600);
   const netPayNumberType = parseFloat(storedNetPay!);
 
-  const user = async (_req: any, res: any) => {await axios.get('/email');
+  const user = async () => {await axios.get('/email');
     console.log(user);
 }
 
   // Collect user history from db on mount
-
-  useEffect (() => {
-    async() => {
+  useEffect(() => {
+    const fetchHistory = async () => {
       try {
-        const response = await axios.get('localhost:3000/shift', localStorage.getItem('UserId'));
-        const shiftLog = response.data;
-        setHistory(shiftLog);
+        const userId = localStorage.getItem('UserId');
+  
+        if (userId) { // Make sure userId is not null
+          const response = await axios.get('http://localhost:3000/shift', {
+            params: {
+              userId: userId
+            }
+          });
+  
+          const shiftLog = response.data;
+          setHistory(shiftLog);
+        } else {
+          console.error('User ID not available');
+        }
       } catch (error) {
         console.error(error);
       }
-    }
-  },[]);
-
-   
+    };
+  
+    fetchHistory();
+  }, []);
+  
     // updates the displayNet state with netpay from local storage
     // this is used to upadate the displayed net pay on the page
 
