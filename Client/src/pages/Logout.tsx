@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../utils/useAuthContext';
 
 export default function Logout() {
-    const {logout, authorized} = useAuthContext()
+    const {logout} = useAuthContext()
     const navigate = useNavigate();
     const logoutHandler = async () => {
         try{
