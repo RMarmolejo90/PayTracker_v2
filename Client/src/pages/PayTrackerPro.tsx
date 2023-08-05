@@ -135,7 +135,7 @@ const PayTrackerPro: React.FC = () => {
       clearInterval(interval);
     }
   };
-}, [submittedRate, isActive]);
+}, [submittedRate, isActive, setGrossPay, payPerSecond]);
 
 // end pay calculation
 

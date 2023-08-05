@@ -16,6 +16,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import * as React from 'react'
 import TrackerContextProvider from './utils/TrackerContext.tsx'
 import { AuthProvider } from './utils/AuthContext.tsx'
+import PrivateRoute from './utils/PrivateRoute.tsx'
 
 const router = createBrowserRouter([
   {
@@ -50,28 +51,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/PayTracker",
-        element: <PayTracker />,
+        element:<PayTracker />,
         errorElement: <ErrorPage />,
-        children: [
-          {
-            path: "/PayTracker/Basic",
-            element: <PayTrackerBasic />,
-            errorElement: <ErrorPage />,
-          },
-          {
-            path: "/PayTracker/Pro",
-            element: <PayTrackerPro />,
-            errorElement: <ErrorPage />,
-            children: [
-              {
-                path: "/PayTracker/Pro/EndShift",
-                element:<EndShift />,
-                errorElement: <ErrorPage />,
-              }
-            ]
-          },
-
-        ]
       },
       {
         path: "/Dev",
