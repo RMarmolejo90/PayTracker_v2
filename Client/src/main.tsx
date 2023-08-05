@@ -15,6 +15,7 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import * as React from 'react'
 import TrackerContextProvider from './utils/TrackerContext.tsx'
+import { AuthProvider } from './utils/AuthContext.tsx'
 
 const router = createBrowserRouter([
   {
@@ -89,7 +90,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <TrackerContextProvider>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </TrackerContextProvider>
   </React.StrictMode>,
 )
