@@ -1,5 +1,4 @@
 import { createContext, useState, ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
 
 export interface AuthContextType {
@@ -15,7 +14,6 @@ interface AuthProviderProps {
   }
 
   export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const navigate = useNavigate();
     const [authorized, setAuthorized] = useLocalStorage("Auth", "false");
     //const [authorized, setAuthorized] = useState(false);
 
@@ -25,7 +23,6 @@ interface AuthProviderProps {
     
       const logout = () => {
         setAuthorized("false");  
-        navigate("/", { replace: true });
       };
     
     const AuthContextValue: AuthContextType = {
