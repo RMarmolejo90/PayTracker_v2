@@ -9,7 +9,7 @@ interface PrivateRouteProps {
   element: React.ReactNode;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ path, element }) => {
+const PrivateRoute: React.FC<PrivateRouteProps> = () => {
   const checkTokenValidity = async () => {
     try {
       // Send a request to the server to verify the token
@@ -30,7 +30,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ path, element }) => {
       return <Navigate to="/PayTracker/Basic" />;
     }
 
-    return <PayTrackerPro path={"/PayTracker/pro"} element={PayTrackerPro} />;
+    return <PayTrackerPro />;
   };
 
   return (
