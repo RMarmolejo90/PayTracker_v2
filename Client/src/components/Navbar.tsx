@@ -1,10 +1,19 @@
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../utils/useAuthContext";
+import { useEffect, useState } from "react";
 
 
 export default function Navbar() {
-    const {authorized} = useAuthContext();
-    console.log(authorized);
+    const auth = localStorage.getItem("Auth");
+    const [authState, setAuthState] = useState(false);
+
+    useEffect(() => {
+        // Parse the string as a boolean
+        setAuthState(auth === 'true');
+    }, []);
+
+    console.log(authState);
+
   return (
     <div className='flex flex-row flex-wrap items-center justify-between md:justify-normal p-1 w-screen  bg-slate-950'>
             
@@ -47,7 +56,7 @@ export default function Navbar() {
             
                 <div className='flex flex-wrap sm:p-2 text-sm tracking-wide text-sky-200 max-w-max text-center md:text-right md:ml-0'>
                    { 
-                   authorized === true ? 
+                   authState === true ? 
                     <NavLink 
                         to="/Logout"
                         className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           

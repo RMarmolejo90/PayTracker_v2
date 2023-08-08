@@ -2,9 +2,9 @@ import { createContext, useState, ReactNode } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 export interface AuthContextType {
-    authorized: boolean;
     login: () => void;
     logout: () => void;
+    authorized: string;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
