@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { Route, Navigate } from 'react-router-dom';
 import { AuthConsumer, AuthContextType } from './AuthContext';
+import PayTracker from '../pages/PayTracker';
+import PayTrackerPro from '../pages/PayTrackerPro';
 
 interface PrivateRouteProps {
   path: string;
@@ -28,7 +30,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ path, element }) => {
       return <Navigate to="/PayTracker/Basic" />;
     }
 
-    return <Route path={path} element={element} />;
+    return <PayTrackerPro path={"/PayTracker/pro"} element={PayTrackerPro} />;
   };
 
   return (
