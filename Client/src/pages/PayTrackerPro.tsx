@@ -34,9 +34,7 @@ const PayTrackerPro: React.FC = () => {
   const payPerSecond: number = (parseFloat(submittedRate) / 3600);
   const netPayNumberType = parseFloat(storedNetPay!);
 
-  const user = async () => {await axios.get('/email');
-    console.log(user);
-}
+
 
   // Collect user history from db on mount
   useEffect(() => {
@@ -45,15 +43,11 @@ const PayTrackerPro: React.FC = () => {
         const userId = localStorage.getItem('UserId');
   
         if (userId) { // Make sure userId is not null
-          const response = await axios.get('http://localhost:3000/shift', {
-            params: {
-              userId: userId
-            }
-          });
-  
-          const shiftLog = response.data;
+          const response:Shift[] = await axios.get('/user');
+          console.log(response);
+          const shiftLog = response
           setHistory(shiftLog);
-        } else {
+      } else {
           console.error('User ID not available');
         }
       } catch (error) {
@@ -88,14 +82,13 @@ const PayTrackerPro: React.FC = () => {
       grossPay: grossPay,
       netPay: displayNet,
       hoursWorked: elapsedTime,
-      date: Date.now().toLocaleString,
-      email: user
+      date: Date.now().toLocaleString(),
     }
 
     const handleStopClick = async () => {
       setIsActive(false);
       try{
-        const response = await axios.put('http://localhost:3000/clock-in', shiftData );
+        const response = await axios.put('http://localhost:3000/clock-out', shiftData );
         const responseStatus = response.status;
         if(responseStatus === 200){
           alert(`Good Work Today! You worked ${shiftData.hoursWorked} today, and made ${grossPay}`);
