@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { AuthConsumer, AuthContextType } from './AuthContext';
-import PayTracker from '../pages/PayTracker';
 import PayTrackerPro from '../pages/PayTrackerPro';
 
 interface PrivateRouteProps {
