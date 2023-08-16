@@ -12,7 +12,8 @@ const PrivateRoute: React.FC<PrivateRouteProps> = () => {
   const checkTokenValidity = async () => {
     try {
       // Send a request to the server to verify the token
-      await axios.get('/Auth');
+      const response = await axios.get('http://localhost:3000/auth');
+      return response.data.valid;
     } catch (error) {
       console.error(error);
       return false; // Return false if an error occurs during token verification
