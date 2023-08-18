@@ -13,6 +13,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = () => {
     try {
       // Send a request to the server to verify the token
       const response = await axios.get('http://localhost:3000/auth');
+      console.log(response.data.valid);
       return response.data.valid;
     } catch (error) {
       console.error(error);
