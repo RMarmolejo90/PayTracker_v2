@@ -43,7 +43,7 @@ const PayTrackerPro: React.FC = () => {
         const userId = localStorage.getItem('UserId');
   
         if (userId) { // Make sure userId is not null
-          const response:Shift[] = await axios.get('localhost:3000/user');
+          const response:Shift[] = await axios.get('http://localhost:3000/user');
           console.log(response);
           const shiftLog = response
           setHistory(shiftLog);
