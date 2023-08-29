@@ -9,11 +9,22 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = () => {
+
+  const token = localStorage.getItem("Token");
+  const userId = localStorage.getItem("UserId");
+
   const checkTokenValidity = async () => {
+
+    const headers = {
+      authorization: `Bearer ${token}`,
+      userId: userId
+    }
     try {
       // Send a request to the server to verify the token
-      const response = await axios.get('http://localhost:3000/auth');
-      console.log(response.data.valid);
+      const response = await axios.get('http://localhost:3000/auth', {
+        headers: headers
+      });
+      console.log(response);
       return response.data.valid;
     } catch (error) {
       console.error(error);
