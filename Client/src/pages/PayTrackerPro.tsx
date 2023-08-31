@@ -34,16 +34,23 @@ const PayTrackerPro: React.FC = () => {
   const payPerSecond: number = (parseFloat(submittedRate) / 3600);
   const netPayNumberType = parseFloat(storedNetPay!);
 
-
+  // access user info for request headers
+  const token = localStorage.getItem('Token');
+  const userId = localStorage.getItem('UserId');
+  const headers = {
+    authorization: `Bearer ${token}`,
+    userId: userId
+  }
 
   // Collect user history from db on mount
   useEffect(() => {
     const fetchHistory = async () => {
-      try {
-        const userId = localStorage.getItem('UserId');
-  
-        if (userId) { // Make sure userId is not null
-          const response:Shift[] = await axios.get('http://localhost:3000/user');
+      console.log(`user id = ${userId} and token = ${token}`);
+      try {  
+        if (userId != null) { // Make sure userId is not null
+          const response:Shift[] = await axios.get('http://localhost:3000/user', 
+          {headers: headers}
+          );
           console.log(response);
           const shiftLog = response
           setHistory(shiftLog);
