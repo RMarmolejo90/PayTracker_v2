@@ -21,7 +21,8 @@ const PayTrackerPro: React.FC = () => {
     hoursWorked: number,
     date: number,
     email: string,
-    _id: string
+    _id: string,
+    userId: string
   }
   const [history, setHistory] = useState<Shift[]>([]);
   
@@ -51,8 +52,8 @@ const PayTrackerPro: React.FC = () => {
           const response:Shift[] = await axios.get('http://localhost:3000/user', 
           {headers: headers}
           );
-          console.log(response);
-          const shiftLog = response
+          console.log(`response = ${response}`);
+          const shiftLog = response;
           setHistory(shiftLog);
       } else {
           console.error('User ID not available');
