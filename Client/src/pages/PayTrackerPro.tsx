@@ -46,7 +46,7 @@ const PayTrackerPro: React.FC = () => {
   // Collect user history from db on mount
   useEffect(() => {
     const fetchHistory = async () => {
-      console.log(`user id = ${userId} and token = ${token}`);
+      console.log(`request headers ${headers}`);
       try {  
         if (userId != null) { // Make sure userId is not null
           const response:Shift[] = await axios.get('http://localhost:3000/user', 
