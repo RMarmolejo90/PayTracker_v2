@@ -108,7 +108,6 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                     seconds = { seconds }
                     handleStopClick = { handleStopClick }
                     handleStartClick = { handleStartClick }
-                    isActive = { isActive }
                 /> : <div className="hidden">Submit your hourly pay rate</div>}
             </div> 
             <div className='flex flex-auto flex-col flex-wrap justify-center items-center'> 
