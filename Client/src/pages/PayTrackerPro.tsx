@@ -33,7 +33,7 @@ const PayTrackerPro: React.FC = () => {
   const storedNetPay = localStorage.getItem('netPay');
   const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
   const payPerSecond: number = (parseFloat(submittedRate) / 3600);
-  const netPayNumberType = parseFloat(storedNetPay!);
+  const netPayNumberType = +storedNetPay!;
 
   // access user info for request headers
   const token = localStorage.getItem('Token');
@@ -71,13 +71,10 @@ const PayTrackerPro: React.FC = () => {
     // this is used to upadate the displayed net pay on the page
 
     useEffect (() => {
-      if (netPayNumberType != null)
+      if (netPayNumberType !== null)
       setDisplayNet(netPayNumberType);
   }, [netPayNumberType, setDisplayNet]);
   
-   // handles timer button
-    // Start or stop the timer
-
     // this is the db schema for reference
     // timeIn: Number,
     // endTime: Number,
@@ -179,7 +176,6 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                     seconds = { seconds }
                     handleStopClick = { handleStopClick }
                     handleStartClick = { handleStartClick }
-                    isActive = { isActive }
                 /> : <div className="hidden">Submit your hourly pay rate</div>}
             </div> 
             <div className='flex flex-auto flex-col flex-wrap justify-center items-center'> 

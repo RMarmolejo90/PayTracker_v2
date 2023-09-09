@@ -25,7 +25,7 @@ const ProNet: React.FC = () => {
   const [netPay, setNetPay] = useState<number>(0);
 
   useEffect(() => {
-    setNetPay(+grossPay * deductionRate);
+    setNetPay(+grossPay * +deductionRate);
     localStorage.setItem('netPay', netPay.toString());
   }, [grossPay, deductionRate]);
 
@@ -45,10 +45,16 @@ const ProNet: React.FC = () => {
     setDeductionsLabel(data.label);
   }
 
-  const deductionOptions = [
-    { id: 1, value: 0.90, label: '10%' },
-    { id: 2, value: 0.88, label: '12%' },
-    { id: 3, value: 0.86, label: '14%' },
+  type OptionsType = {
+    id: number,
+    value: number,
+    label: string,
+  }
+
+  const deductionOptions: OptionsType[] = [
+    { id: 1, value: 0.88, label: '12%' },
+    { id: 2, value: 0.86, label: '14%' },
+    { id: 3, value: 0.90, label: '10%' },
     { id: 4, value: 0.84, label: '16%' },
     { id: 5, value: 0.82, label: '18%' },
     { id: 6, value: 0.80, label: '20%' },
@@ -57,8 +63,11 @@ const ProNet: React.FC = () => {
     { id: 9, value: 0.74, label: '26%' },
     { id: 10, value: 0.72, label: '28%' },
     { id: 11, value: 0.70, label: '30%' },
+    { id: 12, value: 0.68, label: '32%' },
+    { id: 13, value: 0.66, label: '34%' },
+    { id: 14, value: 0.64, label: '36%' },
+    { id: 15, value: 0.62, label: '38%' },
   ];
-
   const deductionDefault = localStorage.getItem('deductions');
   const defaultOption = deductionOptions[5].value;
 
@@ -79,13 +88,12 @@ const ProNet: React.FC = () => {
     <div className='p-6 flex flex-col justify-center items-center'>
       <label htmlFor='deductions'>Deductions Rate</label>
       <div className='p-6 text-slate-800'>
-        <Select
-          defaultValue={deductionDefault}
-          title='change deduction rate'
-          placeholder={deductionsLabel}
-          options={deductionOptions}
-          onChange={handleDeductionRate}
-        />
+      <Select
+        defaultValue={deductionDefault}
+        placeholder={deductionsLabel}
+        options={deductionOptions as any}
+        onChange={handleDeductionRate}
+      />
       </div>
     </div>
   );
