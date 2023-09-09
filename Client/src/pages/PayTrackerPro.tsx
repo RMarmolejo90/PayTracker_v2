@@ -53,8 +53,9 @@ const PayTrackerPro: React.FC = () => {
           {headers: headers}
           );
           console.log(`response = ${response}`);
+          if (response.status !== 204){
           const shiftLog = response;
-          setHistory(shiftLog);
+          setHistory(shiftLog);}
       } else {
           console.error('User ID not available');
         }
