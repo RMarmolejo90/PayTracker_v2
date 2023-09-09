@@ -49,12 +49,12 @@ const PayTrackerPro: React.FC = () => {
       console.log(`request headers ${headers}`);
       try {  
         if (userId != null) { // Make sure userId is not null
-          const response:Shift[] = await axios.get('http://localhost:3000/user', 
+          const response = await axios.get('http://localhost:3000/user', 
           {headers: headers}
           );
           console.log(`response = ${response}`);
           if (response.status !== 204){
-          const shiftLog = response;
+          const shiftLog = response.data;
           setHistory(shiftLog);}
       } else {
           console.error('User ID not available');
