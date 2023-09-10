@@ -25,9 +25,14 @@ const ProNet: React.FC = () => {
   const [netPay, setNetPay] = useState<number>(0);
 
   useEffect(() => {
-    setNetPay(+grossPay * +deductionRate);
-    localStorage.setItem('netPay', netPay.toString());
-  }, [grossPay, deductionRate]);
+    const newNetPay = +grossPay * +deductionRate;
+    setNetPay(newNetPay);
+}, [grossPay, deductionRate]);
+
+  useEffect(() => {
+    localStorage.setItem('netPay', JSON.stringify(netPay));
+  }, [netPay]);
+
 
   const [deductionsLabel, setDeductionsLabel] = useState<string>(() => {
     const storedLabel = localStorage.getItem('placeholderText');
@@ -68,7 +73,9 @@ const ProNet: React.FC = () => {
     { id: 14, value: 0.64, label: '36%' },
     { id: 15, value: 0.62, label: '38%' },
   ];
-  const deductionDefault = localStorage.getItem('deductions');
+
+  const storedDefault = localStorage.getItem('deductions')
+  const deductionDefault = +storedDefault!;
   const defaultOption = deductionOptions[5].value;
 
   useEffect(() => {
@@ -77,7 +84,7 @@ const ProNet: React.FC = () => {
 
   const [defDeductions, setDefDeductions] = useState<number>(() => {
     try {
-      return deductionDefault ? JSON.parse(deductionDefault) : defaultOption;
+      return deductionDefault !== null ? deductionDefault : defaultOption;
     } catch (error) {
       console.error('error parsing the deductionDefault', error);
       return defaultOption;

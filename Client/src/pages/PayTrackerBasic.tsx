@@ -42,7 +42,7 @@ export default function PayTrackerBasic() {
       console.log("timer is not active");
   }
 
-  const handleStartClick = () => {
+  const handleStartClick: () => void = () => {
       setIsActive(true);
           setStartTime(new Date().getTime());
           localStorage.setItem('startTime', new Date().getTime().toString());

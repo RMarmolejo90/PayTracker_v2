@@ -27,7 +27,7 @@ const BasicNet: React.FC = () => {
   useEffect(() => {
     setNetPay(+grossPay * deductionRate);
     localStorage.setItem('netPay', netPay.toString());
-  }, [grossPay, deductionRate]);
+  }, [grossPay, deductionRate, netPay]);
 
   const [deductionsLabel, setDeductionsLabel] = useState<string>(() => {
     const storedLabel = localStorage.getItem('placeholderText');
