@@ -4,9 +4,9 @@ import Select from 'react-select';
 
 
 const ProNet: React.FC = () => {
-    const storedDeductions = localStorage.getItem('deductionState');
+    const storedDeductions: string | null = localStorage.getItem('deductionState');
     const defaultDeductionRate = 0.8;
-    const grossPay = useTrackerContext();
+    const grossPay: number = +useTrackerContext();
 
   const [deductionRate, setDeductionRate] = useState<number>(() => {
     try {
@@ -25,7 +25,7 @@ const ProNet: React.FC = () => {
   const [netPay, setNetPay] = useState<number>(0);
 
   useEffect(() => {
-    const newNetPay = grossPay;
+    const newNetPay: number = grossPay * deductionRate;
     console.log(`new net pay = ${newNetPay}`);
     setNetPay(newNetPay);
 }, [grossPay, deductionRate]);
@@ -36,12 +36,12 @@ const ProNet: React.FC = () => {
 
 
   const [deductionsLabel, setDeductionsLabel] = useState<string>(() => {
-    const storedLabel = localStorage.getItem('placeholderText');
+    const storedLabel: string | null = localStorage.getItem('placeholderText');
     return storedLabel ? JSON.parse(storedLabel) : 'Default 20%';
   });
 
   useEffect(() => {
-    const jsonLabel = JSON.stringify(deductionsLabel);
+    const jsonLabel: string = JSON.stringify(deductionsLabel);
     localStorage.setItem('placeholderText', jsonLabel);
   }, [deductionsLabel]);
 
@@ -75,9 +75,9 @@ const ProNet: React.FC = () => {
     { id: 15, value: 0.62, label: '38%' },
   ];
 
-  const storedDefault = localStorage.getItem('deductions')
-  const deductionDefault = +storedDefault!;
   const defaultOption = deductionOptions[5].value;
+  const storedDefault: string | null = localStorage.getItem('deductions') ?? defaultOption.toString();
+  const deductionDefault = parseFloat(storedDefault);
 
   useEffect(() => {
     localStorage.setItem('deductions', JSON.stringify(defDeductions));
@@ -85,7 +85,7 @@ const ProNet: React.FC = () => {
 
   const [defDeductions, setDefDeductions] = useState<number>(() => {
     try {
-      return deductionDefault !== null ? deductionDefault : defaultOption;
+      return deductionDefault !== null ? +deductionDefault : defaultOption;
     } catch (error) {
       console.error('error parsing the deductionDefault', error);
       return defaultOption;

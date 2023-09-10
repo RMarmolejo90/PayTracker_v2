@@ -45,7 +45,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
     setIsActive(true);
     const startTime = new Date().getTime();
     localStorage.setItem('startTime', JSON.stringify(startTime));
-    localStorage.setItem('activeTimer', 'true');
+    localStorage.setItem('activeTimer', JSON.stringify(true));
   };
 
   const stopTimer = () => {
@@ -61,7 +61,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
       if (storedTime) {
         const elapsedTimeInSeconds = Math.floor((new Date().getTime() - Number(storedTime)) / 1000);
         setElapsedTime(elapsedTimeInSeconds);
-        localStorage.setItem('timeElapsed', elapsedTimeInSeconds.toString());
+        localStorage.setItem('timeElapsed', JSON.stringify(elapsedTimeInSeconds));
       }
     }, 1000);
     return () => clearInterval(interval);
@@ -70,11 +70,11 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   useEffect(() => {
     const submittedRate = isActive ? localStorage.getItem('activeSubmittedRate') : '0';
     const payPerSecond = Number(submittedRate) / 3600;
-
+    const timeElapsedFromStorage = localStorage.getItem('timeElapsed') ?? 0;
     let interval: NodeJS.Timeout | null = null;
     if (isActive) {
       interval = setInterval(() => {
-        setGrossPay(Number(localStorage.getItem('timeElapsed')) * payPerSecond);
+        setGrossPay(+timeElapsedFromStorage * payPerSecond);
       }, 1000);
     }
 
