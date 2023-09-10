@@ -27,17 +27,17 @@ const PayTrackerPro: React.FC = () => {
   const [history, setHistory] = useState<Shift[]>([]);
   
   // defines time
-  const hours = Math.floor(elapsedTime / 3600);
-  const minutes = Math.floor((elapsedTime % 3600) / 60);
-  const seconds = elapsedTime % 60;
-  const storedNetPay = localStorage.getItem('netPay')!;
-  const netPayNumberType = !isNaN(parseFloat(storedNetPay!)) ? parseFloat(storedNetPay!) : 0;
-  const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
+  const hours: number = Math.floor(elapsedTime / 3600);
+  const minutes: number = Math.floor((elapsedTime % 3600) / 60);
+  const seconds: number = elapsedTime % 60;
+  const storedNetPay: string | null = localStorage.getItem('netPay');
+  const netPayNumberType: number | null = parseFloat(storedNetPay!);
+  const activeSubmittedRate: string | null = localStorage.getItem('activeSubmittedRate');
   const payPerSecond: number = (parseFloat(submittedRate) / 3600);
 
   // access user info for request headers
-  const token = localStorage.getItem('Token');
-  const userId = localStorage.getItem('UserId');
+  const token: string = localStorage.getItem('Token')!;
+  const userId: string = localStorage.getItem('UserId')!;
   const headers = {
     authorization: `Bearer ${token}`,
     userId: userId
@@ -48,7 +48,7 @@ const PayTrackerPro: React.FC = () => {
     const fetchHistory = async () => {
       console.log(`request headers ${headers}`);
       try {  
-        if (userId != null) { // Make sure userId is not null
+        if (userId !== null) { // Make sure userId is not null
           const response = await axios.get('http://localhost:3000/user', 
           {headers: headers}
           );
@@ -141,7 +141,7 @@ const PayTrackerPro: React.FC = () => {
 
 // end pay calculation
 
-const placeholderText = "Pay Rate : " + submittedRate;
+const placeholderText: string = "Pay Rate : " + submittedRate;
 
 // handles the form         
 

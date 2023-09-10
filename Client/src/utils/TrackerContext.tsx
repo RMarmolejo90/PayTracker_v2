@@ -32,7 +32,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
     // updates the displayNet state with netpay from local storage
     // this is used to upadate the displayed net pay on the page
   useEffect(() => {
-    const storedNetPay = localStorage.getItem('netPay');
+    const storedNetPay: string | null = localStorage.getItem('netPay');
     if (storedNetPay !== null && !isNaN(parseFloat(storedNetPay))) {
       const parsedNetPay = parseFloat(storedNetPay);
       setDisplayNet(parsedNetPay);
@@ -56,10 +56,10 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   };
 
   useEffect(() => {
-    const storedTime = localStorage.getItem('startTime');
+    const storedTime: string | null = localStorage.getItem('startTime');
     const interval = setInterval(() => {
       if (storedTime) {
-        const elapsedTimeInSeconds = Math.floor((new Date().getTime() - Number(storedTime)) / 1000);
+        const elapsedTimeInSeconds: number = Math.floor((new Date().getTime() - Number(storedTime)) / 1000);
         setElapsedTime(elapsedTimeInSeconds);
         localStorage.setItem('timeElapsed', JSON.stringify(elapsedTimeInSeconds));
       }
