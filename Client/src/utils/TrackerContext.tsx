@@ -44,7 +44,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   const startTimer = () => {
     setIsActive(true);
     const startTime = new Date().getTime();
-    localStorage.setItem('startTime', startTime.toString());
+    localStorage.setItem('startTime', JSON.stringify(startTime));
     localStorage.setItem('activeTimer', 'true');
   };
 
