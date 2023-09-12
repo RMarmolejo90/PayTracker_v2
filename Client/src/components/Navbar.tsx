@@ -4,15 +4,11 @@ import { useEffect, useState } from "react";
 
 
 export default function Navbar() {
-    const auth = localStorage.getItem("Auth");
-    const [authState, setAuthState] = useState(false);
+    const auth:string = localStorage.getItem("Auth") ?? "false";
 
-    useEffect(() => {
-        // Parse the string as a boolean
-        setAuthState(auth === 'true');
-    }, []);
+    const isAuthorized: boolean = JSON.parse(auth);
 
-    console.log(authState);
+    console.log(isAuthorized);
 
   return (
     <div className='flex flex-row flex-wrap items-center justify-between md:justify-normal p-1 w-screen  bg-slate-950'>
@@ -56,18 +52,19 @@ export default function Navbar() {
             
                 <div className='flex flex-wrap sm:p-2 text-sm tracking-wide text-sky-200 max-w-max text-center md:text-right md:ml-0'>
                    { 
-                   authState === true ? 
+                   isAuthorized === false ? 
+                   <NavLink 
+                        to="/Login"
+                        className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
+                        Login
+                    </NavLink>
+                    :
                     <NavLink 
                         to="/Logout"
                         className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
                         Logout
                     </NavLink>
-                    : 
-                    <NavLink 
-                        to="/Login"
-                        className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
-                        Login
-                    </NavLink>
+                    
                     }
                     <NavLink 
                         to="/Register"

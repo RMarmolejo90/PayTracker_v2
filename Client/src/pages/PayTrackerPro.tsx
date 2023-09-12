@@ -97,10 +97,11 @@ const PayTrackerPro: React.FC = () => {
     const handleStopClick = async () => {
       setIsActive(false);
       try{
+        console.log(`clocking out: ${shiftData}`);
         const response = await axios.put('http://localhost:3000/clock-out', shiftData );
         const responseStatus = response.status;
         if(responseStatus === 200){
-          alert(`Good Work Today! You worked ${shiftData.hoursWorked} today, and made ${grossPay}`);
+          alert(`You worked ${shiftData.hoursWorked}hours today, and made $${grossPay}`);
         }
 
         } catch(error) {

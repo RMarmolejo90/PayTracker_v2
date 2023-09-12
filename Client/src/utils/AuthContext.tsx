@@ -4,7 +4,7 @@ import { useLocalStorage } from "./useLocalStorage";
 export interface AuthContextType {
     login: () => void;
     logout: () => void;
-    authorized: string;
+    authorized: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

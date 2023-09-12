@@ -1,4 +1,4 @@
-import { useTrackerContext } from '../../utils/useTrackerContext'
+import { useTrackerContext } from '../../utils/useTrackerContext';
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
 
@@ -6,7 +6,9 @@ import Select from 'react-select';
 const ProNet: React.FC = () => {
     const storedDeductions: string | null = localStorage.getItem('deductionState');
     const defaultDeductionRate = 0.8;
-    const grossPay: number = +useTrackerContext();
+    const context = useTrackerContext();
+
+    const grossPay: number = context.grossPay;
 
   const [deductionRate, setDeductionRate] = useState<number>(() => {
     try {
@@ -25,6 +27,7 @@ const ProNet: React.FC = () => {
   const [netPay, setNetPay] = useState<number>(0);
 
   useEffect(() => {
+    console.log(`grosspay is reading ${grossPay} and deductions is ${deductionRate}`)
     const newNetPay: number = grossPay * deductionRate;
     console.log(`new net pay = ${newNetPay}`);
     setNetPay(newNetPay);
