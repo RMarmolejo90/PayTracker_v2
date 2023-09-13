@@ -16,7 +16,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = () => {
   const checkTokenValidity = async () => {
 
     const headers = {
-      authorization: `Bearer ${token}`,
+      authorization: token,
       userId: userId
     }
     try {

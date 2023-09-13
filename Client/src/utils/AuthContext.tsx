@@ -14,15 +14,17 @@ interface AuthProviderProps {
   }
 
   export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const [authorized, setAuthorized] = useLocalStorage("Auth", "false");
-    //const [authorized, setAuthorized] = useState(false);
+    const [auth, setAuth] = useLocalStorage("Auth", "false");
+    const [authorized, setAuthorized] = useState(false);
 
     const login = () => {
-        setAuthorized("true");       
+        setAuthorized(true);
+        setAuth("true")       
       };
     
       const logout = () => {
-        setAuthorized("false");  
+        setAuthorized(false); 
+        setAuth("false");
       };
     
     const AuthContextValue: AuthContextType = {
