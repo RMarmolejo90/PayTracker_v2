@@ -124,22 +124,25 @@ const PayTrackerPro: React.FC = () => {
           console.log(`startTime :  ${startTime}`);
   }
  // this calculates the hourly pay into seconds
-  const storedTime: string = localStorage.getItem('timeElapsed') ?? '1';
-  const parsedTimeElapsed: number = parseFloat(storedTime);
-  console.log(`parsed time = ${parsedTimeElapsed}`);
-  useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
-    if (isActive) {
-      interval = setInterval(() => {
-        setGrossPay(parsedTimeElapsed * payPerSecond);
-      }, 1000);
-  }
-  return () => {
-    if (interval) {
-      clearInterval(interval);
-    }
-  };
-}, [submittedRate, isActive, setGrossPay, payPerSecond]);
+
+ // THIS SECTION WAS DUPLICATED IN TRACKERCONTEXT AND SHOULD BE DELETED IF DEEMED UNNECESSARY DURING REFACTOR
+//   const storedTime: string = localStorage.getItem('timeElapsed') ?? '1';
+//   const parsedTimeElapsed: number = parseFloat(storedTime);
+//   console.log(`parsed time = ${parsedTimeElapsed}`);
+//   console.log(`pay per second ${payPerSecond}`);
+//   useEffect(() => {
+//     let interval: NodeJS.Timeout | null = null;
+//     if (isActive) {
+//       interval = setInterval(() => {
+//         setGrossPay(parsedTimeElapsed * payPerSecond);
+//       }, 1000);
+//   }
+//   return () => {
+//     if (interval) {
+//       clearInterval(interval);
+//     }
+//   };
+// }, [submittedRate, isActive, setGrossPay, payPerSecond]);
 
 // end pay calculation
 
