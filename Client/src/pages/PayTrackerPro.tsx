@@ -124,14 +124,15 @@ const PayTrackerPro: React.FC = () => {
           console.log(`startTime :  ${startTime}`);
   }
  // this calculates the hourly pay into seconds
-  
-
- useEffect(() => {
-  let interval: NodeJS.Timeout | null = null;
-  if (isActive) {
-    interval = setInterval(() => {
-      setGrossPay(+localStorage.getItem('timeElapsed')! * payPerSecond);
-    }, 1000);
+  const storedTime: string = localStorage.getItem('timeElapsed') ?? '1';
+  const parsedTimeElapsed: number = parseFloat(storedTime);
+  console.log(`parsed time = ${parsedTimeElapsed}`);
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (isActive) {
+      interval = setInterval(() => {
+        setGrossPay(parsedTimeElapsed * payPerSecond);
+      }, 1000);
   }
   return () => {
     if (interval) {

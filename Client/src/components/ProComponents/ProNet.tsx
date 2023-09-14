@@ -28,7 +28,7 @@ const ProNet: React.FC = () => {
 
   useEffect(() => {
     console.log(`grosspay is reading ${grossPay} and deductions is ${deductionRate}`)
-    const newNetPay: number = grossPay * deductionRate;
+    const newNetPay: number = (grossPay * deductionRate);
     console.log(`new net pay = ${newNetPay}`);
     setNetPay(newNetPay);
 }, [grossPay, deductionRate]);
