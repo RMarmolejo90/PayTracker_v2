@@ -68,7 +68,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isActive]);
 
   const [submittedRate, setSubmittedRate] = useState (
     isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
