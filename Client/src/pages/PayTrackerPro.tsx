@@ -7,7 +7,7 @@ import ProNet from '../components/ProComponents/ProNet';
 import axios from 'axios';
 
 const PayTrackerPro: React.FC = () => {
-  const { displayNet, grossPay, isActive, elapsedTime, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
+  const { displayNet, grossPay, isActive, submittedRate, elapsedTime, setSubmittedRate, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
   const [inputRate, setInputRate] = useState(0);
   // const [submittedRate, setSubmittedRate] = useState (
   //   isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
@@ -170,7 +170,6 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 
   
   return (
-    
     <div className='p-8'>
       <h1 className='text-3xl pb-10 text-center text-blue-400 border-b-2 border-orange-500 font-tilt'>Real-Time Pay Tracker</h1>
       <div className='flex flex-wrap flex-col md:flex-row flex-auto justify-around items-center p-6'>

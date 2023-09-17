@@ -20,11 +20,12 @@ export const TrackerContext = createContext<TrackerContextType | undefined>(unde
 interface TrackerContextProviderProps {
     children: React.ReactNode;
   }
+
+
 const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ children }) => {
-    const [isActive, setIsActive] = useState<boolean>(() => {
-        const activeTimer = localStorage.getItem('activeTimer');
-        return activeTimer ? Boolean(JSON.parse(activeTimer)) : false;
-      });
+    
+  const activeTimer: boolean = Boolean(localStorage.getItem('activeTimer')) ?? false;
+  const [isActive, setIsActive] = useState<boolean>(activeTimer);
       
 
   const [elapsedTime, setElapsedTime] = useState<number>(0);
@@ -58,10 +59,10 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   };
 
   useEffect(() => {
-    const storedTime: string | null = localStorage.getItem('startTime');
+    const storedTime: string | null = localStorage.getItem('startTime') ?? '0';
     const interval = setInterval(() => {
-      if (storedTime) {
-        const elapsedTimeInSeconds: number = Math.floor((new Date().getTime() - Number(storedTime)) / 1000);
+      if (isActive) {
+        const elapsedTimeInSeconds: number = Math.floor(new Date().getTime() - +storedTime / 1000);
         setElapsedTime(elapsedTimeInSeconds);
         localStorage.setItem('timeElapsed', JSON.stringify(elapsedTimeInSeconds));
       }

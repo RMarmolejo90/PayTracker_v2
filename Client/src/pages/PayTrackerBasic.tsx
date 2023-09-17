@@ -6,10 +6,10 @@ import BasicNet from '../components/BasicComponents/BasicNetPay';
 import BasicReset from '../components/BasicComponents/BasicReset';
 
 export default function PayTrackerBasic() {
-  const { displayNet, grossPay, isActive, elapsedTime, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
+  const { displayNet, grossPay, isActive, submittedRate, elapsedTime, setSubmittedRate, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
   const [inputRate, setInputRate] = useState(0);
-  const [submittedRate, setSubmittedRate] = useState (
-    isActive && localStorage.getItem('activeSubmittedRate') !== null ? +(localStorage.getItem('activeSubmittedRate')!) : 0);
+  // const [submittedRate, setSubmittedRate] = useState (
+  //   isActive && localStorage.getItem('activeSubmittedRate') !== null ? +(localStorage.getItem('activeSubmittedRate')!) : 0);
   const [startTime, setStartTime] = useState<number>();
   
   // defines time
