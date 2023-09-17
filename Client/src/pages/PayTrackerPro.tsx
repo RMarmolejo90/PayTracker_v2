@@ -38,7 +38,7 @@ const PayTrackerPro: React.FC = () => {
   const token: string = localStorage.getItem('Token')!;
   const userId: string = localStorage.getItem('UserId')!;
   const headers = {
-    authorization: `Bearer ${token}`,
+    authorization: token,
     userId: userId
   }
 
@@ -59,6 +59,7 @@ const PayTrackerPro: React.FC = () => {
           console.log(`grosspay = ${grossPay}`);
           console.log(`stored netpay = ${storedNetPay}`);
           console.log(`display net = ${displayNet}`);
+          console.log(`isactive ${isActive}`);
           if (response.status !== 204){
           const shiftLog = response.data;
           setHistory(shiftLog);}
