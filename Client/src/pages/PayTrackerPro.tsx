@@ -8,10 +8,9 @@ import axios from 'axios';
 
 const PayTrackerPro: React.FC = () => {
   const { displayNet, grossPay, isActive, elapsedTime, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
-  const [inputRate, setInputRate] = useState('');
-  const [submittedRate, setSubmittedRate] = useState (
-    isActive && localStorage.getItem('activeSubmittedRate') !== null ? localStorage.getItem('activeSubmittedRate')! : '0'
-  );
+  const [inputRate, setInputRate] = useState(0);
+  // const [submittedRate, setSubmittedRate] = useState (
+  //   isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
   const [startTime, setStartTime] = useState<number>();
   type Shift = {
     timeIn: number, 
@@ -32,8 +31,8 @@ const PayTrackerPro: React.FC = () => {
   const seconds: number = elapsedTime % 60;
   const storedNetPay: string | null = localStorage.getItem('netPay');
   const netPayNumberType: number | null = parseFloat(storedNetPay!);
-  const activeSubmittedRate: string | null = localStorage.getItem('activeSubmittedRate');
-  const payPerSecond: number = (parseFloat(submittedRate) / 3600);
+  const activeSubmittedRateString: string = localStorage.getItem('activeSubmittedRate') ?? '0';
+  const activeSubmittedRateNumber: number = +activeSubmittedRateString;
 
   // access user info for request headers
   const token: string = localStorage.getItem('Token')!;
@@ -42,6 +41,10 @@ const PayTrackerPro: React.FC = () => {
     authorization: `Bearer ${token}`,
     userId: userId
   }
+
+  // for testing
+  console.log(activeSubmittedRateNumber);
+
 
   // Collect user history from db on mount
   useEffect(() => {
@@ -122,6 +125,7 @@ const PayTrackerPro: React.FC = () => {
           localStorage.setItem('startButton', "Stop");
           console.log("timer-active");
           console.log(`startTime :  ${startTime}`);
+          console.log(`start click rate ${activeSubmittedRateNumber}`);
   }
  // this calculates the hourly pay into seconds
 
@@ -151,16 +155,17 @@ const placeholderText: string = "Pay Rate : " + submittedRate;
 // handles the form         
 
 const handleRate = (event: React.ChangeEvent<HTMLInputElement>) => {      
-    setInputRate(event.target.value)
+    setInputRate(+event.target.value)
 }
 
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
  event.preventDefault();
  console.log(`hourly rate is ${inputRate}`);
  setSubmittedRate(inputRate);
- setInputRate("");
+ setInputRate(0);
  localStorage.setItem('activeSubmittedRate', JSON.stringify(inputRate));
- console.log('per second = ' + payPerSecond , 'gross = ' + grossPay);
+ console.log(`submit click rate ${activeSubmittedRateNumber}, ${activeSubmittedRateString}`);
+
 }
 
   
@@ -178,7 +183,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           </h2> :
           <div className='hidden'></div>
           }
-          { (activeSubmittedRate != null) ? <Timer
+          { (activeSubmittedRateNumber !== 0) ? <Timer
               hours = { hours }
               minutes = { minutes }
               seconds = { seconds }
@@ -189,7 +194,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       <div className='flex flex-auto flex-col flex-wrap justify-center items-center'> 
               <div className='border-zinc-700 border-4 p-6 flex flex-auto flex-col flex-wrap justify-center items-end m-6'>
                   <h3 className='mr-6'>
-                      Hourly Rate: ${ activeSubmittedRate }
+                      Hourly Rate: ${ activeSubmittedRateNumber }
                   </h3>
                   <form className='outline-slate-600 m-6 flex flex-auto flex-col justify-center items-end' onSubmit={ handleSubmit }>
                       <input 

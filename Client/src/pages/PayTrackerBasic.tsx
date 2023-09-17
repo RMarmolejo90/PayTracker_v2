@@ -7,10 +7,9 @@ import BasicReset from '../components/BasicComponents/BasicReset';
 
 export default function PayTrackerBasic() {
   const { displayNet, grossPay, isActive, elapsedTime, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
-  const [inputRate, setInputRate] = useState('');
+  const [inputRate, setInputRate] = useState(0);
   const [submittedRate, setSubmittedRate] = useState (
-    isActive && localStorage.getItem('activeSubmittedRate') !== null ? localStorage.getItem('activeSubmittedRate')! : '0'
-  );
+    isActive && localStorage.getItem('activeSubmittedRate') !== null ? +(localStorage.getItem('activeSubmittedRate')!) : 0);
   const [startTime, setStartTime] = useState<number>();
   
   // defines time
@@ -19,7 +18,6 @@ export default function PayTrackerBasic() {
   const seconds = elapsedTime % 60;
   const storedNetPay = localStorage.getItem('netPay');
   const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
-  const payPerSecond: number = (parseFloat(submittedRate) / 3600);
   const netPayNumberType = parseFloat(storedNetPay!);
   
     // updates the displayNet state with netpay from local storage
@@ -52,21 +50,21 @@ export default function PayTrackerBasic() {
           console.log("startTime : ", startTime);
   }
  // this calculates the hourly pay into seconds
-  
+// THIS IS CURRENTLY BEING HANDLED IN TRACKERCONTEXT
 
- useEffect(() => {
-  let interval: NodeJS.Timeout | null = null;
-  if (isActive) {
-    interval = setInterval(() => {
-      setGrossPay(+localStorage.getItem('timeElapsed')! * payPerSecond);
-    }, 1000);
-  }
-  return () => {
-    if (interval) {
-      clearInterval(interval);
-    }
-  };
-}, [submittedRate, isActive]);
+//  useEffect(() => {
+//   let interval: NodeJS.Timeout | null = null;
+//   if (isActive) {
+//     interval = setInterval(() => {
+//       setGrossPay(+localStorage.getItem('timeElapsed')! * payPerSecond);
+//     }, 1000);
+//   }
+//   return () => {
+//     if (interval) {
+//       clearInterval(interval);
+//     }
+//   };
+// }, [submittedRate, isActive]);
 
 // end pay calculation
 
@@ -75,23 +73,22 @@ const placeholderText = "Pay Rate : " + submittedRate;
 // handles the form         
 
 const handleRate = (event: React.ChangeEvent<HTMLInputElement>) => {      
-    setInputRate(event.target.value)
+    setInputRate(parseFloat(event.target.value));
 }
 
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
  event.preventDefault();
  console.log(`hourly rate is ${inputRate}`);
  setSubmittedRate(inputRate);
- setInputRate("");
+ setInputRate(0);
  localStorage.setItem('activeSubmittedRate', JSON.stringify(inputRate));
- console.log('per second = ' + payPerSecond , 'gross = ' + grossPay);
 }
 
   
   return (
     
     <div className='p-8'>
-            <h1 className='text-3xl pb-10 text-center text-blue-400 border-b-2 border-orange-500 font-tilt'>Real-Time Pay Tracker</h1>
+            <h1 className='text-3xl pb-10 text-center text-blue-400 border-b-2 border-orange-500 font-tilt'>Pay-Tracker Basic</h1>
             <div className='flex flex-wrap flex-col md:flex-row flex-auto justify-around items-center p-6'>
                 <h2 className='text-2xl font-semibold m-6'>
                     Gross: ${ grossPay.toFixed(2) }

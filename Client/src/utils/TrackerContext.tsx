@@ -1,12 +1,14 @@
 import { createContext, useState, useEffect } from 'react';
 
 export interface TrackerContextType {
+    submittedRate: number;
     isActive: boolean;
     elapsedTime: number;
     displayNet: number;
     grossPay: number;
     startTimer: () => void;
     stopTimer: () => void;
+    setSubmittedRate: React.Dispatch<React.SetStateAction<number>>;
     setDisplayNet: React.Dispatch<React.SetStateAction<number>>; 
     setGrossPay: React.Dispatch<React.SetStateAction<number>>;
     setIsActive: React.Dispatch<React.SetStateAction<boolean>>;
@@ -67,13 +69,14 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
     return () => clearInterval(interval);
   }, []);
 
-  const submittedRate = isActive ? localStorage.getItem('activeSubmittedRate') : '0';
-  const payPerSecond = Number(submittedRate) / 3600;
+  const [submittedRate, setSubmittedRate] = useState (
+    isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
+  const payPerSecond = Number(submittedRate / 3600);
+
   // this calculates the hourly pay into seconds
   const storedTime: string = localStorage.getItem('timeElapsed') ?? '1';
   const parsedTimeElapsed: number = parseFloat(storedTime);
   console.log(`parsed time = ${parsedTimeElapsed}`);
-  console.log(`pay per second ${payPerSecond}`);
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
     if (isActive) {
@@ -89,10 +92,12 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   }, [submittedRate, isActive, payPerSecond]);
 
   const contextValue: TrackerContextType = {
+      submittedRate,
       isActive,
       elapsedTime,
       displayNet,
       grossPay,
+      setSubmittedRate,
       startTimer,
       stopTimer,
       setDisplayNet,
