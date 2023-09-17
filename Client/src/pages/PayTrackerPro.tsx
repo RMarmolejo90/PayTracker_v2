@@ -78,9 +78,9 @@ const PayTrackerPro: React.FC = () => {
     // this is used to upadate the displayed net pay on the page
 
     useEffect (() => {
-      if (netPayNumberType !== null && !isNaN)
+      if (netPayNumberType !== null && !isNaN(netPayNumberType))
       setDisplayNet(netPayNumberType);
-  }, [netPayNumberType, setDisplayNet]);
+  }, [netPayNumberType]);
   
     // this is the db schema for reference
     // timeIn: Number,

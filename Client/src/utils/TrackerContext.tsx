@@ -39,30 +39,33 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
     if (storedNetPay !== null && !isNaN(parseFloat(storedNetPay))) {
       const parsedNetPay = parseFloat(storedNetPay);
       setDisplayNet(parsedNetPay);
+      console.log(`parsedNetPay = ${parsedNetPay}`);
     }
   }, []);
 
-    // timer function  
-    // this counts elapsed time
   const startTimer = () => {
     setIsActive(true);
     const startTime = new Date().getTime();
     localStorage.setItem('startTime', JSON.stringify(startTime));
     localStorage.setItem('activeTimer', JSON.stringify(true));
   };
-
+  
   const stopTimer = () => {
     setIsActive(false);
     setElapsedTime(0);
     localStorage.removeItem('startTime');
     localStorage.removeItem('activeTimer');
   };
-
+  
+  // timer function  
+  // this counts elapsed time
+  const storedTime: string | null = localStorage.getItem('startTime');
   useEffect(() => {
-    const storedTime: string | null = localStorage.getItem('startTime') ?? '0';
     const interval = setInterval(() => {
-      if (isActive) {
-        const elapsedTimeInSeconds: number = Math.floor(new Date().getTime() - +storedTime / 1000);
+      if (isActive && storedTime !== null) {
+        const parsedStartTime: number = parseFloat(storedTime)!;
+        const currentTimeStamp: number = Math.floor(new Date().getTime());
+        const elapsedTimeInSeconds: number = (currentTimeStamp - parsedStartTime) / 1000;
         setElapsedTime(elapsedTimeInSeconds);
         localStorage.setItem('timeElapsed', JSON.stringify(elapsedTimeInSeconds));
       }
@@ -75,8 +78,8 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   const payPerSecond = Number(submittedRate / 3600);
 
   // this calculates the hourly pay into seconds
-  const storedTime: string = localStorage.getItem('timeElapsed') ?? '1';
-  const parsedTimeElapsed: number = parseFloat(storedTime);
+  const timeElapsed: string = localStorage.getItem('timeElapsed') ?? '1';
+  const parsedTimeElapsed: number = parseFloat(timeElapsed);
   console.log(`parsed time = ${parsedTimeElapsed}`);
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
