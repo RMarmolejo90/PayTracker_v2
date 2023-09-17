@@ -33,7 +33,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   const [grossPay, setGrossPay] = useState<number>(0);
 
     // updates the displayNet state with netpay from local storage
-    // this is used to upadate the displayed net pay on the page
+    // this is used to update the displayed net pay on the page
   useEffect(() => {
     const storedNetPay: string | null = localStorage.getItem('netPay');
     if (storedNetPay !== null && !isNaN(parseFloat(storedNetPay))) {
@@ -71,7 +71,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   }, [isActive]);
 
   const [submittedRate, setSubmittedRate] = useState (
-    isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
+    isActive && (localStorage.getItem('activeSubmittedRate') !== null) ? +localStorage.getItem('activeSubmittedRate')! : 0);
   const payPerSecond = Number(submittedRate / 3600);
 
   // this calculates the hourly pay into seconds

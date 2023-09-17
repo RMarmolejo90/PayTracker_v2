@@ -125,9 +125,9 @@ const PayTrackerPro: React.FC = () => {
           localStorage.setItem('activeTimer', JSON.stringify(true));
           localStorage.setItem('startButton', "Stop");
           console.log("timer-active");
-          console.log(`startTime :  ${startTime}`);
           console.log(`start click rate ${activeSubmittedRateNumber}`);
-  }
+        }
+        console.log(`startTime :  ${startTime}`);
  // this calculates the hourly pay into seconds
 
  // THIS SECTION WAS DUPLICATED IN TRACKERCONTEXT AND SHOULD BE DELETED IF DEEMED UNNECESSARY DURING REFACTOR
