@@ -15,7 +15,7 @@ export default function PayTrackerBasic() {
   // defines time
   const hours = Math.floor(elapsedTime / 3600);
   const minutes = Math.floor((elapsedTime % 3600) / 60);
-  const seconds = elapsedTime % 60;
+  const seconds = Math.floor(elapsedTime % 60);
   const storedNetPay = localStorage.getItem('netPay');
   const activeSubmittedRate = localStorage.getItem('activeSubmittedRate');
   const netPayNumberType = parseFloat(storedNetPay!);

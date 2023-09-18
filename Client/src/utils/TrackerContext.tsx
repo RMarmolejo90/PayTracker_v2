@@ -63,7 +63,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   useEffect(() => {
     const interval = setInterval(() => {
       if (isActive && storedTime !== null) {
-        const parsedStartTime: number = parseFloat(storedTime)!;
+        const parsedStartTime: number = +storedTime!;
         const currentTimeStamp: number = Math.floor(new Date().getTime());
         const elapsedTimeInSeconds: number = (currentTimeStamp - parsedStartTime) / 1000;
         setElapsedTime(elapsedTimeInSeconds);
@@ -78,7 +78,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   const payPerSecond = Number(submittedRate / 3600);
 
   // this calculates the hourly pay into seconds
-  const timeElapsed: string = localStorage.getItem('timeElapsed') ?? '1';
+  const timeElapsed: string = localStorage.getItem('timeElapsed') ?? '0';
   const parsedTimeElapsed: number = parseFloat(timeElapsed);
   console.log(`parsed time = ${parsedTimeElapsed}`);
   useEffect(() => {

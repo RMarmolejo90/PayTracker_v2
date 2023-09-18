@@ -28,7 +28,7 @@ const PayTrackerPro: React.FC = () => {
   // defines time
   const hours: number = Math.floor(elapsedTime / 3600);
   const minutes: number = Math.floor((elapsedTime % 3600) / 60);
-  const seconds: number = elapsedTime % 60;
+  const seconds: number = Math.floor(elapsedTime % 60);
   const storedNetPay: string | null = localStorage.getItem('netPay');
   const netPayNumberType: number | null = parseFloat(storedNetPay!);
   const activeSubmittedRateString: string = localStorage.getItem('activeSubmittedRate') ?? '0';
