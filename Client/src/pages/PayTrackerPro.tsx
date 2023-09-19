@@ -11,7 +11,8 @@ const PayTrackerPro: React.FC = () => {
   const [inputRate, setInputRate] = useState(0);
   // const [submittedRate, setSubmittedRate] = useState (
   //   isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
-  const [startTime, setStartTime] = useState<number>();
+  const [startTime, setStartTime] = useState<number | undefined>(localStorage.getItem('startTime') ? JSON.parse(localStorage.getItem('startTime')!) : undefined);
+  
   type Shift = {
     timeIn: number, 
     endTime: number,
@@ -80,7 +81,7 @@ const PayTrackerPro: React.FC = () => {
     useEffect (() => {
       if (netPayNumberType !== null && !isNaN(netPayNumberType))
       setDisplayNet(netPayNumberType);
-  }, [netPayNumberType]);
+  }, [netPayNumberType, setDisplayNet]);
   
     // this is the db schema for reference
     // timeIn: Number,
@@ -118,66 +119,65 @@ const PayTrackerPro: React.FC = () => {
         }
       }
 
-  const handleStartClick = () => {
-      setIsActive(true);
-          setStartTime(new Date().getTime());
-          localStorage.setItem('startTime', JSON.stringify(new Date().getTime()));
-          localStorage.setItem('activeTimer', JSON.stringify(true));
-          localStorage.setItem('startButton', "Stop");
-          console.log("timer-active");
-          console.log(`start click rate ${activeSubmittedRateNumber}`);
-        }
+      const handleStartClick: () => void = () => {
+        setIsActive(true);
+        const newStartTime: number = new Date().getTime();
+        setStartTime(newStartTime);
+        localStorage.setItem('startTime', JSON.stringify(newStartTime));
+        localStorage.setItem('activeTimer', JSON.stringify(true));
+        localStorage.setItem('startButton', "Stop");
+        console.log("timer-active");
+        console.log("startTime : ", startTime);
+      }
         console.log(`startTime :  ${startTime}`);
- // this calculates the hourly pay into seconds
+  // this calculates the hourly pay into seconds
 
- // THIS SECTION WAS DUPLICATED IN TRACKERCONTEXT AND SHOULD BE DELETED IF DEEMED UNNECESSARY DURING REFACTOR
-//   const storedTime: string = localStorage.getItem('timeElapsed') ?? '1';
-//   const parsedTimeElapsed: number = parseFloat(storedTime);
-//   console.log(`parsed time = ${parsedTimeElapsed}`);
-//   console.log(`pay per second ${payPerSecond}`);
-//   useEffect(() => {
-//     let interval: NodeJS.Timeout | null = null;
-//     if (isActive) {
-//       interval = setInterval(() => {
-//         setGrossPay(parsedTimeElapsed * payPerSecond);
-//       }, 1000);
-//   }
-//   return () => {
-//     if (interval) {
-//       clearInterval(interval);
-//     }
-//   };
-// }, [submittedRate, isActive, setGrossPay, payPerSecond]);
+  // THIS SECTION WAS DUPLICATED IN TRACKERCONTEXT AND SHOULD BE DELETED IF DEEMED UNNECESSARY DURING REFACTOR
+  //   const storedTime: string = localStorage.getItem('timeElapsed') ?? '1';
+  //   const parsedTimeElapsed: number = parseFloat(storedTime);
+  //   console.log(`parsed time = ${parsedTimeElapsed}`);
+  //   console.log(`pay per second ${payPerSecond}`);
+  //   useEffect(() => {
+  //     let interval: NodeJS.Timeout | null = null;
+  //     if (isActive) {
+  //       interval = setInterval(() => {
+  //         setGrossPay(parsedTimeElapsed * payPerSecond);
+  //       }, 1000);
+  //   }
+  //   return () => {
+  //     if (interval) {
+  //       clearInterval(interval);
+  //     }
+  //   };
+  // }, [submittedRate, isActive, setGrossPay, payPerSecond]);
 
-// end pay calculation
+  // end pay calculation
 
-const placeholderText: string = "Pay Rate : " + submittedRate;
+  const placeholderText: string = "Pay Rate : " + submittedRate;
 
-// handles the form         
+  // handles the form         
 
-const handleRate = (event: React.ChangeEvent<HTMLInputElement>) => {      
-    setInputRate(+event.target.value)
-}
-
-const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
- event.preventDefault();
- console.log(`hourly rate is ${inputRate}`);
- setSubmittedRate(inputRate);
- setInputRate(0);
- localStorage.setItem('activeSubmittedRate', JSON.stringify(inputRate));
- console.log(`submit click rate ${activeSubmittedRateNumber}, ${activeSubmittedRateString}`);
-
-}
-
-// Select all the text in the input element when you click the input field
-const inputRef = useRef<HTMLInputElement | null>(null);
-const selectRange = () => {
-  if (inputRef.current) {
-    setTimeout(() => {
-      inputRef.current?.setSelectionRange(0, inputRef.current?.value.length);
-    }, 0);
+  const handleRate = (event: React.ChangeEvent<HTMLInputElement>) => {      
+      setInputRate(+event.target.value)
   }
-};
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  console.log(`hourly rate is ${inputRate}`);
+  setSubmittedRate(inputRate);
+  setInputRate(0);
+  localStorage.setItem('activeSubmittedRate', JSON.stringify(inputRate));
+  console.log(`submit click rate ${activeSubmittedRateNumber}, ${activeSubmittedRateString}`);
+
+  }
+
+  // Select all the text in the input element when you click the input field
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const selectRange = () => {
+    if (inputRef.current) {
+      inputRef.current.setSelectionRange(0, 99);
+    }
+  };
 
   return (
     <div className='p-8'>

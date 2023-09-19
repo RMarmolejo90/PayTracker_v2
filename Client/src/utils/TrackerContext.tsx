@@ -25,9 +25,7 @@ interface TrackerContextProviderProps {
 const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ children }) => {
     
   const activeTimer: boolean = Boolean(localStorage.getItem('activeTimer')) ?? false;
-  const [isActive, setIsActive] = useState<boolean>(activeTimer);
-      
-
+  const [isActive, setIsActive] = useState<boolean>(activeTimer); 
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [displayNet, setDisplayNet] = useState<number>(0);
   const [grossPay, setGrossPay] = useState<number>(0);
@@ -80,7 +78,6 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   // this calculates the hourly pay into seconds
   const timeElapsed: string = localStorage.getItem('timeElapsed') ?? '0';
   const parsedTimeElapsed: number = parseFloat(timeElapsed);
-  console.log(`parsed time = ${parsedTimeElapsed}`);
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
     if (isActive) {
@@ -93,7 +90,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
       clearInterval(interval);
     }
   };
-  }, [submittedRate, isActive, payPerSecond]);
+  }, [submittedRate, isActive, payPerSecond, parsedTimeElapsed]);
 
   const contextValue: TrackerContextType = {
       submittedRate,

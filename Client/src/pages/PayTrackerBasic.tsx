@@ -8,11 +8,7 @@ import BasicReset from '../components/BasicComponents/BasicReset';
 export default function PayTrackerBasic() {
   const { displayNet, grossPay, isActive, submittedRate, elapsedTime, setSubmittedRate, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
   const [inputRate, setInputRate] = useState(0);
-  // const [submittedRate, setSubmittedRate] = useState (
-  //   isActive && localStorage.getItem('activeSubmittedRate') !== null ? +(localStorage.getItem('activeSubmittedRate')!) : 0);
-  const [startTime, setStartTime] = useState<number>();
-  
-  // defines time
+  const [startTime, setStartTime] = useState<number | undefined>(localStorage.getItem('startTime') ? JSON.parse(localStorage.getItem('startTime')!) : undefined);  
   const hours = Math.floor(elapsedTime / 3600);
   const minutes = Math.floor((elapsedTime % 3600) / 60);
   const seconds = Math.floor(elapsedTime % 60);
@@ -41,13 +37,14 @@ export default function PayTrackerBasic() {
   }
 
   const handleStartClick: () => void = () => {
-      setIsActive(true);
-          setStartTime(new Date().getTime());
-          localStorage.setItem('startTime', JSON.stringify(new Date().getTime()));
-          localStorage.setItem('activeTimer', JSON.stringify(true));
-          localStorage.setItem('startButton', "Stop");
-          console.log("timer-active");
-          console.log("startTime : ", startTime);
+    setIsActive(true);
+    const newStartTime: number = new Date().getTime();
+    setStartTime(newStartTime);
+    localStorage.setItem('startTime', JSON.stringify(newStartTime));
+    localStorage.setItem('activeTimer', JSON.stringify(true));
+    localStorage.setItem('startButton', "Stop");
+    console.log("timer-active");
+    console.log("startTime : ", startTime);
   }
  // this calculates the hourly pay into seconds
 // THIS IS CURRENTLY BEING HANDLED IN TRACKERCONTEXT
