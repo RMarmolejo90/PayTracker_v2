@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTrackerContext } from '../utils/useTrackerContext';
 import * as React from 'react';
 import Timer from '../components/Timer';
@@ -99,23 +99,23 @@ const PayTrackerPro: React.FC = () => {
     }
 
     const handleStopClick = async () => {
-      setIsActive(false);
       try{
+        setElapsedTime(0);
+        localStorage.removeItem('startTime');
+        localStorage.setItem('activeTimer', JSON.stringify(false));
+        localStorage.removeItem('startButton');
+        setIsActive(false);
+        console.log("timer is not active");
         console.log(`clocking out: ${shiftData}`);
         const response = await axios.put('http://localhost:3000/clock-out', shiftData );
         const responseStatus = response.status;
         if(responseStatus === 200){
-          alert(`You worked ${shiftData.hoursWorked}hours today, and made $${grossPay}`);
+          alert(`You worked ${hours}:hours, ${minutes}:minutes, ${seconds}:seconds today, and made $${grossPay}`);
         }
 
         } catch(error) {
           console.error(error);
         }
-        setElapsedTime(0);
-        localStorage.removeItem('startTime');
-        localStorage.setItem('activeTimer', JSON.stringify(false));
-        localStorage.removeItem('startButton');
-        console.log("timer is not active");
       }
 
   const handleStartClick = () => {
@@ -169,7 +169,16 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 
 }
 
-  
+// Select all the text in the input element when you click the input field
+const inputRef = useRef<HTMLInputElement | null>(null);
+const selectRange = () => {
+  if (inputRef.current) {
+    setTimeout(() => {
+      inputRef.current?.setSelectionRange(0, inputRef.current?.value.length);
+    }, 0);
+  }
+};
+
   return (
     <div className='p-8'>
       <h1 className='text-3xl pb-10 text-center text-blue-400 border-b-2 border-orange-500 font-tilt'>Real-Time Pay Tracker</h1>
@@ -205,6 +214,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                       step="0.01" 
                       value={ inputRate } 
                       onChange={ handleRate } 
+                      onClick={ selectRange }
                       />
                       <button className=' my-3 bg-blue-500 border-slate-500 rounded-md text-slate-100 font-semibold p-1.5' type="submit">Submit</button>
                   </form>

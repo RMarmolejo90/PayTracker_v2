@@ -19,7 +19,6 @@ export default function Root() {
   useEffect(() => {
     const fetchAuthData = async () => {
       try {
-        console.log(headers.authorization);
         const response = await axios.get('http://localhost:3000/auth', {
           headers: headers,
           validateStatus: (status) => {

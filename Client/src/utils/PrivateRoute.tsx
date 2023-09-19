@@ -1,7 +1,8 @@
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AuthConsumer, AuthContextType } from './AuthContext';
 import PayTrackerPro from '../pages/PayTrackerPro';
+import axios from 'axios';
 
 interface PrivateRouteProps {
   path: string;
@@ -9,34 +10,39 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = () => {
-
   const token = localStorage.getItem("Token");
   const userId = localStorage.getItem("UserId");
+  const [isValidToken, setIsValidToken] = useState<boolean | null>(null);
 
-  const checkTokenValidity = async () => {
-
-    const headers = {
-      authorization: token,
-      userId: userId
+  useEffect(() => {
+    const checkTokenValidity = async () => {
+      const headers = {
+        authorization: token,
+        userId: userId
+      };
+      try {
+        // Send a request to the server to verify the token
+        const response = await axios.get('http://localhost:3000/auth', {
+          headers: headers
+        });
+        setIsValidToken(response.data.valid);
+      } catch (error) {
+        console.error(error);
+        setIsValidToken(false); // Return false if an error occurs during token verification
+      }
+    };
+    
+    if (token && userId) {
+      checkTokenValidity();
+    } else {
+      setIsValidToken(false);
     }
-    try {
-      // Send a request to the server to verify the token
-      const response = await axios.get('http://localhost:3000/auth', {
-        headers: headers
-      });
-      console.log(response);
-      return response.data.valid;
-    } catch (error) {
-      console.error(error);
-      return false; // Return false if an error occurs during token verification
-    }
-  };
+  }, [token, userId]);
 
   const renderRoute = (auth: AuthContextType | undefined) => {
     const isAuthenticated = auth?.authorized;
-    const hasValidToken = checkTokenValidity();
 
-    if (!isAuthenticated || !hasValidToken) {
+    if (!isAuthenticated || isValidToken === false) {
       return <Navigate to="/PayTracker/Basic" />;
     }
 
