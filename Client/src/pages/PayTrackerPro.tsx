@@ -11,7 +11,7 @@ const PayTrackerPro: React.FC = () => {
   const [inputRate, setInputRate] = useState(0);
   // const [submittedRate, setSubmittedRate] = useState (
   //   isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
-  const [startTime, setStartTime] = useState<number | undefined>(localStorage.getItem('startTime') ? JSON.parse(localStorage.getItem('startTime')!) : undefined);
+  const [startTime, setStartTime] = useState<number>(0);
   const payPerSecond = Number(submittedRate / 3600);
 
   type Shift = {
@@ -72,6 +72,29 @@ const PayTrackerPro: React.FC = () => {
   
     fetchHistory();
   }, []);
+
+  //Update start time from local storage on mount
+  useEffect(() => {
+    if (localStorage.getItem('startTime')){
+      setStartTime(+(localStorage.getItem('startTime'))!)}
+  }, []);
+
+    
+  // timer function  
+  // this counts elapsed time
+  //const storedTime: string | null = localStorage.getItem('startTime');
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isActive && startTime !== 0) {
+        const currentTimeStamp: number = (new Date().getTime());
+        const elapsedTimeInSeconds: number = (currentTimeStamp - startTime) / 1000;
+        setElapsedTime((prevElapsedTime) => prevElapsedTime + elapsedTimeInSeconds);
+        console.log(`storedTime: ${startTime} & currentTime: ${currentTimeStamp}`);
+        console.log(`elapsed time: ${elapsedTime}, timeInSeconds ${elapsedTimeInSeconds}`);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [isActive]);
   
     // updates the displayNet state with netpay from local storage
     // this is used to update the displayed net pay on the page
@@ -127,25 +150,16 @@ const PayTrackerPro: React.FC = () => {
         console.log("timer-active");
         console.log("startTime : ", startTime);
       }
-  // this calculates the hourly pay into seconds
-  const [testCounter, setTestCounter] = useState(0);
+
+
+  // this updates the gross pay counter
+
   const grosspayCalculation: number = elapsedTime * payPerSecond;
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
-    if (isActive) {
-      interval = setInterval(() => {
-        console.log('setting grossPay');
-        setGrossPay(grosspayCalculation);
-        setTestCounter(testCounter + 1);
-        console.log(`test counter ${testCounter}`);
-      }, 1000);
-  }
-  return () => {
-    if (interval) {
-      clearInterval(interval);
-    }
-  };
-  }, [submittedRate, elapsedTime, isActive, payPerSecond]);
+    if (isActive){
+      setGrossPay(grosspayCalculation)}
+  },[submittedRate, elapsedTime, isActive, payPerSecond]);
+
   // THIS SECTION WAS DUPLICATED IN TRACKERCONTEXT AND SHOULD BE DELETED IF DEEMED UNNECESSARY DURING REFACTOR
   //   const storedTime: string = localStorage.getItem('timeElapsed') ?? '1';
   //   const parsedTimeElapsed: number = parseFloat(storedTime);

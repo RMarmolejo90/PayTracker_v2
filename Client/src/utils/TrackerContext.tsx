@@ -44,23 +44,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
     localStorage.removeItem('startTime');
     localStorage.removeItem('activeTimer');
   };
-  
-  // timer function  
-  // this counts elapsed time
-  const storedTime: string | null = localStorage.getItem('startTime');
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (isActive && storedTime !== null) {
-        const parsedStartTime: number = +storedTime!;
-        const currentTimeStamp: number = Math.floor(new Date().getTime());
-        const elapsedTimeInSeconds: number = (currentTimeStamp - parsedStartTime) / 1000;
-        setElapsedTime(prevElapsedTime => prevElapsedTime + elapsedTimeInSeconds);
-        console.log(`storedTime: ${storedTime} & ${parsedStartTime}, currentTime: ${currentTimeStamp}`);
-        console.log(`elapsed time: ${elapsedTime}, timeInSeconds ${elapsedTimeInSeconds}`);
-      }
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [isActive]);
+
 
   const [submittedRate, setSubmittedRate] = useState (
     isActive && (localStorage.getItem('activeSubmittedRate') !== null) ? +localStorage.getItem('activeSubmittedRate')! : 0);

@@ -18,6 +18,7 @@ const BasicNet: React.FC = () => {
   });
 
   
+  
   // updates the displayNet state with netpay from local storage
   // this is used to update the displayed net pay on the page
   useEffect(() => {
