@@ -4,21 +4,31 @@ import Select from 'react-select';
 
 
 const ProNet: React.FC = () => {
-    const storedDeductions: string | null = localStorage.getItem('deductionState');
-    const defaultDeductionRate = 0.8;
-    const context = useTrackerContext();
-
-    const grossPay: number = context.grossPay;
-
+  const storedDeductions: string | null = localStorage.getItem('deductionState');
+  const defaultDeductionRate = 0.8;
+  const { setDisplayNet, grossPay } = useTrackerContext();
+  
   const [deductionRate, setDeductionRate] = useState<number>(() => {
-    try {
-      return storedDeductions ? JSON.parse(storedDeductions) : defaultDeductionRate;
-    } catch (error) {
-      console.error('Error parsing deduction rate:', error);
-      return defaultDeductionRate;
-    }
+  try {
+    return storedDeductions ? JSON.parse(storedDeductions) : defaultDeductionRate;
+  } catch (error) {
+    console.error('Error parsing deduction rate:', error);
+    return defaultDeductionRate;
+  }
   });
 
+  // updates the displayNet state with netpay from local storage
+  // this is used to update the displayed net pay on the page
+  useEffect(() => {
+    const storedNetPay: string | null = localStorage.getItem('netPay');
+    if (storedNetPay !== null && !isNaN(parseFloat(storedNetPay))) {
+      const parsedNetPay = parseFloat(storedNetPay);
+      setDisplayNet(parsedNetPay);
+      console.log(`parsedNetPay = ${parsedNetPay}`);
+    }
+  }, []);
+
+  //this updates deduction rate in local storage;
   useEffect(() => {
     localStorage.setItem('deductionState', JSON.stringify(deductionRate));
     console.log('stored deductions: ', storedDeductions);
@@ -26,6 +36,7 @@ const ProNet: React.FC = () => {
 
   const [netPay, setNetPay] = useState<number>(0);
 
+  // this updates netPay from grosspay and deductionRate
   useEffect(() => {
     console.log(`grosspay is reading ${grossPay} and deductions is ${deductionRate}`)
     const newNetPay: number = (grossPay * deductionRate);

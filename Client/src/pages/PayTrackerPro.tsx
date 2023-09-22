@@ -129,13 +129,13 @@ const PayTrackerPro: React.FC = () => {
       }
   // this calculates the hourly pay into seconds
   const [testCounter, setTestCounter] = useState(0);
-
+  const grosspayCalculation: number = elapsedTime * payPerSecond;
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
     if (isActive) {
       interval = setInterval(() => {
         console.log('setting grossPay');
-        setGrossPay(elapsedTime * payPerSecond);
+        setGrossPay(grosspayCalculation);
         setTestCounter(testCounter + 1);
         console.log(`test counter ${testCounter}`);
       }, 1000);
