@@ -30,16 +30,6 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   const [displayNet, setDisplayNet] = useState<number>(0);
   const [grossPay, setGrossPay] = useState<number>(0);
 
-    // updates the displayNet state with netpay from local storage
-    // this is used to update the displayed net pay on the page
-  useEffect(() => {
-    const storedNetPay: string | null = localStorage.getItem('netPay');
-    if (storedNetPay !== null && !isNaN(parseFloat(storedNetPay))) {
-      const parsedNetPay = parseFloat(storedNetPay);
-      setDisplayNet(parsedNetPay);
-      console.log(`parsedNetPay = ${parsedNetPay}`);
-    }
-  }, []);
 
   const startTimer = () => {
     setIsActive(true);

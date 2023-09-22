@@ -6,7 +6,7 @@ import Select from 'react-select';
 const BasicNet: React.FC = () => {
     const storedDeductions = localStorage.getItem('deductionState');
     const defaultDeductionRate = 0.8;
-    const grossPay = useTrackerContext();
+    const {grossPay, setDisplayNet} = useTrackerContext();
 
   const [deductionRate, setDeductionRate] = useState<number>(() => {
     try {
@@ -17,6 +17,18 @@ const BasicNet: React.FC = () => {
     }
   });
 
+  
+  // updates the displayNet state with netpay from local storage
+  // this is used to update the displayed net pay on the page
+  useEffect(() => {
+    const storedNetPay: string | null = localStorage.getItem('netPay');
+    if (storedNetPay !== null && !isNaN(parseFloat(storedNetPay))) {
+      const parsedNetPay = parseFloat(storedNetPay);
+      setDisplayNet(parsedNetPay);
+      console.log(`parsedNetPay = ${parsedNetPay}`);
+    }
+  }, []);
+
   useEffect(() => {
     localStorage.setItem('deductionState', JSON.stringify(deductionRate));
     console.log('stored deductions: ', storedDeductions);
@@ -24,6 +36,7 @@ const BasicNet: React.FC = () => {
 
   const [netPay, setNetPay] = useState<number>(0);
 
+  //Updates netPay in local storage
   useEffect(() => {
     setNetPay(+grossPay * deductionRate);
     localStorage.setItem('netPay', netPay.toString());
@@ -81,9 +94,8 @@ const BasicNet: React.FC = () => {
       <div className='p-6 text-slate-800'>
         <Select
           defaultValue={deductionDefault}
-          title='change deduction rate'
           placeholder={deductionsLabel}
-          options={deductionOptions}
+          options={deductionOptions as any}
           onChange={handleDeductionRate}
         />
       </div>
