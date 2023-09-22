@@ -12,7 +12,8 @@ const PayTrackerPro: React.FC = () => {
   // const [submittedRate, setSubmittedRate] = useState (
   //   isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
   const [startTime, setStartTime] = useState<number | undefined>(localStorage.getItem('startTime') ? JSON.parse(localStorage.getItem('startTime')!) : undefined);
-  
+  const payPerSecond = Number(submittedRate / 3600);
+
   type Shift = {
     timeIn: number, 
     endTime: number,
@@ -42,9 +43,6 @@ const PayTrackerPro: React.FC = () => {
     authorization: token,
     userId: userId
   }
-
-  // for testing
-  console.log(activeSubmittedRateNumber);
 
 
   // Collect user history from db on mount
@@ -76,7 +74,7 @@ const PayTrackerPro: React.FC = () => {
   }, []);
   
     // updates the displayNet state with netpay from local storage
-    // this is used to upadate the displayed net pay on the page
+    // this is used to update the displayed net pay on the page
 
     useEffect (() => {
       if (netPayNumberType !== null && !isNaN(netPayNumberType))
@@ -129,9 +127,25 @@ const PayTrackerPro: React.FC = () => {
         console.log("timer-active");
         console.log("startTime : ", startTime);
       }
-        console.log(`startTime :  ${startTime}`);
   // this calculates the hourly pay into seconds
+  const [testCounter, setTestCounter] = useState(0);
 
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (isActive) {
+      interval = setInterval(() => {
+        console.log('setting grossPay');
+        setGrossPay(elapsedTime * payPerSecond);
+        setTestCounter(testCounter + 1);
+        console.log(`test counter ${testCounter}`);
+      }, 1000);
+  }
+  return () => {
+    if (interval) {
+      clearInterval(interval);
+    }
+  };
+  }, [submittedRate, elapsedTime, isActive, payPerSecond]);
   // THIS SECTION WAS DUPLICATED IN TRACKERCONTEXT AND SHOULD BE DELETED IF DEEMED UNNECESSARY DURING REFACTOR
   //   const storedTime: string = localStorage.getItem('timeElapsed') ?? '1';
   //   const parsedTimeElapsed: number = parseFloat(storedTime);

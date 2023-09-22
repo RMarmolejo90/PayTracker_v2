@@ -64,8 +64,9 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
         const parsedStartTime: number = +storedTime!;
         const currentTimeStamp: number = Math.floor(new Date().getTime());
         const elapsedTimeInSeconds: number = (currentTimeStamp - parsedStartTime) / 1000;
-        setElapsedTime(elapsedTimeInSeconds);
-        localStorage.setItem('timeElapsed', JSON.stringify(elapsedTimeInSeconds));
+        setElapsedTime(prevElapsedTime => prevElapsedTime + elapsedTimeInSeconds);
+        console.log(`storedTime: ${storedTime} & ${parsedStartTime}, currentTime: ${currentTimeStamp}`);
+        console.log(`elapsed time: ${elapsedTime}, timeInSeconds ${elapsedTimeInSeconds}`);
       }
     }, 1000);
     return () => clearInterval(interval);
@@ -73,24 +74,12 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
 
   const [submittedRate, setSubmittedRate] = useState (
     isActive && (localStorage.getItem('activeSubmittedRate') !== null) ? +localStorage.getItem('activeSubmittedRate')! : 0);
-  const payPerSecond = Number(submittedRate / 3600);
 
   // this calculates the hourly pay into seconds
-  const timeElapsed: string = localStorage.getItem('timeElapsed') ?? '0';
-  const parsedTimeElapsed: number = parseFloat(timeElapsed);
-  useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
-    if (isActive) {
-      interval = setInterval(() => {
-        setGrossPay(parsedTimeElapsed * payPerSecond);
-      }, 1000);
-  }
-  return () => {
-    if (interval) {
-      clearInterval(interval);
-    }
-  };
-  }, [submittedRate, isActive, payPerSecond, parsedTimeElapsed]);
+  //const timeElapsed: string = localStorage.getItem('timeElapsed') ?? '0';
+  //const parsedTimeElapsed: number = parseFloat(timeElapsed);
+  //for testing
+
 
   const contextValue: TrackerContextType = {
       submittedRate,
