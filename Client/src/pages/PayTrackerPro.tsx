@@ -82,13 +82,12 @@ const PayTrackerPro: React.FC = () => {
     
   // timer function  
   // this counts elapsed time
-  //const storedTime: string | null = localStorage.getItem('startTime');
   useEffect(() => {
     const interval = setInterval(() => {
       if (isActive && startTime !== 0) {
         const currentTimeStamp: number = (new Date().getTime());
         const elapsedTimeInSeconds: number = (currentTimeStamp - startTime) / 1000;
-        setElapsedTime((prevElapsedTime) => prevElapsedTime + elapsedTimeInSeconds);
+        setElapsedTime(elapsedTimeInSeconds);
         console.log(`storedTime: ${startTime} & currentTime: ${currentTimeStamp}`);
         console.log(`elapsed time: ${elapsedTime}, timeInSeconds ${elapsedTimeInSeconds}`);
       }
