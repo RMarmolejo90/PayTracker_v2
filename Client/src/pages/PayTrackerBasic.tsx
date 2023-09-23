@@ -4,8 +4,11 @@ import * as React from 'react';
 import BasicTimer from '../components/Timer';
 import BasicNet from '../components/BasicComponents/BasicNetPay';
 import BasicReset from '../components/BasicComponents/BasicReset';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function PayTrackerBasic() {
+    const navigate = useNavigate();
   const { displayNet, grossPay, isActive, submittedRate, elapsedTime, setSubmittedRate, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
   const [inputRate, setInputRate] = useState(0);
   const [startTime, setStartTime] = useState<number>(0);  
@@ -17,6 +20,37 @@ export default function PayTrackerBasic() {
   const netPayNumberType = parseFloat(storedNetPay!);
   const placeholderText = "Pay Rate : " + submittedRate;
   const payPerSecond = Number(submittedRate / 3600);
+
+
+  useEffect(() => {
+    // Define the headers for your request
+    const headers = {
+      authorization: localStorage.getItem('Token'),
+      userId: localStorage.getItem('UserId'),
+    };
+
+    // Make an asynchronous Axios request to check authentication
+    const checkAuthentication = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/auth', {
+          headers: headers,
+        });
+        
+        const isAuthenticated = response.data.valid;
+
+        if (isAuthenticated) {
+          navigate('/PayTracker/Pro'); // Redirect to Pro version
+        } else {
+          navigate('/PayTracker/Basic'); // Redirect to Basic version
+        }
+      } catch (error) {
+        console.error('Error checking authentication:', error);
+      }
+    };
+
+    checkAuthentication();
+  }, []); 
+
 
     //Update start time from local storage on mount
     useEffect(() => {
