@@ -20,8 +20,7 @@ const PayTrackerPro: React.FC = () => {
     grossPay: number,
     netPay: number,
     hoursWorked: number,
-    date: number,
-    email: string,
+    date: string,
     _id: string,
     userId: string
   }
@@ -116,7 +115,6 @@ const PayTrackerPro: React.FC = () => {
       grossPay: grossPay,
       netPay: displayNet,
       hoursWorked: elapsedTime,
-      date: Date.now().toLocaleString(),
     }
 
     const handleStopClick = async () => {
@@ -142,7 +140,7 @@ const PayTrackerPro: React.FC = () => {
       const handleStartClick: () => void = async () => {
         const newStartTime: number = new Date().getTime();
         setStartTime(newStartTime);
-        axios.post('http://localhost:3000/clock-in');
+        axios.post('http://localhost:3000/clock-in', {headers: {userId: userId}});
         localStorage.setItem('startTime', JSON.stringify(newStartTime));
         localStorage.setItem('activeTimer', JSON.stringify(true));
         localStorage.setItem('startButton', "Stop");
