@@ -47,31 +47,32 @@ const PayTrackerPro: React.FC = () => {
     userId: userId
   }
 
+  // Fetch History
+  const fetchHistory = async () => {
+    console.log(`request headers ${headers}`);
+    try {  
+      if (userId !== null) { // Make sure userId is not null
+        const response = await axios.get('http://localhost:3000/user', 
+        {headers: headers}
+        );
+        console.log(`response = ${response}`);
+        console.log(`grosspay = ${grossPay}`);
+        console.log(`stored netpay = ${storedNetPay}`);
+        console.log(`display net = ${displayNet}`);
+        console.log(`isactive ${isActive}`);
+        if (response.status !== 204){
+        const shiftLog = response.data;
+        setHistory(shiftLog);}
+    } else {
+        console.error('User ID not available');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // Collect user history from db on mount
   useEffect(() => {
-    const fetchHistory = async () => {
-      console.log(`request headers ${headers}`);
-      try {  
-        if (userId !== null) { // Make sure userId is not null
-          const response = await axios.get('http://localhost:3000/user', 
-          {headers: headers}
-          );
-          console.log(`response = ${response}`);
-          console.log(`grosspay = ${grossPay}`);
-          console.log(`stored netpay = ${storedNetPay}`);
-          console.log(`display net = ${displayNet}`);
-          console.log(`isactive ${isActive}`);
-          if (response.status !== 204){
-          const shiftLog = response.data;
-          setHistory(shiftLog);}
-      } else {
-          console.error('User ID not available');
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-  
     fetchHistory();
   }, []);
 
@@ -134,11 +135,13 @@ const PayTrackerPro: React.FC = () => {
         const responseStatus = response.status;
         if(responseStatus === 200){
           alert(`You worked ${hours}:hours, ${minutes}:minutes, ${seconds}:seconds today, and made $${grossPay}`);
+          fetchHistory()
         }
 
         } catch(error) {
           console.error(error);
         }
+
       }
 
       const handleStartClick: () => void = async () => {
