@@ -43,7 +43,9 @@ const PayTrackerPro: React.FC = () => {
     authorization: token,
     userId: userId
   }
-
+  const startClickHeader = {
+    userId: userId
+  }
 
   // Collect user history from db on mount
   useEffect(() => {
@@ -128,7 +130,7 @@ const PayTrackerPro: React.FC = () => {
         setIsActive(false);
         console.log("timer is not active");
         console.log(`clocking out: ${JSON.stringify(shiftData)}`);
-        const response = await axios.put('http://localhost:3000/clock-out', JSON.stringify(shiftData));
+        const response = await axios.put('http://localhost:3000/clock-out', shiftData);
         const responseStatus = response.status;
         if(responseStatus === 200){
           alert(`You worked ${hours}:hours, ${minutes}:minutes, ${seconds}:seconds today, and made $${grossPay}`);
@@ -142,7 +144,8 @@ const PayTrackerPro: React.FC = () => {
       const handleStartClick: () => void = async () => {
         const newStartTime: number = new Date().getTime();
         setStartTime(newStartTime);
-        axios.post('http://localhost:3000/clock-in', {headers: {userId: userId}});
+        console.log(`user id: ${startClickHeader}`);
+        axios.post('http://localhost:3000/clock-in', startClickHeader);
         localStorage.setItem('startTime', JSON.stringify(newStartTime));
         localStorage.setItem('activeTimer', JSON.stringify(true));
         localStorage.setItem('startButton', "Stop");

@@ -1,16 +1,21 @@
 
-export default function History(props) {
+type Shift = {
+    timeIn: number, 
+    endTime: number,
+    grossPay: number,
+    netPay: number,
+    hoursWorked: number,
+    date: string,
+    _id: string,
+    userId: string
+}
 
-    type Shift = {
-        timeIn: number, 
-        endTime: number,
-        grossPay: number,
-        netPay: number,
-        hoursWorked: number,
-        date: string,
-        _id: string,
-        userId: string
-    }
+type HistoryProps = {
+    history: Shift[]
+}
+
+export default function History(props:HistoryProps) {
+
 
     // raw data from the database
     const rawHistory: Shift[] = props.history;
@@ -24,24 +29,24 @@ export default function History(props) {
         <div>
           <table className="table">
             <thead>
-              <tr>
-                <th>Time In</th>
-                <th>End Time</th>
-                <th>Gross Pay</th>
-                <th>Net Pay</th>
-                <th>Hours Worked</th>
-                <th>Date</th>
+              <tr className="">
+                <th className="p-2">Time In</th>
+                <th className="p-2">End Time</th>
+                <th className="p-2">Gross Pay</th>
+                <th className="p-2">Net Pay</th>
+                <th className="p-2">Hours Worked</th>
+                <th className="p-2">Date</th>
               </tr>
             </thead>
             <tbody>
               {history.map((shift) => (
                 <tr key={shift._id}>
-                  <td>{new Date(shift.timeIn).toLocaleString()}</td>
-                  <td>{shift.endTime ? new Date(shift.endTime).toLocaleString() : '-'}</td>
-                  <td>${shift.grossPay}</td>
-                  <td>${shift.netPay}</td>
-                  <td>{shift.hoursWorked}</td>
-                  <td>{shift.date}</td>
+                  <td className="p-2 border-r border-slate-800 ">{new Date(shift.timeIn).toLocaleString()}</td>
+                  <td className="p-2 border-r border-slate-800 ">{shift.endTime ? new Date(shift.endTime).toLocaleString() : '-'}</td>
+                  <td className="p-2 border-r border-slate-800 ">${shift.grossPay}</td>
+                  <td className="p-2 border-r border-slate-800 ">${shift.netPay}</td>
+                  <td className="p-2 border-r border-slate-800 ">{shift.hoursWorked}</td>
+                  <td className="p-2 ">{shift.date}</td>
                 </tr>
               ))}
             </tbody>
