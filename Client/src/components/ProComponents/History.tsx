@@ -38,10 +38,10 @@ export default function History(props) {
                 <tr key={shift._id}>
                   <td>{new Date(shift.timeIn).toLocaleString()}</td>
                   <td>{shift.endTime ? new Date(shift.endTime).toLocaleString() : '-'}</td>
-                  <td>${shift.grossPay.toFixed(2)}</td>
-                  <td>${shift.netPay.toFixed(2)}</td>
+                  <td>${shift.grossPay}</td>
+                  <td>${shift.netPay}</td>
                   <td>{shift.hoursWorked}</td>
-                  <td>{new Date(shift.date).toLocaleDateString()}</td>
+                  <td>{shift.date}</td>
                 </tr>
               ))}
             </tbody>
