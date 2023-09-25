@@ -1,7 +1,23 @@
 
 export default function History(props) {
-    const history = props.history;
+
+    type Shift = {
+        timeIn: number, 
+        endTime: number,
+        grossPay: number,
+        netPay: number,
+        hoursWorked: number,
+        date: string,
+        _id: string,
+        userId: string
+    }
+
+    // raw data from the database
+    const rawHistory: Shift[] = props.history;
     
+    // filters out the currently active shift
+    const history: Shift[] = rawHistory.filter((shift) => shift.endTime !== undefined && shift.endTime !== null);
+
   return (
     <div>
         <h3>Work History</h3>
