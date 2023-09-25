@@ -5,6 +5,7 @@ import * as React from 'react';
 import Timer from '../components/Timer';
 import ProNet from '../components/ProComponents/ProNet';
 import axios from 'axios';
+import History from '../components/ProComponents/History';
 
 const PayTrackerPro: React.FC = () => {
   const { displayNet, grossPay, isActive, submittedRate, elapsedTime, setSubmittedRate, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
@@ -103,12 +104,13 @@ const PayTrackerPro: React.FC = () => {
   }, [netPayNumberType, setDisplayNet]);
   
     // this is the db schema for reference
-    // timeIn: Number,
+    // timeIn: Number,  
     // endTime: Number,
     // grossPay: Number,
     // netPay: Number,
     // hoursWorked: Number,
-    // date: Number
+    // date: String,
+    // userId: String
 
     const shiftData = {
       endTime:Date.now(),
@@ -250,33 +252,8 @@ const PayTrackerPro: React.FC = () => {
               </div>
       </div>
       <div>
-        <h3>Work History</h3>
-        <div>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Time In</th>
-                <th>End Time</th>
-                <th>Gross Pay</th>
-                <th>Net Pay</th>
-                <th>Hours Worked</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {history.map((shift) => (
-                <tr key={shift._id}>
-                  <td>{new Date(shift.timeIn).toLocaleString()}</td>
-                  <td>{shift.endTime ? new Date(shift.endTime).toLocaleString() : '-'}</td>
-                  <td>${shift.grossPay.toFixed(2)}</td>
-                  <td>${shift.netPay.toFixed(2)}</td>
-                  <td>{shift.hoursWorked}</td>
-                  <td>{new Date(shift.date).toLocaleDateString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <History 
+        history = {history}/>
       </div>
     </div>
   )
