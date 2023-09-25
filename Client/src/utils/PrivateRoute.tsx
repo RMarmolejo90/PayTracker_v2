@@ -5,7 +5,6 @@ import PayTrackerPro from '../pages/PayTrackerPro';
 import axios from 'axios';
 
 interface PrivateRouteProps {
-  path: string;
   element: React.ReactNode;
 }
 

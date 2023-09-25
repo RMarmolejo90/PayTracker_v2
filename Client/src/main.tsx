@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/PayTracker",
-        element: <PrivateRoute path={"/PayTracker/Pro"} element={<PayTrackerPro />} />, // Use PrivateRoute for protected route
+        element: <PrivateRoute element={<PayTrackerPro />} />, // Use PrivateRoute for protected route
         errorElement: <ErrorPage />
       },
       {
