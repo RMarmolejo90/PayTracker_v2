@@ -47,6 +47,8 @@ const PayTrackerPro: React.FC = () => {
     userId: userId
   }
 
+  // Check for credentials on mount
+
   // Fetch History
   const fetchHistory = async () => {
     console.log(`request headers ${headers}`);

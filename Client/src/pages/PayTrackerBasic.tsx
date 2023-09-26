@@ -11,7 +11,7 @@ export default function PayTrackerBasic() {
     const navigate = useNavigate();
   const { displayNet, grossPay, isActive, submittedRate, elapsedTime, setSubmittedRate, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
   const [inputRate, setInputRate] = useState(0);
-  const [startTime, setStartTime] = useState<number>(0);  
+  const [startTime, setStartTime] = useState<number>(0);
   const hours = Math.floor(elapsedTime / 3600);
   const minutes = Math.floor((elapsedTime % 3600) / 60);
   const seconds = Math.floor(elapsedTime % 60);
@@ -39,7 +39,7 @@ export default function PayTrackerBasic() {
         const isAuthenticated = response.data.valid;
 
         if (isAuthenticated) {
-          navigate('/PayTracker/Pro'); // Redirect to Pro version
+          navigate('/PayTracker'); // Redirect to Pro version
         } else {
           navigate('/PayTracker/Basic'); // Redirect to Basic version
         }
@@ -54,8 +54,9 @@ export default function PayTrackerBasic() {
 
     //Update start time from local storage on mount
     useEffect(() => {
-        if (localStorage.getItem('startTime')){
-            setStartTime(+(localStorage.getItem('startTime'))!)}
+        const activeStartTime = (localStorage.getItem('startTime'));  
+        if (activeStartTime !== null){
+            setStartTime(+activeStartTime)}
         }, []);
 
     
