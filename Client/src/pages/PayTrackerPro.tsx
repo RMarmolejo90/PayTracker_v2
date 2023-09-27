@@ -8,7 +8,7 @@ import axios from 'axios';
 import History from '../components/ProComponents/History';
 
 const PayTrackerPro: React.FC = () => {
-  const { displayNet, grossPay, isActive, submittedRate, elapsedTime, setSubmittedRate, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
+  const { displayNet, shiftDuration, grossPay, isActive, submittedRate, elapsedTime, setSubmittedRate, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
   const [inputRate, setInputRate] = useState(0);
   // const [submittedRate, setSubmittedRate] = useState (
   //   isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
@@ -20,7 +20,7 @@ const PayTrackerPro: React.FC = () => {
     endTime: number,
     grossPay: number,
     netPay: number,
-    hoursWorked: number,
+    hoursWorked: string,
     date: string,
     _id: string,
     userId: string
@@ -113,19 +113,18 @@ const PayTrackerPro: React.FC = () => {
     // endTime: Number,
     // grossPay: Number,
     // netPay: Number,
-    // hoursWorked: Number,
+    // hoursWorked: string,
     // date: String,
     // userId: String
 
-    const shiftData = {
-      endTime:Date.now(),
-      grossPay: grossPay,
-      netPay: displayNet,
-      hoursWorked: elapsedTime,
-    }
-
-    const handleStopClick = async () => {
+    const handleStopClick = async (updatedShiftDuration:string) => {
       try{
+        const shiftData = {
+          endTime:Date.now(),
+          grossPay: grossPay,
+          netPay: displayNet,
+          hoursWorked: updatedShiftDuration,
+        }               
         setElapsedTime(0);
         localStorage.removeItem('startTime');
         localStorage.setItem('activeTimer', JSON.stringify(false));
@@ -136,7 +135,7 @@ const PayTrackerPro: React.FC = () => {
         const response = await axios.put('http://localhost:3000/clock-out', shiftData);
         const responseStatus = response.status;
         if(responseStatus === 200){
-          alert(`You worked ${hours}:hours, ${minutes}:minutes, ${seconds}:seconds today, and made $${grossPay}`);
+          alert(`${updatedShiftDuration} - $${grossPay}`);
           fetchHistory()
         }
 
@@ -168,26 +167,6 @@ const PayTrackerPro: React.FC = () => {
       setGrossPay(grosspayCalculation)}
   },[submittedRate, elapsedTime, isActive, payPerSecond]);
 
-  // THIS SECTION WAS DUPLICATED IN TRACKERCONTEXT AND SHOULD BE DELETED IF DEEMED UNNECESSARY DURING REFACTOR
-  //   const storedTime: string = localStorage.getItem('timeElapsed') ?? '1';
-  //   const parsedTimeElapsed: number = parseFloat(storedTime);
-  //   console.log(`parsed time = ${parsedTimeElapsed}`);
-  //   console.log(`pay per second ${payPerSecond}`);
-  //   useEffect(() => {
-  //     let interval: NodeJS.Timeout | null = null;
-  //     if (isActive) {
-  //       interval = setInterval(() => {
-  //         setGrossPay(parsedTimeElapsed * payPerSecond);
-  //       }, 1000);
-  //   }
-  //   return () => {
-  //     if (interval) {
-  //       clearInterval(interval);
-  //     }
-  //   };
-  // }, [submittedRate, isActive, setGrossPay, payPerSecond]);
-
-  // end pay calculation
 
   const placeholderText: string = "Pay Rate : " + submittedRate;
 

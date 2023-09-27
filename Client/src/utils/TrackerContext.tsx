@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
 export interface TrackerContextType {
     submittedRate: number;
@@ -6,8 +6,10 @@ export interface TrackerContextType {
     elapsedTime: number;
     displayNet: number;
     grossPay: number;
+    shiftDuration: string;
     startTimer: () => void;
     stopTimer: () => void;
+    setShiftDuration: React.Dispatch<React.SetStateAction<string>>;
     setSubmittedRate: React.Dispatch<React.SetStateAction<number>>;
     setDisplayNet: React.Dispatch<React.SetStateAction<number>>; 
     setGrossPay: React.Dispatch<React.SetStateAction<number>>;
@@ -29,7 +31,7 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [displayNet, setDisplayNet] = useState<number>(0);
   const [grossPay, setGrossPay] = useState<number>(0);
-
+  const [shiftDuration, setShiftDuration] = useState<string>('');
 
   const startTimer = () => {
     setIsActive(true);
@@ -61,6 +63,8 @@ const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ childre
       elapsedTime,
       displayNet,
       grossPay,
+      shiftDuration,
+      setShiftDuration,
       setSubmittedRate,
       startTimer,
       stopTimer,

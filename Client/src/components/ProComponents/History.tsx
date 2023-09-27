@@ -4,7 +4,7 @@ type Shift = {
     endTime: number,
     grossPay: number,
     netPay: number,
-    hoursWorked: number,
+    hoursWorked: string,
     date: string,
     _id: string,
     userId: string
