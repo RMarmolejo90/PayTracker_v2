@@ -26,8 +26,7 @@ interface TrackerContextProviderProps {
 
 const TrackerContextProvider: React.FC<TrackerContextProviderProps> = ({ children }) => {
     
-  const activeTimer: boolean = Boolean(localStorage.getItem('activeTimer')) ?? false;
-  const [isActive, setIsActive] = useState<boolean>(activeTimer); 
+  const [isActive, setIsActive] = useState<boolean>(false); 
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [displayNet, setDisplayNet] = useState<number>(0);
   const [grossPay, setGrossPay] = useState<number>(0);

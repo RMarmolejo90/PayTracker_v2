@@ -20,6 +20,14 @@ export default function PayTrackerBasic() {
   const netPayNumberType = parseFloat(storedNetPay!);
   const placeholderText = "Pay Rate : " + submittedRate;
   const payPerSecond = Number(submittedRate / 3600);
+  const activeTimer: string = localStorage.getItem('activeTimer') ?? 'false';
+
+  // Fetch isActive status from local storage for page refresh
+  useEffect(() => {
+    if (activeTimer === 'true'){
+        setIsActive(true);
+    }
+  }, []);
 
 
   useEffect(() => {

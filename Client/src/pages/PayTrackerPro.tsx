@@ -14,7 +14,9 @@ const PayTrackerPro: React.FC = () => {
   //   isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
   const [startTime, setStartTime] = useState<number>(0);
   const payPerSecond = Number(submittedRate / 3600);
+  const activeTimer: string = localStorage.getItem('activeTimer') ?? 'false';
 
+  
   type Shift = {
     timeIn: number, 
     endTime: number,
@@ -35,7 +37,7 @@ const PayTrackerPro: React.FC = () => {
   const netPayNumberType: number | null = parseFloat(storedNetPay!);
   const activeSubmittedRateString: string = localStorage.getItem('activeSubmittedRate') ?? '0';
   const activeSubmittedRateNumber: number = +activeSubmittedRateString;
-
+  
   // access user info for request headers
   const token: string = localStorage.getItem('Token')!;
   const userId: string = localStorage.getItem('UserId')!;
@@ -46,8 +48,20 @@ const PayTrackerPro: React.FC = () => {
   const startClickHeader = {
     userId: userId
   }
+  
+  // Fetch isActive status from local storage for page refresh
+  useEffect(() => {
+    if (activeTimer === 'true'){
+        setIsActive(true);
+    }
+  }, []);
 
-  // Check for credentials on mount
+  //Update start time from local storage on mount
+  useEffect(() => {
+    if (localStorage.getItem('startTime')){
+      setStartTime(+(localStorage.getItem('startTime'))!)}
+  }, []);
+
 
   // Fetch History
   const fetchHistory = async () => {
@@ -78,11 +92,6 @@ const PayTrackerPro: React.FC = () => {
     fetchHistory();
   }, []);
 
-  //Update start time from local storage on mount
-  useEffect(() => {
-    if (localStorage.getItem('startTime')){
-      setStartTime(+(localStorage.getItem('startTime'))!)}
-  }, []);
 
     
   // timer function  
