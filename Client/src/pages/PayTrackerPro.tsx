@@ -240,7 +240,9 @@ const PayTrackerPro: React.FC = () => {
       </div>
       <div>
         <History 
-        history = {history}/>
+        history = {history}
+        fetchHistory={fetchHistory}
+        />
       </div>
     </div>
   )
