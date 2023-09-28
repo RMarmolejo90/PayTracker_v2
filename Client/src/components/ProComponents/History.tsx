@@ -54,13 +54,15 @@ export default function History(props:HistoryProps) {
             <tbody>
               {history.map((shift) => (
                 <tr key={shift._id}>
-                  <td className="p-2 border-r border-slate-800 ">{new Date(shift.timeIn).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</td>
-                  <td className="p-2 border-r border-slate-800 ">{shift.endTime ? new Date(shift.endTime).toLocaleString([], { hour: '2-digit', minute: '2-digit' }) : '-'}</td>
-                  <td className="p-2 border-r border-slate-800 ">${shift.grossPay.toFixed(2)}</td>
-                  <td className="p-2 border-r border-slate-800 ">${shift.netPay.toFixed(2)}</td>
-                  <td className="p-2 border-r border-slate-800 ">{shift.hoursWorked}</td>
-                  <td className="p-2 ">{new Date(shift.date).toLocaleDateString([], {year:'numeric', month: '2-digit', day: '2-digit'})}</td>
-                  <button onClick={() => deleteShift(shift._id)} className="p-2 bg-slate-400 tracking-wider uppercase text-xs">Delete</button>
+                    <td className="p-2 border-r border-slate-800 ">{new Date(shift.timeIn).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</td>
+                    <td className="p-2 border-r border-slate-800 ">{shift.endTime ? new Date(shift.endTime).toLocaleString([], { hour: '2-digit', minute: '2-digit' }) : '-'}</td>
+                    <td className="p-2 border-r border-slate-800 ">${shift.grossPay.toFixed(2)}</td>
+                    <td className="p-2 border-r border-slate-800 ">${shift.netPay.toFixed(2)}</td>
+                    <td className="p-2 border-r border-slate-800 ">{shift.hoursWorked}</td>
+                    <td className="p-2 ">{new Date(shift.date).toLocaleDateString([], {year:'numeric', month: '2-digit', day: '2-digit'})}</td>
+                    <td className="p-2">
+                        <button type="button" onClick={() => deleteShift(shift._id)} className="bg-slate-400 tracking-wider uppercase text-xs">Delete</button>
+                    </td>                
                 </tr>
               ))}
             </tbody>
