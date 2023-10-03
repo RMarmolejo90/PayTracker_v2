@@ -8,7 +8,7 @@ import axios from 'axios';
 import History from '../components/ProComponents/History';
 
 const PayTrackerPro: React.FC = () => {
-  const { displayNet, shiftDuration, grossPay, isActive, submittedRate, elapsedTime, setSubmittedRate, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
+  const { displayNet, grossPay, isActive, submittedRate, elapsedTime, setSubmittedRate, setDisplayNet, setGrossPay, setIsActive, setElapsedTime} = useTrackerContext();
   const [inputRate, setInputRate] = useState(0);
   // const [submittedRate, setSubmittedRate] = useState (
   //   isActive && localStorage.getItem('activeSubmittedRate') !== null ? +localStorage.getItem('activeSubmittedRate')! : 0);
@@ -173,7 +173,7 @@ const PayTrackerPro: React.FC = () => {
   const grosspayCalculation: number = elapsedTime * payPerSecond;
   useEffect(() => {
     if (isActive){
-      setGrossPay(grosspayCalculation)}
+      setGrossPay(grosspayCalculation)
   },[submittedRate, elapsedTime, isActive, payPerSecond]);
 
 
