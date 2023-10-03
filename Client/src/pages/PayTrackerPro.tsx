@@ -173,7 +173,7 @@ const PayTrackerPro: React.FC = () => {
   const grosspayCalculation: number = elapsedTime * payPerSecond;
   useEffect(() => {
     if (isActive){
-      setGrossPay(grosspayCalculation)
+      setGrossPay(grosspayCalculation)}
   },[submittedRate, elapsedTime, isActive, payPerSecond]);
 
 
