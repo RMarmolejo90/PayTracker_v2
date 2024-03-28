@@ -43,13 +43,7 @@ export default function Navbar() {
                             Dev
                         </NavLink>
                     </li>
-                    <li className='px-2'>
-                        <NavLink 
-                            to="/Hvac"
-                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400' : 'text-sky-200 hover:text-sky-50'}>           
-                            HVAC
-                        </NavLink>
-                    </li>
+                    
                 </ul>
             
                 <div className='flex flex-wrap sm:p-2 text-sm tracking-wide text-sky-200 max-w-max text-center md:text-right md:ml-0'>
