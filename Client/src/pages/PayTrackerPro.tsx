@@ -204,8 +204,8 @@ const PayTrackerPro: React.FC = () => {
   };
 
   return (
-    <div className='p-8'>
-      <h1 className='text-3xl pb-10 text-center text-blue-400 border-b-2 border-orange-500 font-tilt'>Real-Time Pay Tracker</h1>
+    <div className='p-8 bg-zinc-200'>
+      <h1 className='text-3xl pb-10 text-center text-sky-700 border-b-2 border-orange-500 font-tilt'>Real-Time Pay Tracker</h1>
       <div className='flex flex-wrap flex-col md:flex-row flex-auto justify-around items-center p-6'>
           <h2 className='text-2xl font-semibold m-6'>
               Gross: ${ grossPay.toFixed(2) }
@@ -225,7 +225,7 @@ const PayTrackerPro: React.FC = () => {
           /> : <div className="hidden">Submit your hourly pay rate</div>}
       </div> 
       <div className='flex flex-auto flex-col flex-wrap justify-center items-center'> 
-              <div className='border-zinc-700 border-4 p-6 flex flex-auto flex-col flex-wrap justify-center items-end m-6'>
+              <div className='border-slate-400 border-2 rounded-xl p-8 flex flex-auto flex-col flex-wrap justify-center items-end m-6'>
                   <h3 className='mr-6'>
                       Hourly Rate: ${ activeSubmittedRateNumber }
                   </h3>

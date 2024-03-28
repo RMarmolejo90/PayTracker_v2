@@ -8,7 +8,6 @@ import ErrorPage from './pages/ErrorPage.tsx'
 import Login from './pages/Login.tsx'
 import Logout from './pages/Logout.tsx'
 import Register from './pages/Register.tsx'
-import Hvac from './pages/Hvac.tsx'
 import EndShift from './pages/EndShift.tsx'
 import './index.css'
 import { createRoot } from 'react-dom/client';
@@ -67,11 +66,6 @@ const router = createBrowserRouter([
       {
         path: "/Dev",
         element: <Dev />,
-        errorElement: <ErrorPage />
-      },   
-      {
-        path: "/Hvac",
-        element: <Hvac />,
         errorElement: <ErrorPage />
       },   
     ]
