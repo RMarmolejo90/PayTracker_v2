@@ -40,7 +40,7 @@ export default function History(props:HistoryProps) {
     const history: Shift[] = rawHistory.filter((shift) => shift.endTime !== undefined && shift.endTime !== null);
 
   return (
-    <div className="min-w-full p-10 bg-zinc-100 border-orange-500 border-t-2 flex flex-col items-center justify-between">
+    <div className="min-w-full p-10 bg-zinc-100 border-orange-500 rounded-xl border-t-2 flex flex-col items-center justify-between">
         <h2 className="font-semibold text-sky-600 text-3xl text-center">Work History</h2>
         <div>
           <table className="">

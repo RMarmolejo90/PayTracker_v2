@@ -206,7 +206,7 @@ const PayTrackerPro: React.FC = () => {
   return (
     <div className='p-8 bg-zinc-200'>
       <h1 className='text-3xl pb-10 text-center text-sky-700 border-b-2 border-orange-500 font-tilt'>Real-Time Pay Tracker</h1>
-      <div className='flex flex-wrap flex-col md:flex-row flex-auto justify-around items-center p-6'>
+      <div className='flex flex-wrap flex-col md:flex-row flex-auto justify-center items-center p-6'>
           <h2 className='text-2xl font-semibold m-6'>
               Gross: ${ grossPay.toFixed(2) }
           </h2>
