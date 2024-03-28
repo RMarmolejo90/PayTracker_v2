@@ -40,10 +40,10 @@ export default function History(props:HistoryProps) {
     const history: Shift[] = rawHistory.filter((shift) => shift.endTime !== undefined && shift.endTime !== null);
 
   return (
-    <div>
-        <h3>Work History</h3>
+    <div className="min-w-full p-10 bg-zinc-100 border-orange-500 border-t-2 flex flex-col items-center justify-between">
+        <h2 className="font-semibold text-sky-600 text-3xl text-center">Work History</h2>
         <div>
-          <table className="table">
+          <table className="">
             <thead>
               <tr className="">
                 <th className="p-2">Time In</th>
@@ -64,7 +64,7 @@ export default function History(props:HistoryProps) {
                     <td className="p-2 border-r border-slate-800 ">{shift.hoursWorked}</td>
                     <td className="p-2 ">{new Date(shift.date).toLocaleDateString([], {year:'numeric', month: '2-digit', day: '2-digit'})}</td>
                     <td className="p-2">
-                        <button type="button" onClick={() => deleteShift(shift._id)} className="bg-slate-400 tracking-wider uppercase text-xs">Delete</button>
+                        <button type="button" onClick={() => deleteShift(shift._id)} className="bg-slate-700 tracking-wider uppercase text-xs p-2 font-semibold text-slate-200 hover:cursor-pointer hover:bg-red-700">Delete</button>
                     </td>                
                 </tr>
               ))}
