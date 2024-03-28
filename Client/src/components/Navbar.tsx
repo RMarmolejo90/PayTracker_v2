@@ -38,9 +38,9 @@ export default function Navbar() {
                     </li>
                     <li className='px-2'>
                         <NavLink 
-                            to="/Dev"
+                            to="/About"
                             className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400' : 'text-sky-200 hover:text-sky-50'}>           
-                            Dev
+                            About
                         </NavLink>
                     </li>
                     

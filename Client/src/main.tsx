@@ -2,8 +2,7 @@ import Root from './layouts/Root.tsx'
 import Home from './pages/Home.tsx'
 import PayTrackerBasic from './pages/PayTrackerBasic.tsx'
 import PayTrackerPro from './pages/PayTrackerPro.tsx'
-import PayTracker from './pages/PayTracker.tsx'
-import Dev from './pages/Dev.tsx'
+import About from './pages/About.tsx'
 import ErrorPage from './pages/ErrorPage.tsx'
 import Login from './pages/Login.tsx'
 import Logout from './pages/Logout.tsx'
@@ -64,8 +63,8 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />
       },
       {
-        path: "/Dev",
-        element: <Dev />,
+        path: "/About",
+        element: <About />,
         errorElement: <ErrorPage />
       },   
     ]
