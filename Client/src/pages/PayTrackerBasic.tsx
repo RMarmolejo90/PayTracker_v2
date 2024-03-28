@@ -77,8 +77,6 @@ export default function PayTrackerBasic() {
         const currentTimeStamp: number = (new Date().getTime());
         const elapsedTimeInSeconds: number = (currentTimeStamp - startTime) / 1000;
         setElapsedTime(elapsedTimeInSeconds);
-        console.log(`storedTime: ${startTime} & currentTime: ${currentTimeStamp}`);
-        console.log(`elapsed time: ${elapsedTime}, timeInSeconds ${elapsedTimeInSeconds}`);
       }
     }, 1000);
     return () => clearInterval(interval);
@@ -102,7 +100,6 @@ export default function PayTrackerBasic() {
       localStorage.removeItem('startTime');
       localStorage.setItem('activeTimer', JSON.stringify(false));
       localStorage.removeItem('startButton');
-      console.log("timer is not active");
   }
 
   const handleStartClick: () => void = () => {
@@ -112,8 +109,6 @@ export default function PayTrackerBasic() {
     localStorage.setItem('startTime', JSON.stringify(newStartTime));
     localStorage.setItem('activeTimer', JSON.stringify(true));
     localStorage.setItem('startButton', "Stop");
-    console.log("timer-active");
-    console.log("startTime : ", startTime);
   }
 
   // this updates the gross pay counter
@@ -134,7 +129,6 @@ const handleRate = (event: React.ChangeEvent<HTMLInputElement>) => {
 
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
  event.preventDefault();
- console.log(`hourly rate is ${inputRate}`);
  setSubmittedRate(inputRate);
  setInputRate(0);
  localStorage.setItem('activeSubmittedRate', JSON.stringify(inputRate));

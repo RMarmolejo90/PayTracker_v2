@@ -65,17 +65,11 @@ const PayTrackerPro: React.FC = () => {
 
   // Fetch History
   const fetchHistory = async () => {
-    console.log(`request headers ${headers}`);
     try {  
       if (userId !== null) { // Make sure userId is not null
         const response = await axios.get('http://localhost:3000/user', 
         {headers: headers}
         );
-        console.log(`response = ${response}`);
-        console.log(`grosspay = ${grossPay}`);
-        console.log(`stored netpay = ${storedNetPay}`);
-        console.log(`display net = ${displayNet}`);
-        console.log(`isactive ${isActive}`);
         if (response.status !== 204){
         const shiftLog = response.data;
         setHistory(shiftLog);}
@@ -102,8 +96,6 @@ const PayTrackerPro: React.FC = () => {
         const currentTimeStamp: number = (new Date().getTime());
         const elapsedTimeInSeconds: number = (currentTimeStamp - startTime) / 1000;
         setElapsedTime(elapsedTimeInSeconds);
-        console.log(`storedTime: ${startTime} & currentTime: ${currentTimeStamp}`);
-        console.log(`elapsed time: ${elapsedTime}, timeInSeconds ${elapsedTimeInSeconds}`);
       }
     }, 1000);
     return () => clearInterval(interval);
@@ -117,14 +109,6 @@ const PayTrackerPro: React.FC = () => {
       setDisplayNet(netPayNumberType);
   }, [netPayNumberType, setDisplayNet]);
   
-    // this is the db schema for reference
-    // timeIn: Number,  
-    // endTime: Number,
-    // grossPay: Number,
-    // netPay: Number,
-    // hoursWorked: string,
-    // date: String,
-    // userId: String
 
     const handleStopClick = async (updatedShiftDuration:string) => {
       try{
@@ -139,8 +123,6 @@ const PayTrackerPro: React.FC = () => {
         localStorage.setItem('activeTimer', JSON.stringify(false));
         localStorage.removeItem('startButton');
         setIsActive(false);
-        console.log("timer is not active");
-        console.log(`clocking out: ${JSON.stringify(shiftData)}`);
         const response = await axios.put('http://localhost:3000/clock-out', shiftData);
         const responseStatus = response.status;
         if(responseStatus === 200){
@@ -157,14 +139,11 @@ const PayTrackerPro: React.FC = () => {
       const handleStartClick: () => void = async () => {
         const newStartTime: number = new Date().getTime();
         setStartTime(newStartTime);
-        console.log(`user id: ${startClickHeader}`);
         axios.post('http://localhost:3000/clock-in', startClickHeader);
         localStorage.setItem('startTime', JSON.stringify(newStartTime));
         localStorage.setItem('activeTimer', JSON.stringify(true));
         localStorage.setItem('startButton', "Stop");
         setIsActive(true);
-        console.log("timer-active");
-        console.log("startTime : ", startTime);
       }
 
 
@@ -187,11 +166,9 @@ const PayTrackerPro: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
-  console.log(`hourly rate is ${inputRate}`);
   setSubmittedRate(inputRate);
   setInputRate(0);
   localStorage.setItem('activeSubmittedRate', JSON.stringify(inputRate));
-  console.log(`submit click rate ${activeSubmittedRateNumber}, ${activeSubmittedRateString}`);
 
   }
 

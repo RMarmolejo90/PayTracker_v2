@@ -41,7 +41,7 @@ export default function Register() {
     },
     validationSchema: SignupSchema,
     onSubmit: async values => {
-        try { console.log("sending post");
+        try {
             // Send a POST request to the API endpoint
             const response = await axios.post("http://localhost:3000/register", values);
             const responseStatus = response.status;
@@ -49,7 +49,6 @@ export default function Register() {
              // Add this line to get the response data
 
            
-            console.log("Response Data:", responseData);
             if (responseStatus === 201) {
               localStorage.setItem('userEmail', responseData.email);
               navigate('../PayTracker');

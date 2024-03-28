@@ -21,11 +21,8 @@ export default function History(props:HistoryProps) {
     const fetchHistory = props.fetchHistory;
     // delete shift
     const deleteShift = async (_id: string) => {
-        console.log('delete click');        
         try {
-            console.log(`deleting ${_id}`);
             await axios.delete(`http://localhost:3000/shift/${_id}`);
-            console.log(`Shift with _id ${_id} deleted successfully.`);
             fetchHistory()
         } catch (error) {
             console.error(`Error deleting shift with _id ${_id}:`, error);

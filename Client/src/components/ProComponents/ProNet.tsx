@@ -24,23 +24,19 @@ const ProNet: React.FC = () => {
     if (storedNetPay !== null && !isNaN(parseFloat(storedNetPay))) {
       const parsedNetPay = parseFloat(storedNetPay);
       setDisplayNet(parsedNetPay);
-      console.log(`parsedNetPay = ${parsedNetPay}`);
     }
   }, []);
 
   //this updates deduction rate in local storage;
   useEffect(() => {
     localStorage.setItem('deductionState', JSON.stringify(deductionRate));
-    console.log('stored deductions: ', storedDeductions);
   }, [deductionRate]);
 
   const [netPay, setNetPay] = useState<number>(0);
 
   // this updates netPay from grosspay and deductionRate
   useEffect(() => {
-    console.log(`grosspay is reading ${grossPay} and deductions is ${deductionRate}`)
     const newNetPay: number = (grossPay * deductionRate);
-    console.log(`new net pay = ${newNetPay}`);
     setNetPay(newNetPay);
 }, [grossPay, deductionRate]);
 

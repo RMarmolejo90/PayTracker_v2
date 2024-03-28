@@ -1,16 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../utils/useAuthContext";
-import { useEffect, useState } from "react";
 
 
 export default function Navbar() {
     const { authorized } = useAuthContext();
 
-   // const auth:string = localStorage.getItem("Auth") ?? "false";
-
-    //const isAuthorized: boolean = authorized;
-
-   // console.log(`isAuthorized = ${isAuthorized}`);
 
   return (
     <div className='flex flex-row flex-wrap items-center justify-between md:justify-normal p-1 w-screen  bg-slate-950'>

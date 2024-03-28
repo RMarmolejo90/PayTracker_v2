@@ -26,13 +26,11 @@ const BasicNet: React.FC = () => {
     if (storedNetPay !== null && !isNaN(parseFloat(storedNetPay))) {
       const parsedNetPay = parseFloat(storedNetPay);
       setDisplayNet(parsedNetPay);
-      console.log(`parsedNetPay = ${parsedNetPay}`);
     }
   }, []);
 
   useEffect(() => {
     localStorage.setItem('deductionState', JSON.stringify(deductionRate));
-    console.log('stored deductions: ', storedDeductions);
   }, [deductionRate]);
 
   const [netPay, setNetPay] = useState<number>(0);
