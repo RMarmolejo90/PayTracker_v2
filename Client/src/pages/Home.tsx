@@ -17,7 +17,7 @@ export default function Home() {
       </div>
       <img className="max-w-xs lg:max-w-sm md:m-2 rounded-full bg-[#D3C718]" src={richImage} alt="Rich Marmolejo himself" />
       <section className='lg:m-10 m-6 lg:p-8 p-4 bg-secondary-gradient text-slate-300 border border-slate-950 rounded-md'>
-      <h3 className='p-4 font-semibold text-lg'>Welcome to RichMarmolejo.com</h3>
+      <h3 className='p-4 font-semibold text-lg'>Welcome to PayTracker!</h3>
       <p className='p-4'>
       Hey! My name is Rich. I enjoy developing software programs that make our daily lives easier and more productive. I am also an HVAC Technician. Working on the road as a technician, I would often find myself tracking my work hours and writing them down in a notepad. After my shift I would add up my hours, calculate my deductions and estimate what my paycheck might look like. So then I thought, wouldn't it be great if I could clock in and out on an app that would show me these calculations in real-time? I find it motivating throughout the week to check on my progress, but also helpful to double check the payroll accuracy. So this is what I came up with.
       </p>
