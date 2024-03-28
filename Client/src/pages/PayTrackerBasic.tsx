@@ -143,8 +143,8 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
   
   return (
     
-    <div className='p-8'>
-            <h1 className='text-3xl pb-10 text-center text-blue-400 border-b-2 border-orange-500 font-tilt'>Pay-Tracker Basic</h1>
+    <div className='p-8 bg-slate-200'>
+            <h1 className='text-3xl pb-10 text-center text-sky-600 border-b-2 border-orange-500 font-tilt'>Pay-Tracker Basic</h1>
             <div className='flex flex-wrap flex-col md:flex-row flex-auto justify-around items-center p-6'>
                 <h2 className='text-2xl font-semibold m-6'>
                     Gross: ${ grossPay.toFixed(2) }
@@ -164,11 +164,11 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                 /> : <div className="hidden">Submit your hourly pay rate</div>}
             </div> 
             <div className='flex flex-auto flex-col flex-wrap justify-center items-center'> 
-                    <div className='border-zinc-700 border-4 p-6 flex flex-auto flex-col flex-wrap justify-center items-end m-6'>
+                    <div className='border-slate-400 rounded-lg border-2 p-6 flex flex-auto flex-col flex-wrap justify-center items-end m-6'>
                         <h3 className='mr-6'>
                             Hourly Rate: ${ activeSubmittedRate }
                         </h3>
-                        <form className='outline-slate-600 m-6 flex flex-auto flex-col justify-center items-end' onSubmit={ handleSubmit }>
+                        <form className='outline-blue-600 m-6 flex flex-auto flex-col justify-center items-end' onSubmit={ handleSubmit }>
                             <input 
                             className='text-slate-600 bg-slate-50 rounded-sm py-1.5 px-3 lg:mr-4 my-3 '
                             placeholder = {placeholderText}
