@@ -5,6 +5,7 @@ export interface AuthContextType {
     login: () => void;
     logout: () => void;
     authorized: boolean;
+    auth: string;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -28,6 +29,7 @@ interface AuthProviderProps {
       };
     
     const AuthContextValue: AuthContextType = {
+        auth,
         authorized,
         login,
         logout

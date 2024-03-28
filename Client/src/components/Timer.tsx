@@ -9,7 +9,7 @@ interface TimerProps {
 }
 
 const Timer: React.FC<TimerProps> = ({ hours, minutes, seconds, handleStartClick, handleStopClick }) => {
-  const { isActive, setShiftDuration, shiftDuration } = useTrackerContext();
+  const { isActive, setShiftDuration, } = useTrackerContext();
   const shiftHours = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
 
 
