@@ -67,7 +67,7 @@ const PayTrackerPro: React.FC = () => {
   const fetchHistory = async () => {
     try {  
       if (userId !== null) { // Make sure userId is not null
-        const response = await axios.get('http://localhost:3000/user', 
+        const response = await axios.get('https://paytrack-backend.onrender.com/user', 
         {headers: headers}
         );
         if (response.status !== 204){
@@ -123,7 +123,7 @@ const PayTrackerPro: React.FC = () => {
         localStorage.setItem('activeTimer', JSON.stringify(false));
         localStorage.removeItem('startButton');
         setIsActive(false);
-        const response = await axios.put('http://localhost:3000/clock-out', shiftData);
+        const response = await axios.put('https://paytrack-backend.onrender.com/clock-out', shiftData);
         const responseStatus = response.status;
         if(responseStatus === 200){
           alert(`${updatedShiftDuration} - $${grossPay}`);
@@ -139,7 +139,7 @@ const PayTrackerPro: React.FC = () => {
       const handleStartClick: () => void = async () => {
         const newStartTime: number = new Date().getTime();
         setStartTime(newStartTime);
-        axios.post('http://localhost:3000/clock-in', startClickHeader);
+        axios.post('https://paytrack-backend.onrender.com/clock-in', startClickHeader);
         localStorage.setItem('startTime', JSON.stringify(newStartTime));
         localStorage.setItem('activeTimer', JSON.stringify(true));
         localStorage.setItem('startButton', "Stop");

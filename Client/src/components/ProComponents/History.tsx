@@ -22,7 +22,7 @@ export default function History(props:HistoryProps) {
     // delete shift
     const deleteShift = async (_id: string) => {
         try {
-            await axios.delete(`http://localhost:3000/shift/${_id}`);
+            await axios.delete(`https://paytrack-backend.onrender.com/shift/${_id}`);
             fetchHistory()
         } catch (error) {
             console.error(`Error deleting shift with _id ${_id}:`, error);

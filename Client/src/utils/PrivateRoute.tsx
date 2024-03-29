@@ -21,7 +21,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = () => {
       };
       try {
         // Send a request to the server to verify the token
-        const response = await axios.get('http://localhost:3000/auth', {
+        const response = await axios.get('https://paytrack-backend.onrender.com/auth', {
           headers: headers
         });
         setIsValidToken(response.data.valid);

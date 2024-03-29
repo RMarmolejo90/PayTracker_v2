@@ -40,7 +40,7 @@ export default function PayTrackerBasic() {
     // Make an asynchronous Axios request to check authentication
     const checkAuthentication = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/auth', {
+        const response = await axios.get('https://paytrack-backend.onrender.com/auth', {
           headers: headers,
         });
         

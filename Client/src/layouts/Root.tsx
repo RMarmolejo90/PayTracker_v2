@@ -19,7 +19,7 @@ export default function Root() {
   useEffect(() => {
     const fetchAuthData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/auth', {
+        const response = await axios.get('https://paytrack-backend.onrender.com/auth', {
           headers: headers,
           validateStatus: (status) => {
             return status === 200 || status === 401;

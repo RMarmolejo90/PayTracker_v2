@@ -34,7 +34,7 @@ export default function Login() {
     onSubmit: async (values) => {
       try {
         // Send a POST request to the API endpoint
-        const response = await axios.post("http://localhost:3000/login", values);
+        const response = await axios.post("https://paytrack-backend.onrender.com/login", values);
 
         if (response.status === 401) {
           // Invalid credentials, display an error message

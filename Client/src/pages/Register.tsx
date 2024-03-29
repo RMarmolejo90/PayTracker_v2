@@ -43,7 +43,7 @@ export default function Register() {
     onSubmit: async values => {
         try {
             // Send a POST request to the API endpoint
-            const response = await axios.post("http://localhost:3000/register", values);
+            const response = await axios.post("https://paytrack-backend.onrender.com/register", values);
             const responseStatus = response.status;
             const responseData = response.data;
              // Add this line to get the response data
