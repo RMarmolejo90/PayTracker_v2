@@ -78,7 +78,7 @@ export default function Login() {
 
             <input className="p-2 text-slate-900 px-4 m-2 rounded-md" onChange={formik.handleChange} value={formik.values.password} title="password" placeholder="Enter Your Password" type="password" name="password" id="password" />
 
-            <button className="p-1 px-6 m-4 rounded-md bg-green-500 tracking-wider text-slate-950" type="submit">Submit</button>
+            <button className="p-2 px-6 m-4 rounded-md bg-green-400 hover:bg-green-300 font-semibold text-slate-950 uppercase tracking-widest hover:outline " type="submit">Submit</button>
         </form>
       </div>
     </div>

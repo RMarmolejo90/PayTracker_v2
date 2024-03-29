@@ -74,7 +74,7 @@ export default function Register() {
             <input className='p-2 m-2 rounded-md' onChange={formik.handleChange} value={formik.values.lastName} placeholder='Last Name' type="text" name="lastName" id="lastName" />
             <input className='p-2 m-2 rounded-md' onChange={formik.handleChange} value={formik.values.email} placeholder='Email' type="email" name="email" id="email" />
             <input className='p-2 m-2 rounded-md' onChange={formik.handleChange} value={formik.values.password} placeholder='Password' type="password" name="password" id="password" />
-            <button className='p-1 px-6 m-4 bg-green-500 tracking-wider rounded-md' type="submit">Submit</button>
+            <button className="p-2 px-6 m-4 rounded-md bg-green-400 hover:bg-green-300 font-semibold text-slate-950 uppercase tracking-widest hover:outline " type="submit">Submit</button>
         </form>
         </div>
     </div>
