@@ -217,7 +217,7 @@ const PayTrackerPro: React.FC = () => {
                       onChange={ handleRate } 
                       onClick={ selectRange }
                       />
-                      <button className=' my-3 bg-blue-500 border-slate-500 rounded-md text-slate-100 font-semibold p-1.5' type="submit">Submit</button>
+                      <button className=' my-3 bg-blue-400 rounded-md text-slate-900 font-semibold p-2 uppercase tracking-widest hover:outline px-6' type="submit">Submit</button>
                   </form>
               </div>
               <div className='flex flex-col items-center justify-center'>

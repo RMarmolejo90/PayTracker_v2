@@ -32,11 +32,11 @@ const Timer: React.FC<TimerProps> = ({ hours, minutes, seconds, handleStartClick
       <div className='p-4'>
         {/* start/stop button conditionally rendered */}
         {isActive === true ? (
-          <button type="button" className='bg-red-600 m-4 py-1.5 px-6 font-semibold border-slate-700 rounded-md text-slate-50' onClick={stopClick}>
+          <button type="button" className='bg-orange-400 uppercase tracking-widest m-4 py-2 px-6 font-semibold border-slate-700 rounded-md text-slate-950 hover:outline' onClick={stopClick}>
             Stop
           </button>
         ) : (
-          <button type="button" className='bg-green-500 m-4 py-1.5 px-6 font-semibold border-slate-700 rounded-md text-slate-50' onClick={handleStartClick}>
+          <button type="button" className='bg-green-400 uppercase tracking-widest m-4 py-2 px-6 font-semibold border-slate-700 rounded-md text-slate-950 hover:outline' onClick={handleStartClick}>
             Start
           </button>
         )}

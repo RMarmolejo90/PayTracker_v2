@@ -7,7 +7,7 @@ export default function Navbar() {
 
 
   return (
-    <div className='flex flex-row flex-wrap items-center justify-center md:justify-normal p-2 w-screen  bg-slate-950 text-center'>
+    <div className='mb-12 flex flex-row flex-wrap items-center justify-center md:justify-normal p-2 w-screen  bg-slate-950 text-center'>
             <div className="flex-wrap-reverse flex justify-center items-center md:items-evenly md:justify-center md:flex-grow tracking-wide uppercase text-center">           
                 <ul className='flex flex-row justify-center text-md m-4 text-center lg:justify-end'>
                     <li className='px-2'>
