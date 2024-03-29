@@ -1,4 +1,3 @@
-import richImage from '../assets/rich.webp';
 import { useAuthContext } from "../utils/useAuthContext";
 import { NavLink } from 'react-router-dom'; // Assuming you're using react-router for navigation
 
@@ -32,7 +31,6 @@ const Home = () => {
           </div>
         )
       }
-      <img className="max-w-xs lg:max-w-sm md:m-4 rounded-full bg-slate-900 border-2 border-slate-950" src={richImage} alt="Rich Marmolejo himself" />
       <section className='p-6 lg:m-10 lg:p-8 my-12 bg-secondary-gradient text-slate-300 border border-slate-950 rounded-lg'>
         <h3 className='p-4 font-semibold text-xl'>Welcome to PayTracker!</h3>
         <p className='p-4'>

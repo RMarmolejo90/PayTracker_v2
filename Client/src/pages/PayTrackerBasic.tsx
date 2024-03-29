@@ -138,7 +138,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
   return (
     
     <div className='p-8 bg-zinc-200'>
-            <h1 className='text-3xl pb-10 text-center text-sky-600 border-b-2 border-orange-500 font-tilt'>Pay-Tracker Basic</h1>
+            <h1 className='text-3xl pb-10 text-center text-sky-600 border-b-2 border-orange-500 font-tilt'>PayTracker Basic</h1>
             <div className='flex flex-wrap flex-col md:flex-row flex-auto justify-center items-center p-6'>
                 <h2 className='text-2xl font-semibold m-6'>
                     Gross: ${ grossPay.toFixed(2) }

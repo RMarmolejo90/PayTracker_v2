@@ -56,7 +56,7 @@ export default function Login() {
           login();
 
           // navigate to PayTracker
-          navigate('../PayTracker');
+          navigate('../PayTracker/Pro');
         }
       } catch (error) {
         console.error(error);
