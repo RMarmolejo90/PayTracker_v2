@@ -40,7 +40,7 @@ export default function Navbar() {
                    (authorized === true) ?
                    (<NavLink 
                     to="/Logout"
-                    className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
+                    className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-6' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50'}>           
                     Sign out
                     </NavLink>)
                     :

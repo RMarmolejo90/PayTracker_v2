@@ -164,7 +164,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                         </h3>
                         <form className='outline-blue-600 m-6 flex flex-auto flex-col justify-center items-end' onSubmit={ handleSubmit }>
                             <input 
-                            className='text-slate-600 bg-slate-50 rounded-sm py-1.5 px-3 lg:mr-4 my-3 '
+                            className='text-slate-900 bg-slate-50 rounded-sm py-1.5 px-3 lg:mr-4 my-3 '
                             placeholder = {placeholderText}
                             min = "0"
                             type="number"
