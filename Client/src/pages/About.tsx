@@ -1,10 +1,10 @@
 
 export default function About() {
   return (
-    <div className="p-12 flex flex-col items-center justify-center bg-zinc-100">
+    <div className="p-2 lg:p-8 lg:py-12 flex flex-col items-center justify-center bg-zinc-100">
         <h1 className="p-6 font-bold text-2xl text-sky-600">About The Paytrack App</h1>
-        <div className="p-6 flex flex-col justify-start items-center">
-          <h2 className="p-4 text-xl font-semibold text-sky-600">
+        <div className="py-6 flex flex-col justify-center lg:items-center">
+          <h2 className="p-2 lg:p-4 text-2xl font-semibold text-sky-600">
             How To Use
           </h2>
           <p className="text-lg p-2">
@@ -14,8 +14,8 @@ export default function About() {
             Select your deductions amount. Enter your hourly rate in the input field, and then click start. This will start the timer, and you will immediately begin to see the paycheck in real-time. You can put your device or computer away and come back to it later. You can even close the app and return at the end of your shift, and the timer will continue. However, you cannot pause the timer. I have not implemented a pause feature yet, and I'm not sure that I will because I just wouldn't use it. If you are logged into the pro version, then when you click stop it will save the shift data to your work history. If you're using the basic version however, the timer will return to zero when you click stop. So Write down the time before you click the stop button If you're tracking the time. Overall, I would recommend using the Pro version.
           </p>
         </div>
-        <div className="p-6 flex flex-col justify-start items-center">
-          <h2 className="p-4 text-xl font-semibold text-sky-600">
+        <div className="p-6 flex flex-col justify-center lg:items-center">
+          <h2 className="p-2 lg:p-4 text-2xl font-semibold text-sky-600">
             Technology Stack
           </h2>
           <div>
