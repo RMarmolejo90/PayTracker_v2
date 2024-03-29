@@ -1,21 +1,37 @@
 import richImage from '../assets/rich.webp';
-export default function Home() {
+import { useAuthContext } from "../utils/useAuthContext";
+import { NavLink } from 'react-router-dom'; // Assuming you're using react-router for navigation
+
+const Home = () => {
+  const { authorized } = useAuthContext();
+
   return (
-    <div className="flex flg:lex-row flex-col flex-wrap flex-shrink items-center justify-evenly p-2 text-slate-200">
-      <div className="flex flex-col flex-wrap items-between justify-start max-w-xl md:m-2">
-        <h1 className="text-3xl lg:text-4xl font-semibold p-3 tracking-wide text-orange-500 text-center">
-          The PayTracker App       
-        </h1>
-        <div className="p-2 w-full py-4 text-xl text-center leading-8 flex flex-col items-center justify-center">
-          <p className='p-2 font-semibold  w-full'>
-          Try out the <span className='text-orange-500 uppercase'>Pro Version</span> by signing in, or creating an account! It's free, its secure and its just.. better.        
-          </p>
-          <div className='m-4 flex flex-row w-full items-center justify-center'>
-            <a className='text-sm text-center m-3 rounded-md uppercase hover:bg-yellow-400 p-3 px-4 bg-yellow-500 text-slate-950 font-semibold tracking-wider' href="/login">Sign In</a>
-            <a className='text-sm text-center m-3 rounded-md uppercase hover:bg-yellow-400 p-3 bg-yellow-500 text-slate-950 font-semibold tracking-wider' href="/register">New User</a>
+    <div className="flex flex-col flex-wrap flex-shrink items-center justify-evenly p-2 text-slate-200">
+      {
+        !authorized ?
+        (
+          <div className="flex flex-col flex-wrap items-between justify-start max-w-xl md:m-2">
+            <h1 className="text-3xl lg:text-4xl font-semibold p-3 tracking-wide text-orange-500 text-center">
+              The PayTracker App       
+            </h1>
+            <div className="p-2 w-full py-4 text-xl text-center leading-8 flex flex-col items-center justify-center">
+              <p className='p-2 font-semibold  w-full'>
+                Try out the <span className='text-orange-500 uppercase'>Pro Version</span> by signing in, or creating an account! It's free, it's secure, and it's just.. better.        
+              </p>
+              <div className='m-4 flex flex-row w-full items-center justify-center'>
+                <NavLink className='text-sm text-center m-3 rounded-md uppercase hover:bg-yellow-400 p-3 px-4 bg-yellow-500 text-slate-950 font-semibold tracking-wider' to="/login">Sign In</NavLink>
+                <NavLink className='text-sm text-center m-3 rounded-md uppercase hover:bg-yellow-400 p-3 bg-yellow-500 text-slate-950 font-semibold tracking-wider' to="/register">New User</NavLink>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        ) : (
+          <div className="flex flex-col flex-wrap items-between justify-start max-w-xl md:m-2">
+            <h1 className="text-4xl lg:text-5xl font-bold p-3 tracking-widest text-blue-200 text-center">
+              PayTracker Pro       
+            </h1>
+          </div>
+        )
+      }
       <img className="max-w-xs lg:max-w-sm md:m-4 rounded-full bg-slate-900 border-2 border-slate-950" src={richImage} alt="Rich Marmolejo himself" />
       <section className='p-6 lg:m-10 lg:p-8 my-12 bg-secondary-gradient text-slate-300 border border-slate-950 rounded-lg'>
         <h3 className='p-4 font-semibold text-xl'>Welcome to PayTracker!</h3>
@@ -41,3 +57,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home
