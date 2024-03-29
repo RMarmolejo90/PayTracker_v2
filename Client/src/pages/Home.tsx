@@ -11,16 +11,16 @@ const Home = () => {
         !authorized ?
         (
           <div className="flex flex-col flex-wrap items-between justify-start max-w-xl md:m-2">
-            <h1 className="text-3xl lg:text-4xl font-semibold p-3 tracking-wide text-orange-500 text-center">
+            <h1 className="text-3xl lg:text-4xl font-semibold p-3 tracking-wide text-blue-200 text-center">
               The PayTracker App       
             </h1>
             <div className="p-2 w-full py-4 text-xl text-center leading-8 flex flex-col items-center justify-center">
-              <p className='p-2 font-semibold  w-full'>
-                Try out the <span className='text-orange-500 uppercase'>Pro Version</span> by signing in, or creating an account! It's free, it's secure, and it's just.. better.        
+              <p className='p-2 font-semibold  w-full tracking-wider'>
+                Try out the <span className='text-blue-200 uppercase'>Pro Version</span> by signing in, or creating an account! It's free, it's secure, it's just... better.        
               </p>
               <div className='m-4 flex flex-row w-full items-center justify-center'>
-                <NavLink className='text-sm text-center m-3 rounded-md uppercase hover:bg-yellow-400 p-3 px-4 bg-yellow-500 text-slate-950 font-semibold tracking-wider' to="/login">Sign In</NavLink>
-                <NavLink className='text-sm text-center m-3 rounded-md uppercase hover:bg-yellow-400 p-3 bg-yellow-500 text-slate-950 font-semibold tracking-wider' to="/register">New User</NavLink>
+                <NavLink className='text-sm text-center m-3 rounded-md uppercase hover:bg-yellow-400 p-3 px-4 bg-yellow-500 text-slate-950 font-semibold tracking-wider' to="/Login">Sign In</NavLink>
+                <NavLink className='text-sm text-center m-3 rounded-md uppercase hover:bg-yellow-400 p-3 bg-yellow-500 text-slate-950 font-semibold tracking-wider' to="/Register">New User</NavLink>
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@ const Home = () => {
         If you have any questions or feedback, please don't hesitate to reach out to me. I try to provide prompt responses, typically within 24 hours.
         </p>
         <div className='flex items-center justify-center'>
-          <a className='text-center m-8 rounded-md hover:bg-yellow-400 p-2 bg-yellow-500 text-slate-950 font-semibold tracking-wider' href="mailto:richardmarmolejo@gmail.com">CONTACT ME HERE</a>
+          <a className='text-center m-8 rounded-md hover:bg-yellow-400 p-6 bg-yellow-500 text-slate-950 font-semibold tracking-wider' href="mailto:richardmarmolejo@gmail.com">CONTACT ME HERE</a>
         </div>
       </section>
     </div>
