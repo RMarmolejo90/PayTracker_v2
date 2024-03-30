@@ -40,7 +40,7 @@ const Home = () => {
         If you plan to use the tracker to save your work history, you can create a free Pro Account. The Pro version will save all of your work hours for you, so you don't have to keep track of it yourself. If you just want to check your work hours and pay calculations in real-time and don't care about tracking hours or saving info, you can do that from either the basic or the pro versions. 
         </p>
         <p className='p-4'>
-        If you have any questions or feedback, please don't hesitate to reach out to me. I try to provide prompt responses, typically within 24 hours.
+        If you have any questions, feedback, or notice and bugs, please don't hesitate to reach out to me. I try to provide prompt responses, typically within 24 hours.
         </p>
         <div className='flex items-center justify-center'>
           <a className='text-center m-8 rounded-md hover:bg-yellow-400 p-6 bg-yellow-500 text-slate-950 font-semibold tracking-wider' href="mailto:richardmarmolejo@gmail.com">CONTACT ME HERE</a>
