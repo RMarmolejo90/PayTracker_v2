@@ -1,8 +1,8 @@
-import axios from "axios"
+import axios from "axios";
 
 type Shift = {
-    timeIn: number, 
-    endTime: number,
+    timeIn: number,
+    endTime: number, // endTime as number
     grossPay: number,
     netPay: number,
     hoursWorked: string,
@@ -12,63 +12,63 @@ type Shift = {
 }
 
 type HistoryProps = {
-    history: Shift[]
+    history: Shift[],
     fetchHistory: () => Promise<void>
 }
 
-export default function History(props:HistoryProps) {
+const History = (props: HistoryProps) => {
+    const { fetchHistory, history: rawHistory } = props;
 
-    const fetchHistory = props.fetchHistory;
-    // delete shift
     const deleteShift = async (_id: string) => {
         try {
             await axios.delete(`https://paytrack-backend.onrender.com/shift/${_id}`);
-            fetchHistory()
+            fetchHistory();
         } catch (error) {
             console.error(`Error deleting shift with _id ${_id}:`, error);
         }
-      };
-      
+    };
     
-    // raw data from the database
-    const rawHistory: Shift[] = props.history;
-    
-    // filters out the currently active shift
-    const history: Shift[] = rawHistory.filter((shift) => shift.endTime !== undefined && shift.endTime !== null);
+    // Assuming all shifts have a defined endTime
+    const history: Shift[] = rawHistory;
 
-  return (
-    <div className="min-w-full p-10 bg-zinc-100 border-orange-500 rounded-xl border-t-2 flex flex-col items-center justify-between">
-        <h2 className="font-semibold text-sky-600 text-3xl text-center">Work History</h2>
-        <div className="">
-          <table className="">
-            <thead>
-              <tr className="">
-                <th className="p-2">Time In</th>
-                <th className="p-2">End Time</th>
-                <th className="p-2">Gross Pay</th>
-                <th className="p-2">Net Pay</th>
-                <th className="p-2">Hours Worked</th>
-                <th className="p-2">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {history.map((shift) => (
-                <tr key={shift._id}>
-                    <td className="p-2 border-r border-slate-800 ">{new Date(shift.timeIn).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</td>
-                    <td className="p-2 border-r border-slate-800 ">{shift.endTime ? new Date(shift.endTime).toLocaleString([], { hour: '2-digit', minute: '2-digit' }) : '-'}</td>
-                    <td className="p-2 border-r border-slate-800 ">${shift.grossPay.toFixed(2)}</td>
-                    <td className="p-2 border-r border-slate-800 ">${shift.netPay.toFixed(2)}</td>
-                    <td className="p-2 border-r border-slate-800 ">{shift.hoursWorked}</td>
-                    <td className="p-2 ">{new Date(shift.date).toLocaleDateString([], {year:'numeric', month: '2-digit', day: '2-digit'})}</td>
-                    <td className="p-2">
-                    <button type="button" onClick={() => deleteShift(shift._id)} className="bg-slate-800 tracking-wider uppercase text-xs p-2 font-semibold text-slate-100 hover:cursor-pointer hover:bg-red-700 rounded-xl">Delete</button>
-                    </td>                
-                </tr>
-              ))}
-            </tbody>
-          </table>
+    return (
+        <div className="min-w-screen p-10 bg-zinc-100 border-orange-500 rounded-xl border-t-2 flex flex-col items-center justify-between">
+            <h2 className="font-semibold text-sky-600 text-3xl text-center">Work History</h2>
+            <div>
+                <table className="table-auto w-full">
+                    <thead>
+                        <tr className="text-xs text-center mb-4 border-b-orange-500">
+                            <th className="lg:p-2 p-1.5">Start</th>
+                            <th className="lg:p-2 p-1.5">End</th>
+                            <th className="lg:p-2 p-1.5">Gross</th>
+                            <th className="lg:p-2 p-1.5">Net</th>
+                            <th className="lg:p-2 p-1.5">Hours</th>
+                            <th className="lg:p-2 p-1.5">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-xs ">
+                        {history.map((shift) => (
+                            <>
+                                <tr key={shift._id} className="text-center ">
+                                    <td className="lg:p-2 p-1.5 mt-4">{new Date(shift.timeIn).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">{new Date(shift.endTime).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">${shift.grossPay.toFixed(2)}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">${shift.netPay.toFixed(2)}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">{shift.hoursWorked}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">{new Date(shift.date).toLocaleDateString([], {year:'2-digit', month: '2-digit', day: '2-digit'})}</td>
+                                </tr>
+                                <tr className="border-b border-orange-500">
+                                    <td colSpan={6} className="text-center ">
+                                        <button type="button" onClick={() => deleteShift(shift._id)} className="mt-2 mb-4 bg-slate-800 tracking-wider uppercase text-xs p-2 font-semibold text-slate-100 hover:cursor-pointer hover:bg-red-700 rounded-xl">Delete</button>
+                                    </td>
+                                </tr>
+                            </>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-  )
+    );
 }
 
+export default History;
