@@ -32,12 +32,12 @@ const History = (props: HistoryProps) => {
     const history: Shift[] = rawHistory;
 
     return (
-        <div className="min-w-screen p-10 bg-zinc-100 border-orange-500 rounded-xl border-t-2 flex flex-col items-center justify-between">
-            <h2 className="font-semibold text-sky-600 text-3xl text-center">Work History</h2>
+        <div className="min-w-full p-6 bg-zinc-100 border-orange-500 rounded-xl border-t-2 flex flex-col items-center justify-between">
+            <h2 className="font-semibold text-sky-600 text-3xl text-center mb-10">Work History</h2>
             <div>
                 <table className="table-auto w-full">
                     <thead>
-                        <tr className="text-xs text-center mb-4 border-b-orange-500">
+                        <tr className="text-xs lg:text-xl text-center mb-4 border-b-orange-500">
                             <th className="lg:p-2 p-1.5">Start</th>
                             <th className="lg:p-2 p-1.5">End</th>
                             <th className="lg:p-2 p-1.5">Gross</th>
@@ -46,7 +46,7 @@ const History = (props: HistoryProps) => {
                             <th className="lg:p-2 p-1.5">Date</th>
                         </tr>
                     </thead>
-                    <tbody className="text-xs ">
+                    <tbody className="text-xs lg:text-lg ">
                         {history.map((shift) => (
                             <>
                                 <tr key={shift._id} className="text-center ">

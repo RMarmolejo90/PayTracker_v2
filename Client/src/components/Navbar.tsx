@@ -10,24 +10,24 @@ export default function Navbar() {
     <div className='mb-12 flex flex-row flex-wrap items-center justify-center md:justify-normal p-2 w-screen  bg-slate-950 text-center'>
             <div className="flex-wrap-reverse flex justify-center items-center md:items-evenly md:justify-center md:flex-grow tracking-wide uppercase text-center">           
                 <ul className='flex flex-row justify-center text-md m-4 text-center lg:justify-end'>
-                    <li className='px-2'>
+                    <li className='px-1'>
                         <NavLink 
                             to='/' 
-                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 m-6' : 'm-6 text-sky-200 hover:text-sky-50'}>
+                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 m-2' : 'm-2 text-sky-200 hover:text-sky-50'}>
                             Home
                         </NavLink>
                     </li>
-                    <li className='px-2'>
+                    <li className='px-1'>
                         <NavLink 
                             to="/PayTracker"
-                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 m-6' : 'm-6 text-sky-200 hover:text-sky-50'}>
+                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 m-2' : 'm-2 text-sky-200 hover:text-sky-50'}>
                             PayTracker
                         </NavLink>
                     </li>
-                    <li className='px-2'>
+                    <li className='px-1'>
                         <NavLink 
                             to="/About"
-                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 m-6' : 'm-6 text-sky-200 hover:text-sky-50'}>           
+                            className={({ isActive }) => isActive ? 'text-blue-400 py-2 border-b-2 border-blue-400 m-2' : 'm-2 text-sky-200 hover:text-sky-50'}>           
                             About
                         </NavLink>
                     </li>
@@ -39,19 +39,19 @@ export default function Navbar() {
                     authorized === true ?
                         <NavLink 
                         to="/Logout"
-                        className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-6' : 'text-sky-200 m-6 hover:cursor-pointer hover:text-sky-50'}>           
+                        className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 lg:m-2' : 'text-sky-200 lg:m-2 hover:cursor-pointer hover:text-sky-50'}>           
                         Sign out
                         </NavLink>
                     :
                         <>
                         <NavLink 
                             to="/Login"
-                            className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-6' : 'text-sky-200 m-6 hover:cursor-pointer hover:text-sky-50 text-xs lg:text-sm'}>           
+                            className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 lg:m-2' : 'text-sky-200 lg:m-2 hover:cursor-pointer hover:text-sky-50 text-xs lg:text-sm'}>           
                             Sign in  
                         </NavLink>
                         <NavLink 
                             to="/Register"
-                            className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-6' : 'text-sky-200 m-6 hover:cursor-pointer hover:text-sky-50 text-xs lg:text-sm'}>           
+                            className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 lg:m-2' : 'text-sky-200 lg:m-2 hover:cursor-pointer hover:text-sky-50 text-xs lg:text-sm'}>           
                             New User
                         </NavLink>
                         </>
