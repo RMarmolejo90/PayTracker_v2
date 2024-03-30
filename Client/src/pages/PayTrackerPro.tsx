@@ -181,7 +181,7 @@ const PayTrackerPro: React.FC = () => {
   };
 
   return (
-    <div className='p-8 min-w-full bg-zinc-200 flex flex-col items-center justify-center'>
+    <div className='p-8 min-w-full bg-slate-200 flex flex-col items-center justify-center'>
       <h1 className='text-3xl pb-10 text-center text-sky-700 border-b-2 border-orange-500 font-tilt'>PayTracker Pro</h1>
       <div className='flex flex-wrap flex-col md:flex-row flex-auto justify-center items-center p-2'>
           <h2 className='text-2xl font-semibold m-6'>

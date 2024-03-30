@@ -46,12 +46,12 @@ export default function Navbar() {
                         <>
                         <NavLink 
                             to="/Login"
-                            className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 lg:m-2' : 'text-sky-200 lg:m-2 hover:cursor-pointer hover:text-sky-50 text-xs lg:text-sm'}>           
+                            className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50 text-xs lg:text-sm'}>           
                             Sign in  
                         </NavLink>
                         <NavLink 
                             to="/Register"
-                            className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 lg:m-2' : 'text-sky-200 lg:m-2 hover:cursor-pointer hover:text-sky-50 text-xs lg:text-sm'}>           
+                            className={({ isActive }) => isActive ? 'text-blue-400 border-b-2 border-blue-400 m-2' : 'text-sky-200 m-2 hover:cursor-pointer hover:text-sky-50 text-xs lg:text-sm'}>           
                             New User
                         </NavLink>
                         </>
