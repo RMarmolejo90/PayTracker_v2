@@ -34,16 +34,10 @@ const Home = () => {
       <section className='p-6 lg:m-10 lg:p-8 my-12 bg-secondary-gradient text-slate-300 border border-slate-950 rounded-lg'>
         <h3 className='p-4 font-semibold text-xl'>Welcome to PayTracker!</h3>
         <p className='p-4'>
-        Hey! My name is Rich. I enjoy engineering software programs that make our daily lives easier and more productive. I am also an HVAC Technician, and for years on the road as a technician, I would find myself tracking my work hours and writing them down in a notepad. After my shift or at the end of the week, I would add up all of my hours, calculate my deductions, and estimate what my paycheck might look like. Eventually I thought, wouldn't it be great if I could clock in and out on an app that would show me these calculations in real-time? 
+        This application (especially the Pro Version) will allow you to keep track of your work hours with complete accuracy and control, while giving you real-time pay estimates based on your average deductions. Be sure to read the About page for more details. I hope you enjoy.
         </p>
         <p className='p-4'>
-          It motivates me throughout the week to check on my progress, but also its helpful to double check the payroll accuracy. Many of my previous jobs actually asked me as an employee, to track my hours just to make sure payroll is getting it right. So this is the solution I came up with. 
-        </p>
-        <p className='p-4'>
-        This application (especially in Pro Version) will allow you to keep track of your work hours with complete accuracy and control, while giving you real-time pay estimates based on your average deductions. I hope you enjoy.
-        </p>
-        <p className='p-4'>
-        If you plan to use the tracker to save your work history, you're welcome to create a free Pro Account. The Pro version will save all of your work hours for you, so you don't have to keep track of it yourself. If you just want to check your work hours and pay calculations in real-time and don't care about tracking hours or saving info, you can do that from either the basic or the pro versions. 
+        If you plan to use the tracker to save your work history, you can create a free Pro Account. The Pro version will save all of your work hours for you, so you don't have to keep track of it yourself. If you just want to check your work hours and pay calculations in real-time and don't care about tracking hours or saving info, you can do that from either the basic or the pro versions. 
         </p>
         <p className='p-4'>
         If you have any questions or feedback, please don't hesitate to reach out to me. I try to provide prompt responses, typically within 24 hours.
