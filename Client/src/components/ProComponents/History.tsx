@@ -50,13 +50,14 @@ const History = (props: HistoryProps) => {
                         {history.map((shift) => (
                             <>
                                 <tr key={shift._id} className="text-center ">
-                                    <td className="lg:p-2 p-1.5 mt-4">{new Date(shift.timeIn).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</td>
-                                    <td className="lg:p-2 p-1.5 mt-4">{new Date(shift.endTime).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</td>
-                                    <td className="lg:p-2 p-1.5 mt-4">${shift.grossPay.toFixed(2)}</td>
-                                    <td className="lg:p-2 p-1.5 mt-4">${shift.netPay.toFixed(2)}</td>
-                                    <td className="lg:p-2 p-1.5 mt-4">{shift.hoursWorked}</td>
-                                    <td className="lg:p-2 p-1.5 mt-4">{new Date(shift.date).toLocaleDateString([], {year:'2-digit', month: '2-digit', day: '2-digit'})}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">{shift.timeIn ? new Date(shift.timeIn).toLocaleString([], { hour: '2-digit', minute: '2-digit' }) : 'N/A'}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">{shift.endTime ? new Date(shift.endTime).toLocaleString([], { hour: '2-digit', minute: '2-digit' }) : 'N/A'}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">${shift.grossPay ? shift.grossPay.toFixed(2) : '0.00'}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">${shift.netPay ? shift.netPay.toFixed(2) : '0.00'}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">{shift.hoursWorked || 'N/A'}</td>
+                                    <td className="lg:p-2 p-1.5 mt-4">{shift.date ? new Date(shift.date).toLocaleDateString([], {year: '2-digit', month: '2-digit', day: '2-digit'}) : 'N/A'}</td>
                                 </tr>
+
                                 <tr className="border-b border-orange-500">
                                     <td colSpan={6} className="text-center ">
                                         <button type="button" onClick={() => deleteShift(shift._id)} className="mt-2 mb-4 bg-slate-800 tracking-wider uppercase text-xs p-2 font-semibold text-slate-100 hover:cursor-pointer hover:bg-red-700 rounded-xl">Delete</button>
