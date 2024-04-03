@@ -27,7 +27,7 @@ const PayTrackerPro: React.FC = () => {
     _id: string,
     userId: string
   }
-  const [history, setHistory] = useState<Shift[]>([]);
+  const [history, setHistory] = useState<Shift[] | []>([]);
   
   // defines time
   const hours: number = Math.floor(elapsedTime / 3600);
@@ -226,7 +226,7 @@ const PayTrackerPro: React.FC = () => {
       </div>
       <div>
         <History 
-        history = {history}
+        historyProps = {history}
         fetchHistory={fetchHistory}
         />
       </div>

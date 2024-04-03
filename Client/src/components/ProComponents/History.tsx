@@ -1,4 +1,5 @@
 import axios from "axios";
+import {useState} from "react";
 
 type Shift = {
     timeIn: number,
@@ -12,25 +13,27 @@ type Shift = {
 }
 
 type HistoryProps = {
-    history: Shift[],
+    historyProps: Shift[] | [],
     fetchHistory: () => Promise<void>
 }
 
 const History = (props: HistoryProps) => {
-    const { fetchHistory, history: rawHistory } = props;
+    const { fetchHistory, historyProps } = props;
+
+    const [history, setHistory] = useState(historyProps);
+
+
 
     const deleteShift = async (_id: string) => {
         try {
             await axios.delete(`https://paytrack-backend.onrender.com/shift/${_id}`);
-            fetchHistory();
+            const newHistory = Object.values(fetchHistory());
+            setHistory(newHistory);
         } catch (error) {
             console.error(`Error deleting shift with _id ${_id}:`, error);
         }
     };
     
-    // Assuming all shifts have a defined endTime
-    const history: Shift[] = rawHistory;
-
     return (
         <div className="min-w-full p-6 bg-zinc-100 border-orange-500 rounded-xl border-t-2 flex flex-col items-center justify-between">
             <h2 className="font-semibold text-sky-600 text-3xl text-center mb-10">Work History</h2>
